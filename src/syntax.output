@@ -1,0 +1,43 @@
+语法
+
+    0 $accept: Program $end
+
+    1 Program: %empty
+
+
+终结语词，附有它们出现处的规则
+
+    $end (0) 0
+    error (256)
+
+
+非终结语词，附有它们出现处的规则
+
+    $accept (3)
+        on left: 0
+    Program (4)
+        on left: 1
+        on right: 0
+
+
+状态 0
+
+    0 $accept: . Program $end
+
+    $default  使用规则 1 以归约 (Program)
+
+    Program  转到状态 1
+
+
+状态 1
+
+    0 $accept: Program . $end
+
+    $end  偏移，并进入状态 2
+
+
+状态 2
+
+    0 $accept: Program $end .
+
+    $default  接受
