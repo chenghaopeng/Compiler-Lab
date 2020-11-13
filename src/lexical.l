@@ -3,7 +3,6 @@
     #include "stdio.h"
 
     void printf_int (int base, char* s, int len, int lineno) {
-        printf("--%s--", s);
         int start = 0, n = 0;
         if (base == 8) start = 1;
         if (base == 16) start = 2;
@@ -14,6 +13,21 @@
             if (s[start] >= '0' && s[start] <= '9') n += s[start] - '0';
         }
         printf("INT %d at Line %d.\n", n, lineno);
+    }
+
+    void printf_float (int type, char* s, int len, int lineno) {
+        float f = 0, a = 0, b = 0;
+        int i;
+        for (i = 0; s[i] != '.'; ++i) a = a * 10 + s[i] - '0';
+        for (i++; s[i] >= '0' && s[i] <= '9'; ++i) b = b * 10 + s[i] - '0';
+        while (b >= 1) b /= 10;
+        f = a + b;
+        if (type) {
+            int n = atoi(s[i + 1]);
+            if (n > 0) for (int i = 0; i < n; ++i) f *= 10;
+            if (n < 0) for (int i = 0; i < -n; ++i) f /= 10;
+        }
+        printf("FLOAT %f at Line %d.\n", f, lineno);
     }
 %}
 
@@ -71,7 +85,8 @@ ID {LETTER}({LETTER}|{DIGIT})*
 {INTO} { printf_int(8, yytext, yyleng, yylineno); }
 {INTD} { printf_int(10, yytext, yyleng, yylineno); }
 {INTH} { printf_int(16, yytext, yyleng, yylineno); }
-{FLOAT} { printf("FLOAT %s at Line %d.\n", yytext, yylineno); }
+{FLOATN} { printf_float(0, yytext, yyleng, yylineno); }
+{FLOATE} { printf_float(1, yytext, yyleng, yylineno); }
 {SEMI} { printf("SEMI %s at Line %d.\n", yytext, yylineno); }
 {COMMA} { printf("COMMA %s at Line %d.\n", yytext, yylineno); }
 {ASSIGNOP} { printf("ASSIGNOP %s at Line %d.\n", yytext, yylineno); }
