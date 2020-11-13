@@ -1,5 +1,6 @@
 %{
     #include "syntax.tab.h"
+    #include "stdio.h"
 %}
 
 DIGIT [0-9]
@@ -18,7 +19,7 @@ FLOAT {FLOATN}|{FLOATE}
 
 COMMENTLINE //(.*?)\n
 COMMENTLINES /\*(.*?)\*/
-COMMENT COMMENTLINE|COMMENTLINES
+COMMENT {COMMENTLINE}|{COMMENTLINES}
 
 SEMI ;
 COMMA ,
@@ -45,5 +46,8 @@ IF if
 ELSE else
 WHILE while
 ID ^{LETTER}({LETTER}|{DIGIT})*
+
+%%
+
 
 %%
