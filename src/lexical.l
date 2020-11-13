@@ -7,11 +7,11 @@ DIGIT [0-9]
 LETTER [a-zA-Z_]
 WS [ \t\n\r]+
 
-INT0 0
-INT8 ^0[0-7]+
-INT10 ^[1-9]{DIGIT}+
-INT16 ^[(0x)(0X)][0-9a-fA-f]+
-INT {INT0}|{INT8}|{INT10}|{INT16}
+INTZ 0
+INTO ^0[0-7]+
+INTD ^[1-9]{DIGIT}+
+INTH ^[(0x)(0X)][0-9a-fA-f]+
+INT {INTZ}|{INTO}|{INTD}|{INTH}
 
 FLOATN {DIGIT}+\.{DIGIT}+
 FLOATE {DIGIT}*\.{DIGIT}*[eE][\+-]{0,1}{DIGIT}+
@@ -49,6 +49,6 @@ ID ^{LETTER}({LETTER}|{DIGIT})*
 
 %%
 
-{RETURN} { printf("INT %s at Line %d.\n", yytext, yylineno); }
+{WHILE} { printf("INT %s at Line %d.\n", yytext, yylineno); }
 
 %%
