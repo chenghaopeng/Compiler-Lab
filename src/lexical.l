@@ -7,7 +7,10 @@
         if (base == 8) start = 1;
         if (base == 16) start = 2;
         for (; start < len; ++start) {
-            n = n * base + s[start] - '0';
+            n *= base;
+            if (s[start] >= 'a' && s[start] <= 'z') n += s[start] - 'a';
+            if (s[start] >= 'A' && s[start] <= 'Z') n += s[start] - 'A';
+            if (s[start] >= '0' && s[start] <= '9') n += s[start] - '0';
         }
         printf("INT %d at Line %d.\n", n, lineno);
     }
