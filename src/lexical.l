@@ -49,5 +49,6 @@ ID ^{LETTER}({LETTER}|{DIGIT})*
 
 %%
 
+{RETURN} { printf("INT %s at Line %d.\n", yytext, yylineno); }
 
 %%
