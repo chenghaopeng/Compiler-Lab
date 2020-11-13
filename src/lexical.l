@@ -17,8 +17,8 @@ FLOATN {DIGIT}+\.{DIGIT}+
 FLOATE {DIGIT}*\.{DIGIT}*[eE][\+-]{0,1}{DIGIT}+
 FLOAT {FLOATN}|{FLOATE}
 
-COMMENTLINE //(.*?)\n
-COMMENTLINES /\*(.*?)\*/
+COMMENTLINE \/\/(.*?)\n
+COMMENTLINES \/\*(.*?)\*\/
 COMMENT {COMMENTLINE}|{COMMENTLINES}
 
 SEMI ;
@@ -48,6 +48,9 @@ WHILE while
 ID {LETTER}({LETTER}|{DIGIT})*
 
 %%
+
+{WS} {}
+{COMMENT} {}
 
 {INT} { printf("INT %s at Line %d.\n", yytext, yylineno); }
 {FLOAT} { printf("FLOAT %s at Line %d.\n", yytext, yylineno); }
