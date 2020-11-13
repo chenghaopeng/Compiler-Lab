@@ -13,7 +13,7 @@
             if (s[start] >= 'A' && s[start] <= 'Z') n += s[start] - 'A' + 10;
             if (s[start] >= '0' && s[start] <= '9') n += s[start] - '0';
         }
-        fprintf(stderr, "INT %ud at Line %d.\n", n, lineno);
+        fprintf(stderr, "INT %u at Line %d.\n", n, lineno);
     }
 
     void printf_float (int type, char* s, int len, int lineno) {
