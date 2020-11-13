@@ -7,3 +7,4 @@
 !/src/lexical.l
 !/src/syntax.y
 .DS_Store
+parser
