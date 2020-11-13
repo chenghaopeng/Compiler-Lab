@@ -23,7 +23,7 @@
         while (b >= 1) b /= 10;
         f = a + b;
         if (type) {
-            int n = atoi(s[i + 1]);
+            int n = atoi(s + i + 1);
             if (n > 0) for (int i = 0; i < n; ++i) f *= 10;
             if (n < 0) for (int i = 0; i < -n; ++i) f /= 10;
         }
