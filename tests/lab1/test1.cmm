@@ -1,3 +1,8 @@
-float sub(){
-    return 10 - 5.5e-3;
-}
+int main() 
+  {
+     // line comment
+     /* 
+       block comment
+     */
+     int i = 1;
+  }
