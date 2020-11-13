@@ -51,7 +51,7 @@ ID {LETTER}({LETTER}|{DIGIT})*
 
 \n { yylineno++; }
 {WS} {}
-{COMMENT} {}
+{COMMENT} { for (int i = 0; i < yyleng; ++i) if (yytext[i] == '\n') yylineno++; }
 
 {INT} { printf("INT %s at Line %d.\n", yytext, yylineno); }
 {FLOAT} { printf("FLOAT %s at Line %d.\n", yytext, yylineno); }
