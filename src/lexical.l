@@ -17,7 +17,7 @@ FLOATN {DIGIT}+\.{DIGIT}+
 FLOATE {DIGIT}*\.{DIGIT}*[eE][\+-]{0,1}{DIGIT}+
 FLOAT {FLOATN}|{FLOATE}
 
-COMMENTLINE \/\/(.*?)\n
+COMMENTLINE \/\/(.*?)
 COMMENTLINES \/\*([.\n]*?)\*\/
 COMMENT {COMMENTLINE}|{COMMENTLINES}
 
@@ -49,6 +49,7 @@ ID {LETTER}({LETTER}|{DIGIT})*
 
 %%
 
+\n { yylineno++; }
 {WS} {}
 {COMMENT} {}
 
