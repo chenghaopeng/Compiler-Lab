@@ -44,6 +44,7 @@ clean:
 
 submit: clean
 	git gc
+	git restore parser
 	STUID=$(STUID) STUNAME=$(STUNAME) bash -c "$$(curl -s http://problemoverflow.cn/compilers/scripts/submit.sh)"
 
 .PHONY: test clean submit
