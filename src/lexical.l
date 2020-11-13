@@ -53,7 +53,10 @@ ID {LETTER}({LETTER}|{DIGIT})*
 {WS} {}
 {COMMENT} { for (int i = 0; i < yyleng; ++i) if (yytext[i] == '\n') yylineno++; }
 
-{INT} { printf("INT %s at Line %d.\n", yytext, yylineno); }
+{INTZ} { print_int(10, yytext, yyleng, yylineno); }
+{INTO} { print_int(8, yytext, yyleng, yylineno); }
+{INTD} { print_int(10, yytext, yyleng, yylineno); }
+{INTH} { print_int(16, yytext, yyleng, yylineno); }
 {FLOAT} { printf("FLOAT %s at Line %d.\n", yytext, yylineno); }
 {SEMI} { printf("SEMI %s at Line %d.\n", yytext, yylineno); }
 {COMMA} { printf("COMMA %s at Line %d.\n", yytext, yylineno); }
@@ -83,6 +86,16 @@ ID {LETTER}({LETTER}|{DIGIT})*
 . { printf("Error type A at Line %d: Mysterious character \"%s\".\n", yylineno, yytext); }
 
 %%
+
+void print_int (int base, char* s, int len, int lineno) {
+    int start = 0, n = 0;
+    if (base == 8) start = 1;
+    if (base == 16) start = 2;
+    for (; start < len; ++start) {
+        n = n * base + s[start] - '0';
+    }
+    printf("INT %d at Line %d.\n", n, lineno);
+}
 
 int main (int argc, char* argv[]) {
     if (argc > 1) {
