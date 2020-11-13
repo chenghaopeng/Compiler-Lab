@@ -49,6 +49,6 @@ ID ^{LETTER}({LETTER}|{DIGIT})*
 
 %%
 
-{WHILE} { printf("INT %s at Line %d.\n", yytext, yylineno); }
+{FLOAT} { printf("INT %s at Line %d.\n", yytext, yylineno); }
 
 %%
