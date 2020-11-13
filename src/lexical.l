@@ -1,6 +1,16 @@
 %{
     #include "syntax.tab.h"
     #include "stdio.h"
+
+    void printf_int (int base, char* s, int len, int lineno) {
+        int start = 0, n = 0;
+        if (base == 8) start = 1;
+        if (base == 16) start = 2;
+        for (; start < len; ++start) {
+            n = n * base + s[start] - '0';
+        }
+        printf("INT %d at Line %d.\n", n, lineno);
+    }
 %}
 
 DIGIT [0-9]
@@ -86,16 +96,6 @@ ID {LETTER}({LETTER}|{DIGIT})*
 . { printf("Error type A at Line %d: Mysterious character \"%s\".\n", yylineno, yytext); }
 
 %%
-
-void printf_int (int base, char* s, int len, int lineno) {
-    int start = 0, n = 0;
-    if (base == 8) start = 1;
-    if (base == 16) start = 2;
-    for (; start < len; ++start) {
-        n = n * base + s[start] - '0';
-    }
-    printf("INT %d at Line %d.\n", n, lineno);
-}
 
 int main (int argc, char* argv[]) {
     if (argc > 1) {
