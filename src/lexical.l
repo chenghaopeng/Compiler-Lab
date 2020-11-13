@@ -51,7 +51,7 @@ ID {LETTER}({LETTER}|{DIGIT})*
 %%
 
 \n { lineno++; }
-{WS} {}
+{WS} { printf("空\n"); }
 {COMMENT} {}
 
 {INT} { printf("INT %s at Line %d.\n", yytext, lineno); }
@@ -90,4 +90,5 @@ int main (int argc, char* argv[]) {
         yyin = fopen(argv[1], "r");
         yylex();
     }
+    return 0;
 }
