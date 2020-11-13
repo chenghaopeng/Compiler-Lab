@@ -12,7 +12,7 @@
             if (s[start] >= 'A' && s[start] <= 'Z') n += s[start] - 'A' + 10;
             if (s[start] >= '0' && s[start] <= '9') n += s[start] - '0';
         }
-        printf("INT %d at Line %d.\n", n, lineno);
+        fprintf(stderr, "INT %d at Line %d.\n", n, lineno);
     }
 
     void printf_float (int type, char* s, int len, int lineno) {
@@ -27,7 +27,7 @@
             if (n > 0) for (int i = 0; i < n; ++i) f *= 10;
             if (n < 0) for (int i = 0; i < -n; ++i) f /= 10;
         }
-        printf("FLOAT %f at Line %d.\n", f, lineno);
+        fprintf(stderr, "FLOAT %f at Line %d.\n", f, lineno);
     }
 %}
 
@@ -87,32 +87,32 @@ ID {LETTER}({LETTER}|{DIGIT})*
 {INTH} { printf_int(16, yytext, yyleng, yylineno); }
 {FLOATN} { printf_float(0, yytext, yyleng, yylineno); }
 {FLOATE} { printf_float(1, yytext, yyleng, yylineno); }
-{SEMI} { printf("SEMI %s at Line %d.\n", yytext, yylineno); }
-{COMMA} { printf("COMMA %s at Line %d.\n", yytext, yylineno); }
-{ASSIGNOP} { printf("ASSIGNOP %s at Line %d.\n", yytext, yylineno); }
-{RELOP} { printf("RELOP %s at Line %d.\n", yytext, yylineno); }
-{PLUS} { printf("PLUS %s at Line %d.\n", yytext, yylineno); }
-{MINUS} { printf("MINUS %s at Line %d.\n", yytext, yylineno); }
-{STAR} { printf("STAR %s at Line %d.\n", yytext, yylineno); }
-{DIV} { printf("DIV %s at Line %d.\n", yytext, yylineno); }
-{AND} { printf("AND %s at Line %d.\n", yytext, yylineno); }
-{OR} { printf("OR %s at Line %d.\n", yytext, yylineno); }
-{DOT} { printf("DOT %s at Line %d.\n", yytext, yylineno); }
-{NOT} { printf("NOT %s at Line %d.\n", yytext, yylineno); }
-{TYPE} { printf("TYPE %s at Line %d.\n", yytext, yylineno); }
-{LP} { printf("LP %s at Line %d.\n", yytext, yylineno); }
-{RP} { printf("RP %s at Line %d.\n", yytext, yylineno); }
-{LB} { printf("LB %s at Line %d.\n", yytext, yylineno); }
-{RB} { printf("RB %s at Line %d.\n", yytext, yylineno); }
-{LC} { printf("LC %s at Line %d.\n", yytext, yylineno); }
-{RC} { printf("RC %s at Line %d.\n", yytext, yylineno); }
-{STRUCT} { printf("STRUCT %s at Line %d.\n", yytext, yylineno); }
-{RETURN} { printf("RETURN %s at Line %d.\n", yytext, yylineno); }
-{IF} { printf("IF %s at Line %d.\n", yytext, yylineno); }
-{ELSE} { printf("ELSE %s at Line %d.\n", yytext, yylineno); }
-{WHILE} { printf("WHILE %s at Line %d.\n", yytext, yylineno); }
-{ID} { printf("ID %s at Line %d.\n", yytext, yylineno); }
-. { printf("Error type A at Line %d: Mysterious character \"%s\".\n", yylineno, yytext); }
+{SEMI} { fprintf(stderr, "SEMI %s at Line %d.\n", yytext, yylineno); }
+{COMMA} { fprintf(stderr, "COMMA %s at Line %d.\n", yytext, yylineno); }
+{ASSIGNOP} { fprintf(stderr, "ASSIGNOP %s at Line %d.\n", yytext, yylineno); }
+{RELOP} { fprintf(stderr, "RELOP %s at Line %d.\n", yytext, yylineno); }
+{PLUS} { fprintf(stderr, "PLUS %s at Line %d.\n", yytext, yylineno); }
+{MINUS} { fprintf(stderr, "MINUS %s at Line %d.\n", yytext, yylineno); }
+{STAR} { fprintf(stderr, "STAR %s at Line %d.\n", yytext, yylineno); }
+{DIV} { fprintf(stderr, "DIV %s at Line %d.\n", yytext, yylineno); }
+{AND} { fprintf(stderr, "AND %s at Line %d.\n", yytext, yylineno); }
+{OR} { fprintf(stderr, "OR %s at Line %d.\n", yytext, yylineno); }
+{DOT} { fprintf(stderr, "DOT %s at Line %d.\n", yytext, yylineno); }
+{NOT} { fprintf(stderr, "NOT %s at Line %d.\n", yytext, yylineno); }
+{TYPE} { fprintf(stderr, "TYPE %s at Line %d.\n", yytext, yylineno); }
+{LP} { fprintf(stderr, "LP %s at Line %d.\n", yytext, yylineno); }
+{RP} { fprintf(stderr, "RP %s at Line %d.\n", yytext, yylineno); }
+{LB} { fprintf(stderr, "LB %s at Line %d.\n", yytext, yylineno); }
+{RB} { fprintf(stderr, "RB %s at Line %d.\n", yytext, yylineno); }
+{LC} { fprintf(stderr, "LC %s at Line %d.\n", yytext, yylineno); }
+{RC} { fprintf(stderr, "RC %s at Line %d.\n", yytext, yylineno); }
+{STRUCT} { fprintf(stderr, "STRUCT %s at Line %d.\n", yytext, yylineno); }
+{RETURN} { fprintf(stderr, "RETURN %s at Line %d.\n", yytext, yylineno); }
+{IF} { fprintf(stderr, "IF %s at Line %d.\n", yytext, yylineno); }
+{ELSE} { fprintf(stderr, "ELSE %s at Line %d.\n", yytext, yylineno); }
+{WHILE} { fprintf(stderr, "WHILE %s at Line %d.\n", yytext, yylineno); }
+{ID} { fprintf(stderr, "ID %s at Line %d.\n", yytext, yylineno); }
+. { fprintf(stderr, "Error type A at Line %d: Mysterious character \"%s\".\n", yylineno, yytext); }
 
 %%
 
