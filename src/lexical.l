@@ -79,7 +79,7 @@ ID {LETTER}({LETTER}|{DIGIT})*
 
 \n { yylineno++; }
 {WS} {}
-{COMMENT} { for (int i = 0; i < yyleng; ++i) { if (yytext[i] == '\n') yylineno++; if (i > 1 && yytext[i - 1] == '/' && yytext[i] == '*') fprintf(stderr, "Error type A at Line %d: Mysterious character \"/*\".\n", yylineno); } }
+{COMMENT} { for (int i = 0; i < yyleng; ++i) { if (yytext[i] == '\n') yylineno++; if ((i > 1 && yytext[i - 1] == '/' && yytext[i] == '*') || (i < yyleng - 2 && yytext[i - 1] == '*' && yytext[i] == '/')) fprintf(stderr, "Error type A at Line %d: Mysterious character \"/*\".\n", yylineno); } }
 \/\*|\*\/ { fprintf(stderr, "Error type A at Line %d: Mysterious character \"%s\".\n", yylineno, yytext); }
 
 {INTZ} { printf_int(10, yytext, yyleng, yylineno); }
