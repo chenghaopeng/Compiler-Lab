@@ -53,10 +53,10 @@ ID {LETTER}({LETTER}|{DIGIT})*
 {WS} {}
 {COMMENT} { for (int i = 0; i < yyleng; ++i) if (yytext[i] == '\n') yylineno++; }
 
-{INTZ} { print_int(10, yytext, yyleng, yylineno); }
-{INTO} { print_int(8, yytext, yyleng, yylineno); }
-{INTD} { print_int(10, yytext, yyleng, yylineno); }
-{INTH} { print_int(16, yytext, yyleng, yylineno); }
+{INTZ} { printf_int(10, yytext, yyleng, yylineno); }
+{INTO} { printf_int(8, yytext, yyleng, yylineno); }
+{INTD} { printf_int(10, yytext, yyleng, yylineno); }
+{INTH} { printf_int(16, yytext, yyleng, yylineno); }
 {FLOAT} { printf("FLOAT %s at Line %d.\n", yytext, yylineno); }
 {SEMI} { printf("SEMI %s at Line %d.\n", yytext, yylineno); }
 {COMMA} { printf("COMMA %s at Line %d.\n", yytext, yylineno); }
@@ -87,7 +87,7 @@ ID {LETTER}({LETTER}|{DIGIT})*
 
 %%
 
-void print_int (int base, char* s, int len, int lineno) {
+void printf_int (int base, char* s, int len, int lineno) {
     int start = 0, n = 0;
     if (base == 8) start = 1;
     if (base == 16) start = 2;
