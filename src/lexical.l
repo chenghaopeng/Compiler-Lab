@@ -28,9 +28,9 @@ RELOP >|<|>=|<=|==|!=
 PLUS \+
 MINUS -
 STAR \*
-DIV /
+DIV \/
 AND &&
-OR ||
+OR \|\|
 DOT \.
 NOT !
 TYPE int|float
@@ -50,5 +50,31 @@ ID ^{LETTER}({LETTER}|{DIGIT})*
 %%
 
 {INT} { printf("INT %s at Line %d.\n", yytext, yylineno); }
+{FLOAT} { printf("FLOAT %s at Line %d.\n", yytext, yylineno); }
+{SEMI} { printf("SEMI %s at Line %d.\n", yytext, yylineno); }
+{COMMA} { printf("COMMA %s at Line %d.\n", yytext, yylineno); }
+{ASSIGNOP} { printf("ASSIGNOP %s at Line %d.\n", yytext, yylineno); }
+{RELOP} { printf("RELOP %s at Line %d.\n", yytext, yylineno); }
+{PLUS} { printf("PLUS %s at Line %d.\n", yytext, yylineno); }
+{MINUS} { printf("MINUS %s at Line %d.\n", yytext, yylineno); }
+{STAR} { printf("STAR %s at Line %d.\n", yytext, yylineno); }
+{DIV} { printf("DIV %s at Line %d.\n", yytext, yylineno); }
+{AND} { printf("AND %s at Line %d.\n", yytext, yylineno); }
+{OR} { printf("OR %s at Line %d.\n", yytext, yylineno); }
+{DOT} { printf("DOT %s at Line %d.\n", yytext, yylineno); }
+{NOT} { printf("NOT %s at Line %d.\n", yytext, yylineno); }
+{TYPE} { printf("TYPE %s at Line %d.\n", yytext, yylineno); }
+{LP} { printf("LP %s at Line %d.\n", yytext, yylineno); }
+{RP} { printf("RP %s at Line %d.\n", yytext, yylineno); }
+{LB} { printf("LB %s at Line %d.\n", yytext, yylineno); }
+{RB} { printf("RB %s at Line %d.\n", yytext, yylineno); }
+{LC} { printf("LC %s at Line %d.\n", yytext, yylineno); }
+{RC} { printf("RC %s at Line %d.\n", yytext, yylineno); }
+{STRUCT} { printf("STRUCT %s at Line %d.\n", yytext, yylineno); }
+{RETURN} { printf("RETURN %s at Line %d.\n", yytext, yylineno); }
+{IF} { printf("IF %s at Line %d.\n", yytext, yylineno); }
+{ELSE} { printf("ELSE %s at Line %d.\n", yytext, yylineno); }
+{WHILE} { printf("WHILE %s at Line %d.\n", yytext, yylineno); }
+{ID} { printf("ID %s at Line %d.\n", yytext, yylineno); }
 
 %%
