@@ -1,6 +1,7 @@
 %{
     #include "syntax.tab.h"
     #include "stdio.h"
+    int lineno = 1;
 %}
 
 DIGIT [0-9]
@@ -52,34 +53,35 @@ ID {LETTER}({LETTER}|{DIGIT})*
 {WS} {}
 {COMMENT} {}
 
-{INT} { printf("INT %s at Line %d.\n", yytext, yylineno); }
-{FLOAT} { printf("FLOAT %s at Line %d.\n", yytext, yylineno); }
-{SEMI} { printf("SEMI %s at Line %d.\n", yytext, yylineno); }
-{COMMA} { printf("COMMA %s at Line %d.\n", yytext, yylineno); }
-{ASSIGNOP} { printf("ASSIGNOP %s at Line %d.\n", yytext, yylineno); }
-{RELOP} { printf("RELOP %s at Line %d.\n", yytext, yylineno); }
-{PLUS} { printf("PLUS %s at Line %d.\n", yytext, yylineno); }
-{MINUS} { printf("MINUS %s at Line %d.\n", yytext, yylineno); }
-{STAR} { printf("STAR %s at Line %d.\n", yytext, yylineno); }
-{DIV} { printf("DIV %s at Line %d.\n", yytext, yylineno); }
-{AND} { printf("AND %s at Line %d.\n", yytext, yylineno); }
-{OR} { printf("OR %s at Line %d.\n", yytext, yylineno); }
-{DOT} { printf("DOT %s at Line %d.\n", yytext, yylineno); }
-{NOT} { printf("NOT %s at Line %d.\n", yytext, yylineno); }
-{TYPE} { printf("TYPE %s at Line %d.\n", yytext, yylineno); }
-{LP} { printf("LP %s at Line %d.\n", yytext, yylineno); }
-{RP} { printf("RP %s at Line %d.\n", yytext, yylineno); }
-{LB} { printf("LB %s at Line %d.\n", yytext, yylineno); }
-{RB} { printf("RB %s at Line %d.\n", yytext, yylineno); }
-{LC} { printf("LC %s at Line %d.\n", yytext, yylineno); }
-{RC} { printf("RC %s at Line %d.\n", yytext, yylineno); }
-{STRUCT} { printf("STRUCT %s at Line %d.\n", yytext, yylineno); }
-{RETURN} { printf("RETURN %s at Line %d.\n", yytext, yylineno); }
-{IF} { printf("IF %s at Line %d.\n", yytext, yylineno); }
-{ELSE} { printf("ELSE %s at Line %d.\n", yytext, yylineno); }
-{WHILE} { printf("WHILE %s at Line %d.\n", yytext, yylineno); }
-{ID} { printf("ID %s at Line %d.\n", yytext, yylineno); }
-. { printf("Error type A at Line %d: Mysterious character \"%s\".\n", yylineno, yytext); }
+{INT} { printf("INT %s at Line %d.\n", yytext, lineno); }
+{FLOAT} { printf("FLOAT %s at Line %d.\n", yytext, lineno); }
+{SEMI} { printf("SEMI %s at Line %d.\n", yytext, lineno); }
+{COMMA} { printf("COMMA %s at Line %d.\n", yytext, lineno); }
+{ASSIGNOP} { printf("ASSIGNOP %s at Line %d.\n", yytext, lineno); }
+{RELOP} { printf("RELOP %s at Line %d.\n", yytext, lineno); }
+{PLUS} { printf("PLUS %s at Line %d.\n", yytext, lineno); }
+{MINUS} { printf("MINUS %s at Line %d.\n", yytext, lineno); }
+{STAR} { printf("STAR %s at Line %d.\n", yytext, lineno); }
+{DIV} { printf("DIV %s at Line %d.\n", yytext, lineno); }
+{AND} { printf("AND %s at Line %d.\n", yytext, lineno); }
+{OR} { printf("OR %s at Line %d.\n", yytext, lineno); }
+{DOT} { printf("DOT %s at Line %d.\n", yytext, lineno); }
+{NOT} { printf("NOT %s at Line %d.\n", yytext, lineno); }
+{TYPE} { printf("TYPE %s at Line %d.\n", yytext, lineno); }
+{LP} { printf("LP %s at Line %d.\n", yytext, lineno); }
+{RP} { printf("RP %s at Line %d.\n", yytext, lineno); }
+{LB} { printf("LB %s at Line %d.\n", yytext, lineno); }
+{RB} { printf("RB %s at Line %d.\n", yytext, lineno); }
+{LC} { printf("LC %s at Line %d.\n", yytext, lineno); }
+{RC} { printf("RC %s at Line %d.\n", yytext, lineno); }
+{STRUCT} { printf("STRUCT %s at Line %d.\n", yytext, lineno); }
+{RETURN} { printf("RETURN %s at Line %d.\n", yytext, lineno); }
+{IF} { printf("IF %s at Line %d.\n", yytext, lineno); }
+{ELSE} { printf("ELSE %s at Line %d.\n", yytext, lineno); }
+{WHILE} { printf("WHILE %s at Line %d.\n", yytext, lineno); }
+{ID} { printf("ID %s at Line %d.\n", yytext, lineno); }
+. { printf("Error type A at Line %d: Mysterious character \"%s\".\n", lineno, yytext); }
+\n { lineno++; }
 
 %%
 

@@ -34,7 +34,7 @@ syntax-c: $(YFILE)
 
 test: parser
 	$(call git_commit, "test")
-	@./parser ./tests/test1.cmm out.ir
+	@./parser ./tests/lab1/test1.cmm
 
 clean:
 	rm -f parser src/syntax.output src/syntax.tab.o
