@@ -45,7 +45,7 @@ RETURN return
 IF if
 ELSE else
 WHILE while
-ID ^{LETTER}({LETTER}|{DIGIT})*
+ID {LETTER}({LETTER}|{DIGIT})*
 
 %%
 
