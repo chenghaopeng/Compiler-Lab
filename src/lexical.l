@@ -3,7 +3,8 @@
     #include "stdio.h"
 
     void printf_int (int base, char* s, int len, int lineno) {
-        int start = 0, n = 0;
+        int start = 0;
+        unsigned int n = 0;
         if (base == 8) start = 1;
         if (base == 16) start = 2;
         for (; start < len; ++start) {
@@ -12,7 +13,7 @@
             if (s[start] >= 'A' && s[start] <= 'Z') n += s[start] - 'A' + 10;
             if (s[start] >= '0' && s[start] <= '9') n += s[start] - '0';
         }
-        fprintf(stderr, "INT %d at Line %d.\n", n, lineno);
+        fprintf(stderr, "INT %ud at Line %d.\n", n, lineno);
     }
 
     void printf_float (int type, char* s, int len, int lineno) {
