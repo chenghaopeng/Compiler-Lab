@@ -1,7 +1,8 @@
 int main() 
-  {
-     // line comment
-     /* 
-       block comment
-     int i = 5.5e-3;
-  }
+{
+   // line comment
+   /* 
+     block comment
+   */
+   int i = 1;
+}
