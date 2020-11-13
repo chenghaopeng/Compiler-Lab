@@ -1,9 +1,9 @@
-/Code/*
-!/Code/*.c
-!/Code/*.cpp
-!/Code/*.h
-/Code/lex.yy.c
-/Code/syntax.tab.*
-!/Code/lexical.l
-!/Code/syntax.y
+/src/*
+!/src/*.c
+!/src/*.cpp
+!/src/*.h
+/src/lex.yy.c
+/src/syntax.tab.*
+!/src/lexical.l
+!/src/syntax.y
 .DS_Store
