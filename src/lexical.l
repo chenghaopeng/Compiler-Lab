@@ -79,3 +79,10 @@ ID {LETTER}({LETTER}|{DIGIT})*
 . { printf("Error type A at Line %d: Mysterious character \"%s\".\n", yylineno, yytext); }
 
 %%
+
+int main (int argc, char* argv[]) {
+    if (argc > 1) {
+        yyin = fopen(argv[1], "r");
+        yylex();
+    }
+}
