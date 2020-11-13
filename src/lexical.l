@@ -3,6 +3,7 @@
     #include "stdio.h"
 
     void printf_int (int base, char* s, int len, int lineno) {
+        printf("--%s--", s);
         int start = 0, n = 0;
         if (base == 8) start = 1;
         if (base == 16) start = 2;
