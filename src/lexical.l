@@ -6,7 +6,7 @@
 
 DIGIT [0-9]
 LETTER [a-zA-Z_]
-WS [ \t\n\r]+
+WS [ \t]+
 
 INTZ 0
 INTO 0[0-7]+
