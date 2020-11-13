@@ -76,6 +76,6 @@ ID {LETTER}({LETTER}|{DIGIT})*
 {ELSE} { printf("ELSE %s at Line %d.\n", yytext, yylineno); }
 {WHILE} { printf("WHILE %s at Line %d.\n", yytext, yylineno); }
 {ID} { printf("ID %s at Line %d.\n", yytext, yylineno); }
-. { printf("Error type A at Line %d: Mysterious character \"%s\".", yylineno, yytext); }
+. { printf("Error type A at Line %d: Mysterious character \"%s\".\n", yylineno, yytext); }
 
 %%
