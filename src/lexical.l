@@ -36,15 +36,15 @@ DIGIT [0-9]
 LETTER [a-zA-Z_]
 WS [ \t\n\r]+
 
+FLOATN {DIGIT}+\.{DIGIT}+
+FLOATE {DIGIT}*\.{DIGIT}*[eE][\+-]{0,1}{DIGIT}+
+FLOAT {FLOATN}|{FLOATE}
+
 INTZ 0
 INTO 0[0-7]+
 INTD [1-9]{DIGIT}*
 INTH 0(x|X)[0-9a-fA-F]+
 INT {INTZ}|{INTO}|{INTD}|{INTH}
-
-FLOATN {DIGIT}+\.{DIGIT}+
-FLOATE {DIGIT}*\.{DIGIT}*[eE][\+-]{0,1}{DIGIT}+
-FLOAT {FLOATN}|{FLOATE}
 
 COMMENTLINE \/\/.*
 COMMENTLINES \/\*((.|\n)*?)\*\/
