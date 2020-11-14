@@ -17,7 +17,7 @@
     }
 
     void printf_float (int type, char* s, int len, int lineno) {
-        float f = 0, a = 0, b = 0;
+        double f = 0, a = 0, b = 0;
         int i;
         for (i = 0; s[i] != '.'; ++i) a = a * 10 + s[i] - '0';
         for (i++; s[i] >= '0' && s[i] <= '9'; ++i) b = b * 10 + s[i] - '0';
