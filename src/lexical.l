@@ -86,12 +86,12 @@ ID {LETTER}({LETTER}|{DIGIT})*
     }
 }
 
+{FLOATN} { printf_float(0, yytext, yyleng, yylineno); }
+{FLOATE} { printf_float(1, yytext, yyleng, yylineno); }
 {INTZ} { printf_int(10, yytext, yyleng, yylineno); }
 {INTO} { printf_int(8, yytext, yyleng, yylineno); }
 {INTD} { printf_int(10, yytext, yyleng, yylineno); }
 {INTH} { printf_int(16, yytext, yyleng, yylineno); }
-{FLOATN} { printf_float(0, yytext, yyleng, yylineno); }
-{FLOATE} { printf_float(1, yytext, yyleng, yylineno); }
 {SEMI} { fprintf(stderr, "SEMI %s at Line %d.\n", yytext, yylineno); }
 {COMMA} { fprintf(stderr, "COMMA %s at Line %d.\n", yytext, yylineno); }
 {ASSIGNOP} { fprintf(stderr, "ASSIGNOP %s at Line %d.\n", yytext, yylineno); }
