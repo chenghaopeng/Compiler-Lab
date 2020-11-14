@@ -117,7 +117,6 @@ ID {LETTER}({LETTER}|{DIGIT})*
 {ELSE} { fprintf(stderr, "ELSE %s at Line %d.\n", yytext, yylineno); }
 {WHILE} { fprintf(stderr, "WHILE %s at Line %d.\n", yytext, yylineno); }
 {ID} { fprintf(stderr, "ID %s at Line %d.\n", yytext, yylineno); }
-. { fprintf(stderr, "Error type A at Line %d: Mysterious character \"%s\".\n", yylineno, yytext); }
 
 %%
 
