@@ -1,31 +1,30 @@
-    #include "syntax.tab.h"
-    #include "stdio.h"
+/*09
+0xG
 
-    void printf_int (int base, char* s, int len, int lineno) {
-        int start = 0;
-        unsigned int n = 0;
-        if (base == 8) start = 1;
-        if (base == 16) start = 2;
-        for (; start < len; ++start) {
-            n *= base;
-            if (s[start] >= 'a' && s[start] <= 'z') n += s[start] - 'a' + 10;
-            if (s[start] >= 'A' && s[start] <= 'Z') n += s[start] - 'A' + 10;
-            if (s[start] >= '0' && s[start] <= '9') n += s[start] - '0';
-        }
-        fprintf(stderr, "INT %u at Line %d.\n", n, lineno);
-    }
 
-    void printf_float (int type, char* s, int len, int lineno) {
-        float f = 0, a = 0, b = 0;
-        int i;
-        for (i = 0; s[i] != '.'; ++i) a = a * 10 + s[i] - '0';
-        for (i++; s[i] >= '0' && s[i] <= '9'; ++i) b = b * 10 + s[i] - '0';
-        while (b >= 1) b /= 10;
-        f = a + b;
-        if (type) {
-            int n = atoi(s + i + 1);
-            if (n > 0) for (int i = 0; i < n; ++i) f *= 10;
-            if (n < 0) for (int i = 0; i < -n; ++i) f /= 10;
-        }
-        fprintf(stderr, "FLOAT %f at Line %d.\n", f, lineno);
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+
+1
+
+9.e+*/
