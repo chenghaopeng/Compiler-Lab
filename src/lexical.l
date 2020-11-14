@@ -34,7 +34,7 @@
 
 DIGIT [0-9]
 LETTER [a-zA-Z_]
-WS [ \t]+
+WS [ \t\n\r]+
 
 INTZ 0
 INTO 0[0-7]+
@@ -78,8 +78,7 @@ ID {LETTER}({LETTER}|{DIGIT})*
 
 %%
 
-\n { yylineno++; }
-{WS} {}
+{WS} { for (int i = 0; i < yyleng; ++i) if (yytext[i] == '\n') yylineno++; }
 {COMMENT} { for (int i = 0; i < yyleng; ++i) { if (yytext[i] == '\n') yylineno++; if ((i > 1 && yytext[i - 1] == '/' && yytext[i] == '*') || (i < yyleng - 2 && yytext[i - 1] == '*' && yytext[i] == '/')) fprintf(stderr, "Error type A at Line %d: Mysterious character \"%c%c\".\n", yylineno, yytext[i - 1], yytext[i]); } }
 \/\*|\*\/ { fprintf(stderr, "Error type A at Line %d: Mysterious character \"%s\".\n", yylineno, yytext); }
 
