@@ -47,7 +47,7 @@ INTH 0(x|X)[0-9a-fA-F]+
 INT {INTZ}|{INTO}|{INTD}|{INTH}
 
 COMMENTLINE \/\/.*
-COMMENTLINES \/\*([^\*]|(\*)*[^\*/])*(\*)*\*\/
+COMMENTLINES \/\*(.|\n)*\*\/
 COMMENT {COMMENTLINE}|{COMMENTLINES}
 
 SEMI ;
