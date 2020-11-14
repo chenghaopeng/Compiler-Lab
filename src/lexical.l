@@ -18,10 +18,10 @@
 
     void printf_float (int type, char* s, int len, int lineno) {
         double f = 0, a = 0, b = 0;
-        int i;
+        int i, j = 0;
         for (i = 0; s[i] != '.'; ++i) a = a * 10 + s[i] - '0';
-        for (i++; s[i] >= '0' && s[i] <= '9'; ++i) b = b * 10 + s[i] - '0';
-        while (b >= 1) b /= 10;
+        for (i++; s[i] >= '0' && s[i] <= '9'; ++i, ++j) b = b * 10 + s[i] - '0';
+        while (j--) b /= 10;
         f = a + b;
         if (type) {
             int n = atoi(s + i + 1);
