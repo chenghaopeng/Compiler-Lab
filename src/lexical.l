@@ -47,7 +47,7 @@ INTH 0(x|X)[0-9a-fA-F]+
 INT {INTZ}|{INTO}|{INTD}|{INTH}
 
 COMMENTLINE \/\/.*
-COMMENTLINES \/\*((.|\n)*?)\*\/
+COMMENTLINES \/\*([^\*]|(\*)*[^\*/])*(\*)*\*\/
 COMMENT {COMMENTLINE}|{COMMENTLINES}
 
 SEMI ;
@@ -85,7 +85,6 @@ ID {LETTER}({LETTER}|{DIGIT})*
         //if ((i > 1 && yytext[i - 1] == '/' && yytext[i] == '*') || (i < yyleng - 2 && yytext[i - 1] == '*' && yytext[i] == '/')) fprintf(stderr, "Error type A at Line %d: Mysterious character \"%c%c\".\n", yylineno, yytext[i - 1], yytext[i]);
     }
 }
-\/\*|\*\/ { fprintf(stderr, "Error type A at Line %d: Mysterious character \"%s\".\n", yylineno, yytext); }
 
 {INTZ} { printf_int(10, yytext, yyleng, yylineno); }
 {INTO} { printf_int(8, yytext, yyleng, yylineno); }
@@ -122,10 +121,10 @@ ID {LETTER}({LETTER}|{DIGIT})*
 
 %%
 
-/*int main (int argc, char* argv[]) {
+int main (int argc, char* argv[]) {
     if (argc > 1) {
         yyin = fopen(argv[1], "r");
         yylex();
     }
     return 0;
-}*/
+}
