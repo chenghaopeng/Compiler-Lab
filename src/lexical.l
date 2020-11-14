@@ -46,14 +46,14 @@ INTD [1-9]{DIGIT}*
 INTH 0(x|X)[0-9a-fA-F]+
 INT {INTZ}|{INTO}|{INTD}|{INTH}
 
-COMMENTLINE \/\/[^\n]*
+COMMENTLINE \/\/.*
 COMMENTLINES \/\*(.|\n)*\*\/
 COMMENT {COMMENTLINE}|{COMMENTLINES}
 
 SEMI ;
 COMMA ,
-ASSIGNOP =
 RELOP >|<|>=|<=|==|!=
+ASSIGNOP =
 PLUS \+
 MINUS -
 STAR \*
@@ -94,8 +94,8 @@ ID {LETTER}({LETTER}|{DIGIT})*
 {INTH} { printf_int(16, yytext, yyleng, yylineno); }
 {SEMI} { fprintf(stderr, "SEMI %s at Line %d.\n", yytext, yylineno); }
 {COMMA} { fprintf(stderr, "COMMA %s at Line %d.\n", yytext, yylineno); }
-{ASSIGNOP} { fprintf(stderr, "ASSIGNOP %s at Line %d.\n", yytext, yylineno); }
 {RELOP} { fprintf(stderr, "RELOP %s at Line %d.\n", yytext, yylineno); }
+{ASSIGNOP} { fprintf(stderr, "ASSIGNOP %s at Line %d.\n", yytext, yylineno); }
 {PLUS} { fprintf(stderr, "PLUS %s at Line %d.\n", yytext, yylineno); }
 {MINUS} { fprintf(stderr, "MINUS %s at Line %d.\n", yytext, yylineno); }
 {STAR} { fprintf(stderr, "STAR %s at Line %d.\n", yytext, yylineno); }
