@@ -49,7 +49,7 @@
     }
 
     void print_result(void) {
-        if (flag) fprintf(stderr, buf);
+        if (flag) fputs(buf, stderr);
     }
 
     void read_file(char *fn) {
