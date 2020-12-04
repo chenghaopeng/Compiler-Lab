@@ -1,8 +1,12 @@
 extern "C" {
+    void yyread(char*);
     int yyparse(void);
 }
 
 int main (int argc, char* argv[]) {
-    yyparse();
+    if (argc > 1) {
+        yyread(argv[1]);
+        yyparse();
+    }
     return 0;
 }

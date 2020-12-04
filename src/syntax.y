@@ -1,7 +1,11 @@
 %{
+    #include "stdio.h"
+    #include "lex.yy.c"
     void yyerror(const char* msg);
     int yyparse(void);
-    #include "lex.yy.c"
+    void yyread(char *fn) {
+        yyin = fopen(fn, "r");
+    }
 %}
 
 %token INT FLOAT
