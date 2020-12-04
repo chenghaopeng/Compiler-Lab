@@ -1,15 +1,12 @@
-#include <cstdio>
-using namespace std;
-
 extern "C" {
-    FILE* yyin;
     int yylex(void);
     void print_result(void);
+    void read_file(char*);
 }
 
 int main (int argc, char* argv[]) {
     if (argc > 1) {
-        yyin = fopen(argv[1], "r");
+        read_file(argv[1]);
         yylex();
         print_result();
     }

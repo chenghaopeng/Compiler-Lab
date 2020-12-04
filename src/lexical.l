@@ -1,4 +1,6 @@
 %{
+    #include "stdio.h"
+
     #define _write len += sprintf(buf + len, s, a, b)
 
     int flag = 1;
@@ -48,6 +50,10 @@
 
     void print_result(void) {
         if (flag) fprintf(stderr, buf);
+    }
+
+    void read_file(char *fn) {
+        yyin = fopen(fn, "r");
     }
 %}
 
