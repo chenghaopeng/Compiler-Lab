@@ -2,13 +2,18 @@
 #include <cstdlib>
 using namespace std;
 
-extern FILE* yyin;
-extern "C" int yylex(void);
-extern int flag;
-extern char* buf;
+extern "C" {
+    FILE* yyin;
+    int yylex(void);
+    int flag;
+    char* buf;
+}
 
 int main (int argc, char* argv[]) {
-    yylex();
-    if (flag) fprintf(stderr, buf);
+    if (argc > 1) {
+        yyin = fopen(argv[1], "r");
+        yylex();
+        if (flag) fprintf(stderr, buf);
+    }
     return 0;
 }
