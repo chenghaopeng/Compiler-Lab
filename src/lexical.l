@@ -1,5 +1,4 @@
 %{
-
     #define _write len += sprintf(buf + len, s, a, b)
 
     int flag = 1;
@@ -45,6 +44,10 @@
             if (n < 0) for (int i = 0; i < -n; ++i) f /= 10;
         }
         add_printf("FLOAT %f at Line %d.\n", f, lineno);
+    }
+
+    void print_result(void) {
+        if (flag) fprintf(stderr, buf);
     }
 %}
 
