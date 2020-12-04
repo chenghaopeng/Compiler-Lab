@@ -1,7 +1,11 @@
 #include <cstdio>
 #include <cstdlib>
-#include "lex.yy.c"
 using namespace std;
+
+extern FILE* yyin;
+extern void yylex();
+extern int flag;
+extern char* buf;
 
 int main (int argc, char* argv[]) {
     if (argc > 1) {
