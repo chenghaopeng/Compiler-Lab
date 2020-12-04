@@ -1,7 +1,4 @@
 %{
-    #include "syntax.tab.h"
-    #include "stdio.h"
-
     #define _write len += sprintf(buf + len, s, a, b)
 
     int flag = 1;
@@ -138,11 +135,4 @@ ID {LETTER}({LETTER}|{DIGIT})*
 
 %%
 
-int main (int argc, char* argv[]) {
-    if (argc > 1) {
-        yyin = fopen(argv[1], "r");
-        yylex();
-        if (flag) fprintf(stderr, buf);
-    }
-    return 0;
-}
+
