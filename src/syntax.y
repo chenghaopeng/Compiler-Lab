@@ -21,7 +21,7 @@
 %token WHILE
 
 %%
-Program : ExtDefList
+Program : ExtDefList { printf("Program\n"); }
     ;
 ExtDefList : 
     | ExtDef ExtDefList
