@@ -1,12 +1,8 @@
 #include "syntax.tab.h"
 #include <cstdio>
 #include <cstdlib>
+#include "lex.yy.c"
 using namespace std;
-
-extern void yylex();
-extern FILE* yyin;
-extern int flag;
-extern char* buf;
 
 int main (int argc, char* argv[]) {
     if (argc > 1) {
