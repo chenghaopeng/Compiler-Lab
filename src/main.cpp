@@ -1,14 +1,8 @@
 extern "C" {
-    int yylex(void);
-    void print_result(void);
-    void read_file(char*);
+    int yyparse(void);
 }
 
 int main (int argc, char* argv[]) {
-    if (argc > 1) {
-        read_file(argv[1]);
-        yylex();
-        print_result();
-    }
+    yyparse();
     return 0;
 }
