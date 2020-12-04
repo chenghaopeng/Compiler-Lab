@@ -6,7 +6,7 @@ extern "C" {
     FILE* yyin;
     int yylex(void);
     int flag;
-    char* buf;
+    char buf[10000000];
 }
 
 int main (int argc, char* argv[]) {
