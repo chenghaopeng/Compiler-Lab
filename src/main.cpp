@@ -3,7 +3,7 @@
 using namespace std;
 
 extern FILE* yyin;
-extern int yylex(void);
+extern "C" int yylex(void);
 extern int flag;
 extern char* buf;
 
