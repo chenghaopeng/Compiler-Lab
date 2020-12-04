@@ -1,4 +1,3 @@
-#include "syntax.tab.h"
 #include <cstdio>
 #include <cstdlib>
 #include "lex.yy.c"

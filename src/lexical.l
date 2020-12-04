@@ -1,4 +1,6 @@
 %{
+    #include "syntax.tab.h"
+
     #define _write len += sprintf(buf + len, s, a, b)
 
     int flag = 1;
