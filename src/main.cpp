@@ -1,5 +1,6 @@
 #include <string>
 #include <stack>
+#include <iostream>
 using namespace std;
 
 extern "C" {
@@ -19,6 +20,10 @@ int main (int argc, char* argv[]) {
     if (argc > 1) {
         yyread(argv[1]);
         yyparse();
+        while (!ss.empty()) {
+            cout << ss.top() << '\n';
+            ss.pop();
+        }
     }
     return 0;
 }
