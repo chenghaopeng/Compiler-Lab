@@ -3,12 +3,12 @@
 %{
     #include "stdio.h"
     #include "lex.yy.c"
-    #include "io.h"
     void yyerror(const char* msg);
     int yyparse(void);
     void yyread(char *fn) {
         yyin = fopen(fn, "r");
     }
+    extern void push_str(char*);
 %}
 
 %token INT FLOAT
