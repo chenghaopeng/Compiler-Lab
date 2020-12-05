@@ -24,9 +24,12 @@
 %token WHILE
 
 %right ASSIGNOP
+%left AND OR
+%left RELOP
 %left PLUS MINUS
 %left STAR DIV
-%left LP RP
+%right NOT
+%left LP RP LB RB DOT
 %nonassoc LOWER_THAN_ELSE
 %nonassoc ELSE
 
