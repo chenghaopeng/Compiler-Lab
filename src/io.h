@@ -1,0 +1,1 @@
+void push_str(char *);
