@@ -1,6 +1,5 @@
 #include <string>
 #include <stack>
-#include "io.h"
 using namespace std;
 
 extern "C" {
@@ -10,8 +9,10 @@ extern "C" {
 
 stack<string> ss;
 
-void push_str(char *s) {
-    ss.push(string(s));
+extern "C" {
+    void push_str(char *s) {
+        ss.push(string(s));
+    }
 }
 
 int main (int argc, char* argv[]) {
