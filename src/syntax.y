@@ -1,3 +1,5 @@
+%locations
+
 %{
     #include "stdio.h"
     #include "lex.yy.c"
@@ -19,6 +21,11 @@
 %token RETURN
 %token IF ELSE
 %token WHILE
+
+%right ASSIGNOP
+%left PLUS MINUS
+%left STAR DIV
+%left LP RP
 
 %%
 Program : ExtDefList { printf("Program\n"); }
