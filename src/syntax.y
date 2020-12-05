@@ -8,7 +8,7 @@
     void yyread(char *fn) {
         yyin = fopen(fn, "r");
     }
-    extern void push_str(char*);
+    void push_str(char*);
 %}
 
 %token INT FLOAT
