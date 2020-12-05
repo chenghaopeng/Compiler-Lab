@@ -8,6 +8,7 @@
     void yyread(char *fn) {
         yyin = fopen(fn, "r");
     }
+    extern void push_str(char*);
 %}
 
 %token INT FLOAT
@@ -30,82 +31,82 @@
 %nonassoc ELSE
 
 %%
-Program : ExtDefList { printf("Program\n"); }
+Program : ExtDefList { push_str("Program"); }
     ;
 ExtDefList : 
-    | ExtDef ExtDefList { printf("ExtDefList\n"); }
+    | ExtDef ExtDefList { push_str("ExtDefList"); }
     ;
-ExtDef : Specifier ExtDecList SEMI { printf("ExtDef\n"); }
-    | Specifier SEMI { printf("ExtDef\n"); }
-    | Specifier FunDec CompSt { printf("ExtDef\n"); }
+ExtDef : Specifier ExtDecList SEMI { push_str("ExtDef"); }
+    | Specifier SEMI { push_str("ExtDef"); }
+    | Specifier FunDec CompSt { push_str("ExtDef"); }
     ;
-ExtDecList : VarDec { printf("ExtDecList\n"); }
-    | VarDec COMMA ExtDecList { printf("ExtDecList\n"); }
+ExtDecList : VarDec { push_str("ExtDecList"); }
+    | VarDec COMMA ExtDecList { push_str("ExtDecList"); }
     ;
-Specifier : TYPE { printf("Specifier\n"); }
-    | StructSpecifier { printf("Specifier\n"); }
+Specifier : TYPE { push_str("Specifier"); }
+    | StructSpecifier { push_str("Specifier"); }
     ;
-StructSpecifier : STRUCT OptTag LC DefList RC { printf("StructSpecifier\n"); }
-    | STRUCT Tag { printf("StructSpecifier\n"); }
+StructSpecifier : STRUCT OptTag LC DefList RC { push_str("StructSpecifier"); }
+    | STRUCT Tag { push_str("StructSpecifier"); }
     ;
 OptTag :
-    | ID { printf("OptTag\n"); }
+    | ID { push_str("OptTag"); }
     ;
-Tag : ID { printf("Tag\n"); }
+Tag : ID { push_str("Tag"); }
     ;
-VarDec : ID { printf("VarDec\n"); }
-    | VarDec LB INT RB { printf("VarDec\n"); }
+VarDec : ID { push_str("VarDec"); }
+    | VarDec LB INT RB { push_str("VarDec"); }
     ;
-FunDec : ID LP VarList RP { printf("FunDec\n"); }
-    | ID LP RP { printf("FunDec\n"); }
+FunDec : ID LP VarList RP { push_str("FunDec"); }
+    | ID LP RP { push_str("FunDec"); }
     ;
-VarList : ParamDec COMMA VarList { printf("VarList\n"); }
-    | ParamDec { printf("VarList\n"); }
+VarList : ParamDec COMMA VarList { push_str("VarList"); }
+    | ParamDec { push_str("VarList"); }
     ;
-ParamDec : Specifier VarDec { printf("ParamDec\n"); }
+ParamDec : Specifier VarDec { push_str("ParamDec"); }
     ;
-CompSt : LC DefList StmtList RC { printf("CompSt\n"); }
+CompSt : LC DefList StmtList RC { push_str("CompSt"); }
     ;
 StmtList : 
-    | Stmt StmtList { printf("StmtList\n"); }
+    | Stmt StmtList { push_str("StmtList"); }
     ;
-Stmt : Exp SEMI { printf("Stmt\n"); }
-    | CompSt { printf("Stmt\n"); }
-    | RETURN Exp SEMI { printf("Stmt\n"); }
-    | IF LP Exp RP Stmt %prec LOWER_THAN_ELSE { printf("Stmt\n"); }
-    | IF LP Exp RP Stmt ELSE Stmt { printf("Stmt\n"); }
-    | WHILE LP Exp RP Stmt { printf("Stmt\n"); }
+Stmt : Exp SEMI { push_str("Stmt"); }
+    | CompSt { push_str("Stmt"); }
+    | RETURN Exp SEMI { push_str("Stmt"); }
+    | IF LP Exp RP Stmt %prec LOWER_THAN_ELSE { push_str("Stmt"); }
+    | IF LP Exp RP Stmt ELSE Stmt { push_str("Stmt"); }
+    | WHILE LP Exp RP Stmt { push_str("Stmt"); }
     ;
 DefList : 
-    | Def DefList { printf("DefList\n"); }
+    | Def DefList { push_str("DefList"); }
     ;
-Def : Specifier DecList SEMI { printf("Def\n"); }
+Def : Specifier DecList SEMI { push_str("Def"); }
     ;
-DecList : Dec { printf("DecList\n"); }
-    | Dec COMMA DecList { printf("DecList\n"); }
+DecList : Dec { push_str("DecList"); }
+    | Dec COMMA DecList { push_str("DecList"); }
     ;
-Dec : VarDec { printf("Dec\n"); }
-    | VarDec ASSIGNOP Exp { printf("Dec\n"); }
+Dec : VarDec { push_str("Dec"); }
+    | VarDec ASSIGNOP Exp { push_str("Dec"); }
     ;
-Exp : Exp ASSIGNOP Exp { printf("Exp\n"); }
-    | Exp AND Exp { printf("Exp\n"); }
-    | Exp OR Exp { printf("Exp\n"); }
-    | Exp RELOP Exp { printf("Exp\n"); }
-    | Exp PLUS Exp { printf("Exp\n"); }
-    | Exp MINUS Exp { printf("Exp\n"); }
-    | Exp STAR Exp { printf("Exp\n"); }
-    | Exp DIV Exp { printf("Exp\n"); }
-    | LP Exp RP { printf("Exp\n"); }
-    | MINUS Exp { printf("Exp\n"); }
-    | NOT Exp { printf("Exp\n"); }
-    | ID LP Args RP { printf("Exp\n"); }
-    | ID LP RP { printf("Exp\n"); }
-    | Exp LB Exp RB { printf("Exp\n"); }
-    | Exp DOT ID { printf("Exp\n"); }
-    | ID { printf("Exp\n"); }
-    | INT { printf("Exp\n"); }
-    | FLOAT { printf("Exp\n"); }
+Exp : Exp ASSIGNOP Exp { push_str("Exp"); }
+    | Exp AND Exp { push_str("Exp"); }
+    | Exp OR Exp { push_str("Exp"); }
+    | Exp RELOP Exp { push_str("Exp"); }
+    | Exp PLUS Exp { push_str("Exp"); }
+    | Exp MINUS Exp { push_str("Exp"); }
+    | Exp STAR Exp { push_str("Exp"); }
+    | Exp DIV Exp { push_str("Exp"); }
+    | LP Exp RP { push_str("Exp"); }
+    | MINUS Exp { push_str("Exp"); }
+    | NOT Exp { push_str("Exp"); }
+    | ID LP Args RP { push_str("Exp"); }
+    | ID LP RP { push_str("Exp"); }
+    | Exp LB Exp RB { push_str("Exp"); }
+    | Exp DOT ID { push_str("Exp"); }
+    | ID { push_str("Exp"); }
+    | INT { push_str("Exp"); }
+    | FLOAT { push_str("Exp"); }
     ;
-Args : Exp COMMA Args { printf("Args\n"); }
-    | Exp { printf("Args\n"); }
+Args : Exp COMMA Args { push_str("Args"); }
+    | Exp { push_str("Args"); }
     ;
