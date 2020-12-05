@@ -26,6 +26,8 @@
 %left PLUS MINUS
 %left STAR DIV
 %left LP RP
+%nonassoc LOWER_THAN_ELSE
+%nonassoc ELSE
 
 %%
 Program : ExtDefList { printf("Program\n"); }
@@ -70,7 +72,7 @@ StmtList :
 Stmt : Exp SEMI { printf("Stmt\n"); }
     | CompSt { printf("Stmt\n"); }
     | RETURN Exp SEMI { printf("Stmt\n"); }
-    | IF LP Exp RP Stmt { printf("Stmt\n"); }
+    | IF LP Exp RP Stmt %prec LOWER_THAN_ELSE { printf("Stmt\n"); }
     | IF LP Exp RP Stmt ELSE Stmt { printf("Stmt\n"); }
     | WHILE LP Exp RP Stmt { printf("Stmt\n"); }
     ;
