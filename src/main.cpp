@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <cstdarg>
-#include <sstream>
+#include <iomanip>
 using namespace std;
 
 extern "C" {
@@ -83,7 +83,7 @@ void print_number (string number) {
             if (n > 0) for (int i = 0; i < n; ++i) f *= 10;
             if (n < 0) for (int i = 0; i < -n; ++i) f /= 10;
         }
-        cout << f;
+        cout << setprecision(6) << f;
     }
 }
 
