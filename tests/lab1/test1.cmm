@@ -1,3 +1,3 @@
 int inc() {
-    int i=2147483648;
+    int i=ffffffff;
 }
