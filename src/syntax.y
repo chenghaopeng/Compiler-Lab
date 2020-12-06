@@ -25,8 +25,7 @@
 %token WHILE
 
 %right ASSIGNOP
-%left OR
-%left AND
+%left AND OR
 %left RELOP
 %left PLUS MINUS
 %left STAR DIV
