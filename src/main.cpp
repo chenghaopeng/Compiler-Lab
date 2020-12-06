@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <cstdarg>
+#include <sstream>
 using namespace std;
 
 extern "C" {
@@ -43,14 +44,12 @@ int newAstNode (char* name, int num, ...) {
 }
 
 void print (int u, int dep) {
-    if (u < 0) return;
-    string output = "";
-    for (int i = 0; i < dep; ++i) output += "  ";
-    if (nodes[u].lineno != -1) {
-        output += nodes[u].name;
-    }
-    output += "\n";
-    if (output.size() > 2 * dep + 1) cout << output;
+    if (u < 0 || nodes[u].lineno == -1) return;
+    for (int i = 0; i < dep; ++i) cout << "  ";
+    cout << nodes[u].name;
+    if (nodes[u].name == "ID" || nodes[u].name == "TYPE" || nodes[u].name == "INTEGER" || nodes[u].name == "FLOAT") cout << ": " << nodes[u].opt;
+    if (nodes[u].name[1] >= 'a' && nodes[u].name[1] <= 'z') cout << " (" << nodes[u].lineno << ")";
+    cout << "\n";
     print(nodes[u].lc, dep + 1);
     print(nodes[u].rc, dep);
 }
