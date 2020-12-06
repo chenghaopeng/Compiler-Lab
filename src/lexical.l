@@ -6,6 +6,7 @@
         yylloc.first_column = yycolumn; \
         yylloc.last_column = yycolumn + yyleng - 1; \
         yycolumn += yyleng;
+    extern int newAstNode(char*, int, ...);
 %}
 
 DIGIT [0-9]
@@ -62,7 +63,7 @@ ID {LETTER}({LETTER}|{DIGIT})*
     }
 }
 
-{FLOAT} { return FLOAT; }
+{FLOAT} {  yylval = newAstNode("FLOAT", 0, yylineno); return FLOAT; }
 {INT} { return INT; }
 {SEMI} { return SEMI; }
 {COMMA} { return COMMA; }
