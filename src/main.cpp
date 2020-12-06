@@ -44,12 +44,14 @@ int newAstNode (char* name, int num, ...) {
 }
 
 void print (int u, int dep) {
-    if (u < 0 || nodes[u].lineno == -1) return;
-    for (int i = 0; i < dep; ++i) cout << "  ";
-    cout << nodes[u].name;
-    if (nodes[u].name == "ID" || nodes[u].name == "TYPE" || nodes[u].name == "INTEGER" || nodes[u].name == "FLOAT") cout << ": " << nodes[u].opt;
-    if (nodes[u].name[1] >= 'a' && nodes[u].name[1] <= 'z') cout << " (" << nodes[u].lineno << ")";
-    cout << "\n";
+    if (u < 0) return;
+    if (nodes[u].lineno != -1) {
+        for (int i = 0; i < dep; ++i) cout << "  ";
+        cout << nodes[u].name;
+        if (nodes[u].name == "ID" || nodes[u].name == "TYPE" || nodes[u].name == "INTEGER" || nodes[u].name == "FLOAT") cout << ": " << nodes[u].opt;
+        if (nodes[u].name[1] >= 'a' && nodes[u].name[1] <= 'z') cout << " (" << nodes[u].lineno << ")";
+        cout << "\n";
+    }
     print(nodes[u].lc, dep + 1);
     print(nodes[u].rc, dep);
 }
