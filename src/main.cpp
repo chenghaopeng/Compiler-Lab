@@ -15,6 +15,7 @@ struct AstNode {
     int lineno;
     string opt;
     int lc, rc;
+    AstNode () { name = opt = ""; lineno = lc = rc = -1; }
 };
 
 vector<AstNode> nodes;
@@ -42,7 +43,7 @@ int newAstNode (char* name, int num, ...) {
 }
 
 void print (int u, int dep) {
-    if (u <= 0) return;
+    if (u < 0) return;
     for (int i = 0; i < dep; ++i) cout << "  ";
     if (nodes[u].lineno != -1) {
         cout << nodes[u].name;
@@ -53,7 +54,6 @@ void print (int u, int dep) {
 }
 
 int main (int argc, char* argv[]) {
-    nodes.push_back(AstNode{"", -1, "", -1, -1});
     if (argc > 1) {
         yyread(argv[1]);
         yyparse();
