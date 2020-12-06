@@ -86,7 +86,7 @@ void print_number (string number) {
             if (n > 0) for (int i = 0; i < n; ++i) f *= 10;
             if (n < 0) for (int i = 0; i < -n; ++i) f /= 10;
         }
-        fprintf(stderr, "%f", f);
+        fprintf(stderr, "%.10f", f);
     }
 }
 
