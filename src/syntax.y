@@ -9,6 +9,7 @@
         yyin = fopen(fn, "r");
     }
     extern int newAstNode(char*, int, ...);
+    extern int flag;
 %}
 
 %token INT FLOAT
@@ -113,3 +114,10 @@ Exp : Exp ASSIGNOP Exp { $$ = newAstNode("Exp", 3, $1, $2, $3); }
 Args : Exp COMMA Args { $$ = newAstNode("Args", 3, $1, $2, $3); }
     | Exp { $$ = newAstNode("Args", 1, $1); }
     ;
+
+%%
+
+void yyerror (const char* msg) {
+    flag = 0;
+    fprintf(stderr, "Error type B at Line %d: %s.\n", yylineno, msg);
+}
