@@ -42,7 +42,7 @@ int newAstNode (char* name, int num, ...) {
 }
 
 void print (int u, int dep) {
-    if (u < 0) return;
+    if (u <= 0) return;
     for (int i = 0; i < dep; ++i) cout << "  ";
     if (nodes[u].lineno != -1) {
         cout << nodes[u].name;
