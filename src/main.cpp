@@ -44,11 +44,13 @@ int newAstNode (char* name, int num, ...) {
 
 void print (int u, int dep) {
     if (u < 0) return;
-    for (int i = 0; i < dep; ++i) cout << "  ";
+    string output = "";
+    for (int i = 0; i < dep; ++i) output += "  ";
     if (nodes[u].lineno != -1) {
-        cout << nodes[u].name;
+        output += nodes[u].name;
     }
-    cout << '\n';
+    output += "\n";
+    if (output.size() > 2 * dep + 1) cout << output;
     print(nodes[u].lc, dep + 1);
     print(nodes[u].rc, dep);
 }
