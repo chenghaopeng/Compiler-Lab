@@ -48,7 +48,7 @@ void print (int u, int dep) {
     if (nodes[u].lineno != -1) {
         for (int i = 0; i < dep; ++i) cout << "  ";
         cout << nodes[u].name;
-        if (nodes[u].name == "ID" || nodes[u].name == "TYPE" || nodes[u].name == "INTEGER" || nodes[u].name == "FLOAT") cout << ": " << nodes[u].opt;
+        if (nodes[u].name == "ID" || nodes[u].name == "TYPE" || nodes[u].name == "INT" || nodes[u].name == "FLOAT") cout << ": " << nodes[u].opt;
         if (nodes[u].name[1] >= 'a' && nodes[u].name[1] <= 'z') cout << " (" << nodes[u].lineno << ")";
         cout << "\n";
     }
