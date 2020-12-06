@@ -38,14 +38,14 @@
 Program : ExtDefList { $$ = newAstNode("Program", 1, $1); }
     ;
 ExtDefList : { $$ = newAstNode("ExtDefList", 0, -1); }
-    | ExtDef ExtDefList { $$ = newAstNode("ExtDefList", 2, $1, $2); }
+    | ExtDefList ExtDef { $$ = newAstNode("ExtDefList", 2, $1, $2); }
     ;
 ExtDef : Specifier ExtDecList SEMI { $$ = newAstNode("ExtDef", 3, $1, $2, $3); }
     | Specifier SEMI { $$ = newAstNode("ExtDef", 2, $1, $2); }
     | Specifier FunDec CompSt { $$ = newAstNode("ExtDef", 3, $1, $2, $3); }
     ;
 ExtDecList : VarDec { $$ = newAstNode("ExtDecList", 1, $1); }
-    | VarDec COMMA ExtDecList { $$ = newAstNode("ExtDecList", 3, $1, $2, $3); }
+    | ExtDecList COMMA VarDec { $$ = newAstNode("ExtDecList", 3, $1, $2, $3); }
     ;
 Specifier : TYPE { $$ = newAstNode("Specifier", 1, $1); }
     | StructSpecifier { $$ = newAstNode("Specifier", 1, $1); }
@@ -64,7 +64,7 @@ VarDec : ID { $$ = newAstNode("VarDec", 1, $1); }
 FunDec : ID LP VarList RP { $$ = newAstNode("FunDec", 4, $1, $2, $3, $4); }
     | ID LP RP { $$ = newAstNode("FunDec", 3, $1, $2, $3); }
     ;
-VarList : ParamDec COMMA VarList { $$ = newAstNode("VarList", 3, $1, $2, $3); }
+VarList : VarList COMMA ParamDec { $$ = newAstNode("VarList", 3, $1, $2, $3); }
     | ParamDec { $$ = newAstNode("VarList", 1, $1); }
     ;
 ParamDec : Specifier VarDec { $$ = newAstNode("ParamDec", 2, $1, $2); }
@@ -72,7 +72,7 @@ ParamDec : Specifier VarDec { $$ = newAstNode("ParamDec", 2, $1, $2); }
 CompSt : LC DefList StmtList RC { $$ = newAstNode("CompSt", 4, $1, $2, $3, $4); }
     ;
 StmtList : { $$ = newAstNode("StmtList", 0, -1); }
-    | Stmt StmtList { $$ = newAstNode("StmtList", 2, $1, $2); }
+    | StmtList Stmt { $$ = newAstNode("StmtList", 2, $1, $2); }
     ;
 Stmt : Exp SEMI { $$ = newAstNode("Stmt", 2, $1, $2); }
     | CompSt { $$ = newAstNode("Stmt", 1, $1); }
@@ -82,12 +82,12 @@ Stmt : Exp SEMI { $$ = newAstNode("Stmt", 2, $1, $2); }
     | WHILE LP Exp RP Stmt { $$ = newAstNode("Stmt", 5, $1, $2, $3, $4, $5); }
     ;
 DefList : { $$ = newAstNode("DefList", 0, -1); }
-    | Def DefList { $$ = newAstNode("DefList", 2, $1, $2); }
+    | DefList Def { $$ = newAstNode("DefList", 2, $1, $2); }
     ;
 Def : Specifier DecList SEMI { $$ = newAstNode("Def", 3, $1, $2, $3); }
     ;
 DecList : Dec { $$ = newAstNode("DecList", 1, $1); }
-    | Dec COMMA DecList { $$ = newAstNode("DecList", 3, $1, $2, $3); }
+    | DecList COMMA Dec { $$ = newAstNode("DecList", 3, $1, $2, $3); }
     ;
 Dec : VarDec { $$ = newAstNode("Dec", 1, $1); }
     | VarDec ASSIGNOP Exp { $$ = newAstNode("Dec", 3, $1, $2, $3); }
