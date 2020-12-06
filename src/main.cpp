@@ -49,7 +49,7 @@ int newAstNode (char* name, int num, ...) {
 void print_number (string number) {
     size_t dot = number.find('.');
     if (dot == string::npos) {
-        int n = 0;
+        unsigned int n = 0;
         if (number[0] == '0') {
             if (number.size() == 1) n = 0;
             else if (number[1] == 'x' || number[1] == 'X') {
@@ -72,7 +72,7 @@ void print_number (string number) {
                 n = n * 10 + number[i] - '0';
             }
         }
-        fprintf(stderr, "%d", n);
+        fprintf(stderr, "%u", n);
     }
     else {
         double f = 0, a = 0, b = 0;
