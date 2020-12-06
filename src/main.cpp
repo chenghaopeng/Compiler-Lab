@@ -20,8 +20,8 @@ vector<AstNode> nodes;
 
 extern "C"
 int newAstNode (char* name, int num, ...) {
-    // AstNode node;
-    // node.name = string(name);
+    AstNode node;
+    node.name = string(name);
     // if (num) {
     //     int tmp = node.lc = args[0];
     //     node.lineno = nodes[tmp].lineno;
@@ -34,7 +34,7 @@ int newAstNode (char* name, int num, ...) {
     //     node.lineno = args[0];
     //     node.opt = string(yytext);
     // }
-    // nodes.push_back(node);
+    nodes.push_back(node);
     return nodes.size() - 1;
 }
 
