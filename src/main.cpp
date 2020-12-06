@@ -41,11 +41,22 @@ int newAstNode (char* name, int num, ...) {
     return nodes.size() - 1;
 }
 
+void print (int u, int dep) {
+    if (u < 0) return;
+    for (int i = 0; i < dep; ++i) cout << "  ";
+    if (nodes[u].lineno != -1) {
+        cout << nodes[u].name;
+    }
+    cout << '\n';
+    print(nodes[u].lc, dep + 1);
+    print(nodes[u].rc, dep);
+}
+
 int main (int argc, char* argv[]) {
     if (argc > 1) {
         yyread(argv[1]);
         yyparse();
-        cout << nodes[nodes.size() - 1].name;
+        print(nodes.size() - 1, 0);
     }
     return 0;
 }
