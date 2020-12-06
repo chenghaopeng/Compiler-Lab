@@ -18,6 +18,7 @@ struct AstNode {
 
 vector<AstNode> nodes;
 
+extern "C"
 int newAstNode (char* name, int num, ...) {
     // AstNode node;
     // node.name = string(name);
