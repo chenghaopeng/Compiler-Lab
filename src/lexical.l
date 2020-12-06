@@ -64,32 +64,32 @@ ID {LETTER}({LETTER}|{DIGIT})*
 }
 
 {FLOAT} {  yylval = newAstNode("FLOAT", 0, yylineno); return FLOAT; }
-{INT} { return INT; }
-{SEMI} { return SEMI; }
-{COMMA} { return COMMA; }
-{RELOP} { return RELOP; }
-{ASSIGNOP} { return ASSIGNOP; }
-{PLUS} { return PLUS; }
-{MINUS} { return MINUS; }
-{STAR} { return STAR; }
-{DIV} { return DIV; }
-{AND} { return AND; }
-{OR} { return OR; }
-{DOT} { return DOT; }
-{NOT} { return NOT; }
-{TYPE} { return TYPE; }
-{LP} { return LP; }
-{RP} { return RP; }
-{LB} { return LB; }
-{RB} { return RB; }
-{LC} { return LC; }
-{RC} { return RC; }
-{STRUCT} { return STRUCT; }
-{RETURN} { return RETURN; }
-{IF} { return IF; }
-{ELSE} { return ELSE; }
-{WHILE} { return WHILE; }
-{ID} { return ID; }
+{INT} { yylval = newAstNode("INT", 0, yylineno); return INT; }
+{SEMI} { yylval = newAstNode("SEMI", 0, yylineno); return SEMI; }
+{COMMA} { yylval = newAstNode("COMMA", 0, yylineno); return COMMA; }
+{RELOP} { yylval = newAstNode("RELOP", 0, yylineno); return RELOP; }
+{ASSIGNOP} { yylval = newAstNode("ASSIGNOP", 0, yylineno); return ASSIGNOP; }
+{PLUS} { yylval = newAstNode("PLUS", 0, yylineno); return PLUS; }
+{MINUS} { yylval = newAstNode("MINUS", 0, yylineno); return MINUS; }
+{STAR} { yylval = newAstNode("STAR", 0, yylineno); return STAR; }
+{DIV} { yylval = newAstNode("DIV", 0, yylineno); return DIV; }
+{AND} { yylval = newAstNode("AND", 0, yylineno); return AND; }
+{OR} { yylval = newAstNode("OR", 0, yylineno); return OR; }
+{DOT} { yylval = newAstNode("DOT", 0, yylineno); return DOT; }
+{NOT} { yylval = newAstNode("NOT", 0, yylineno); return NOT; }
+{TYPE} { yylval = newAstNode("TYPE", 0, yylineno); return TYPE; }
+{LP} { yylval = newAstNode("LP", 0, yylineno); return LP; }
+{RP} { yylval = newAstNode("RP", 0, yylineno); return RP; }
+{LB} { yylval = newAstNode("LB", 0, yylineno); return LB; }
+{RB} { yylval = newAstNode("RB", 0, yylineno); return RB; }
+{LC} { yylval = newAstNode("LC", 0, yylineno); return LC; }
+{RC} { yylval = newAstNode("RC", 0, yylineno); return RC; }
+{STRUCT} { yylval = newAstNode("STRUCT", 0, yylineno); return STRUCT; }
+{RETURN} { yylval = newAstNode("RETURN", 0, yylineno); return RETURN; }
+{IF} { yylval = newAstNode("IF", 0, yylineno); return IF; }
+{ELSE} { yylval = newAstNode("ELSE", 0, yylineno); return ELSE; }
+{WHILE} { yylval = newAstNode("WHILE", 0, yylineno); return WHILE; }
+{ID} { yylval = newAstNode("ID", 0, yylineno); return ID; }
 . { /* no thing happened! */ }
 
 %%
