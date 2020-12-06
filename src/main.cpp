@@ -18,22 +18,22 @@ struct AstNode {
 
 vector<AstNode> nodes;
 
-int newAstNode (char* name, int num, int* args) {
-    AstNode node;
-    node.name = string(name);
-    if (num) {
-        int tmp = node.lc = args[0];
-        node.lineno = nodes[tmp].lineno;
-        for (int i = 1; i < num; ++i) {
-            nodes[tmp].rc = args[i];
-            tmp = nodes[tmp].rc;
-        }
-    }
-    else {
-        node.lineno = args[0];
-        node.opt = string(yytext);
-    }
-    nodes.push_back(node);
+int newAstNode (char* name, int num, ...) {
+    // AstNode node;
+    // node.name = string(name);
+    // if (num) {
+    //     int tmp = node.lc = args[0];
+    //     node.lineno = nodes[tmp].lineno;
+    //     for (int i = 1; i < num; ++i) {
+    //         nodes[tmp].rc = args[i];
+    //         tmp = nodes[tmp].rc;
+    //     }
+    // }
+    // else {
+    //     node.lineno = args[0];
+    //     node.opt = string(yytext);
+    // }
+    // nodes.push_back(node);
     return nodes.size() - 1;
 }
 
