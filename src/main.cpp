@@ -95,9 +95,11 @@ void print (int u, int dep) {
         cout << nodes[u].name;
         if (nodes[u].name[1] >= 'a' && nodes[u].name[1] <= 'z') cout << " (" << nodes[u].lineno << ")";
         else {
-            cout << ": ";
-            if (nodes[u].name == "ID" || nodes[u].name == "TYPE") cout << nodes[u].opt;
-            else if (nodes[u].name == "INT" || nodes[u].name == "FLOAT") print_number(nodes[u].opt);
+            if (nodes[u].name == "ID" || nodes[u].name == "TYPE") cout << ": " << nodes[u].opt;
+            else if (nodes[u].name == "INT" || nodes[u].name == "FLOAT") {
+                cout << ": ";
+                print_number(nodes[u].opt);
+            }
         }
         cout << "\n";
     }
