@@ -55,9 +55,22 @@ ID {LETTER}({LETTER}|{DIGIT})*
 
 %%
 
-\n { yycolumn = 1; }
-{WS} { }
-{COMMENT} { }
+{WS} {
+    for (int i = 0; i < yyleng; ++i) {
+        if (yytext[i] == '\n') {
+            yylineno++;
+            yycolumn = 1;
+        }
+    }
+}
+{COMMENT} {
+    for (int i = 0; i < yyleng; ++i) {
+        if (yytext[i] == '\n') {
+            yylineno++;
+            yycolumn = 1;
+        }
+    }
+}
 
 {FLOAT} {  yylval = newAstNode("FLOAT", 0, yylineno); return FLOAT; }
 {INT} { yylval = newAstNode("INT", 0, yylineno); return INT; }
