@@ -72,7 +72,7 @@ void print_number (string number) {
                 n = n * 10 + number[i] - '0';
             }
         }
-        cout << n;
+        fprintf(stderr, "%d", n);
     }
     else {
         double f = 0, a = 0, b = 0;
@@ -86,24 +86,24 @@ void print_number (string number) {
             if (n > 0) for (int i = 0; i < n; ++i) f *= 10;
             if (n < 0) for (int i = 0; i < -n; ++i) f /= 10;
         }
-        printf("%f", f);
+        fprintf(stderr, "%f", f);
     }
 }
 
 void print (int u, int dep) {
     if (u < 0) return;
     if (nodes[u].lineno != -1) {
-        for (int i = 0; i < dep; ++i) cout << "  ";
-        cout << nodes[u].name;
-        if (nodes[u].name[1] >= 'a' && nodes[u].name[1] <= 'z') cout << " (" << nodes[u].lineno << ")";
+        for (int i = 0; i < dep; ++i) fprintf(stderr, "  ");
+        fprintf(stderr, "%s", nodes[u].name.c_str());
+        if (nodes[u].name[1] >= 'a' && nodes[u].name[1] <= 'z') fprintf(stderr, " (%d)", nodes[u].lineno);
         else {
-            if (nodes[u].name == "ID" || nodes[u].name == "TYPE") cout << ": " << nodes[u].opt;
+            if (nodes[u].name == "ID" || nodes[u].name == "TYPE") fprintf(stderr, ": %s", nodes[u].opt.c_str());
             else if (nodes[u].name == "INT" || nodes[u].name == "FLOAT") {
-                cout << ": ";
+                fprintf(stderr, ": ");
                 print_number(nodes[u].opt);
             }
         }
-        cout << "\n";
+        fprintf(stderr, "\n");
     }
     print(nodes[u].lc, dep + 1);
     print(nodes[u].rc, dep);
