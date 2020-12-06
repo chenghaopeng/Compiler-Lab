@@ -53,6 +53,7 @@ void print (int u, int dep) {
 }
 
 int main (int argc, char* argv[]) {
+    nodes.push_back(AstNode{"", -1, "", -1, -1});
     if (argc > 1) {
         yyread(argv[1]);
         yyparse();
