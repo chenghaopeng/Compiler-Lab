@@ -71,6 +71,7 @@ VarList : ParamDec COMMA VarList { $$ = newAstNode("VarList", 3, $1, $2, $3); }
 ParamDec : Specifier VarDec { $$ = newAstNode("ParamDec", 2, $1, $2); }
     ;
 CompSt : LC DefList StmtList RC { $$ = newAstNode("CompSt", 4, $1, $2, $3, $4); }
+    | error RC
     ;
 StmtList : { $$ = newAstNode("StmtList", 0, -1); }
     | Stmt StmtList { $$ = newAstNode("StmtList", 2, $1, $2); }
@@ -81,6 +82,7 @@ Stmt : Exp SEMI { $$ = newAstNode("Stmt", 2, $1, $2); }
     | IF LP Exp RP Stmt %prec LOWER_THAN_ELSE { $$ = newAstNode("Stmt", 5, $1, $2, $3, $4, $5); }
     | IF LP Exp RP Stmt ELSE Stmt { $$ = newAstNode("Stmt", 7, $1, $2, $3, $4, $5, $6, $7); }
     | WHILE LP Exp RP Stmt { $$ = newAstNode("Stmt", 5, $1, $2, $3, $4, $5); }
+    | error SEMI
     ;
 DefList : { $$ = newAstNode("DefList", 0, -1); }
     | Def DefList { $$ = newAstNode("DefList", 2, $1, $2); }
@@ -111,6 +113,7 @@ Exp : Exp ASSIGNOP Exp { $$ = newAstNode("Exp", 3, $1, $2, $3); }
     | ID { $$ = newAstNode("Exp", 1, $1); }
     | INT { $$ = newAstNode("Exp", 1, $1); }
     | FLOAT { $$ = newAstNode("Exp", 1, $1); }
+    | error RP
     ;
 Args : Exp COMMA Args { $$ = newAstNode("Args", 3, $1, $2, $3); }
     | Exp { $$ = newAstNode("Args", 1, $1); }
