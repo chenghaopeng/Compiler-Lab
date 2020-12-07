@@ -63,6 +63,7 @@ Tag : ID { $$ = newAstNode("Tag", 1, $1); }
     ;
 VarDec : ID { $$ = newAstNode("VarDec", 1, $1); }
     | VarDec LB INT RB { $$ = newAstNode("VarDec", 4, $1, $2, $3, $4); }
+    | error RB
     ;
 FunDec : ID LP VarList RP { $$ = newAstNode("FunDec", 4, $1, $2, $3, $4); }
     | ID LP RP { $$ = newAstNode("FunDec", 3, $1, $2, $3); }
@@ -86,6 +87,8 @@ Stmt : Exp SEMI { $$ = newAstNode("Stmt", 2, $1, $2); }
     | IF LP Exp RP Stmt ELSE Stmt { $$ = newAstNode("Stmt", 7, $1, $2, $3, $4, $5, $6, $7); }
     | WHILE LP Exp RP Stmt { $$ = newAstNode("Stmt", 5, $1, $2, $3, $4, $5); }
     | error SEMI
+    | error RP Stmt
+    | error RP Stmt ELSE Stmt
     ;
 DefList : { $$ = newAstNode("DefList", 0, -1); }
     | Def DefList { $$ = newAstNode("DefList", 2, $1, $2); }
@@ -118,6 +121,7 @@ Exp : Exp ASSIGNOP Exp { $$ = newAstNode("Exp", 3, $1, $2, $3); }
     | INT { $$ = newAstNode("Exp", 1, $1); }
     | FLOAT { $$ = newAstNode("Exp", 1, $1); }
     | error RP
+    | error RB
     ;
 Args : Exp COMMA Args { $$ = newAstNode("Args", 3, $1, $2, $3); }
     | Exp { $$ = newAstNode("Args", 1, $1); }
