@@ -44,7 +44,6 @@ ExtDefList : { $$ = newAstNode("ExtDefList", 0, -1); }
 ExtDef : Specifier ExtDecList SEMI { $$ = newAstNode("ExtDef", 3, $1, $2, $3); }
     | Specifier SEMI { $$ = newAstNode("ExtDef", 2, $1, $2); }
     | Specifier FunDec CompSt { $$ = newAstNode("ExtDef", 3, $1, $2, $3); }
-    | error SEMI
     ;
 ExtDecList : VarDec { $$ = newAstNode("ExtDecList", 1, $1); }
     | VarDec COMMA ExtDecList { $$ = newAstNode("ExtDecList", 3, $1, $2, $3); }
@@ -62,11 +61,9 @@ Tag : ID { $$ = newAstNode("Tag", 1, $1); }
     ;
 VarDec : ID { $$ = newAstNode("VarDec", 1, $1); }
     | VarDec LB INT RB { $$ = newAstNode("VarDec", 4, $1, $2, $3, $4); }
-    | error SEMI
     ;
 FunDec : ID LP VarList RP { $$ = newAstNode("FunDec", 4, $1, $2, $3, $4); }
     | ID LP RP { $$ = newAstNode("FunDec", 3, $1, $2, $3); }
-    | error RP
     ;
 VarList : ParamDec COMMA VarList { $$ = newAstNode("VarList", 3, $1, $2, $3); }
     | ParamDec { $$ = newAstNode("VarList", 1, $1); }
@@ -116,6 +113,7 @@ Exp : Exp ASSIGNOP Exp { $$ = newAstNode("Exp", 3, $1, $2, $3); }
     | ID { $$ = newAstNode("Exp", 1, $1); }
     | INT { $$ = newAstNode("Exp", 1, $1); }
     | FLOAT { $$ = newAstNode("Exp", 1, $1); }
+    | error RP
     ;
 Args : Exp COMMA Args { $$ = newAstNode("Args", 3, $1, $2, $3); }
     | Exp { $$ = newAstNode("Args", 1, $1); }
