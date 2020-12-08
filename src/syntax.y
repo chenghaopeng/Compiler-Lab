@@ -91,6 +91,7 @@ DefList : { $$ = newAstNode("DefList", 0, -1); }
     | Def DefList { $$ = newAstNode("DefList", 2, $1, $2); }
     ;
 Def : Specifier DecList SEMI { $$ = newAstNode("Def", 3, $1, $2, $3); }
+    | Specifier error SEMI
     ;
 DecList : Dec { $$ = newAstNode("DecList", 1, $1); }
     | Dec COMMA DecList { $$ = newAstNode("DecList", 3, $1, $2, $3); }
@@ -116,6 +117,8 @@ Exp : Exp ASSIGNOP Exp { $$ = newAstNode("Exp", 3, $1, $2, $3); }
     | ID { $$ = newAstNode("Exp", 1, $1); }
     | INT { $$ = newAstNode("Exp", 1, $1); }
     | FLOAT { $$ = newAstNode("Exp", 1, $1); }
+    | error RB
+    | error RP
     ;
 Args : Exp COMMA Args { $$ = newAstNode("Args", 3, $1, $2, $3); }
     | Exp { $$ = newAstNode("Args", 1, $1); }
