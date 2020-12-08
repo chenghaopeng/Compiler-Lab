@@ -54,7 +54,6 @@ Specifier : TYPE { $$ = newAstNode("Specifier", 1, $1); }
     ;
 StructSpecifier : STRUCT OptTag LC DefList RC { $$ = newAstNode("StructSpecifier", 5, $1, $2, $3, $4, $5); }
     | STRUCT Tag { $$ = newAstNode("StructSpecifier", 2, $1, $2); }
-    | error RC
     ;
 OptTag : { $$ = newAstNode("OptTag", 0, -1); }
     | ID { $$ = newAstNode("OptTag", 1, $1); }
@@ -91,7 +90,6 @@ DefList : { $$ = newAstNode("DefList", 0, -1); }
     | Def DefList { $$ = newAstNode("DefList", 2, $1, $2); }
     ;
 Def : Specifier DecList SEMI { $$ = newAstNode("Def", 3, $1, $2, $3); }
-    | error SEMI
     ;
 DecList : Dec { $$ = newAstNode("DecList", 1, $1); }
     | Dec COMMA DecList { $$ = newAstNode("DecList", 3, $1, $2, $3); }
