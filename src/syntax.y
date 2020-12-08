@@ -31,7 +31,7 @@
 %left PLUS MINUS
 %left STAR DIV
 %right NOT
-%left DOT LB RB LP RP
+%left LP RP LB RB DOT
 %nonassoc LOWER_THAN_ELSE
 %nonassoc ELSE
 
