@@ -89,7 +89,6 @@ Stmt : Exp SEMI { $$ = newAstNode("Stmt", 2, $1, $2); }
     | IF LP Exp RP Stmt ELSE Stmt { $$ = newAstNode("Stmt", 7, $1, $2, $3, $4, $5, $6, $7); }
     | WHILE LP Exp RP Stmt { $$ = newAstNode("Stmt", 5, $1, $2, $3, $4, $5); }
     | error SEMI
-    | error RC
     ;
 DefList : { $$ = newAstNode("DefList", 0, -1); }
     | Def DefList { $$ = newAstNode("DefList", 2, $1, $2); }
