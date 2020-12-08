@@ -77,7 +77,6 @@ ParamDec : Specifier VarDec { $$ = newAstNode("ParamDec", 2, $1, $2); }
     ;
 CompSt : LC DefList StmtList RC { $$ = newAstNode("CompSt", 4, $1, $2, $3, $4); }
     | error RC
-    | LC DefList StmtList error
     ;
 StmtList : { $$ = newAstNode("StmtList", 0, -1); }
     | Stmt StmtList { $$ = newAstNode("StmtList", 2, $1, $2); }
@@ -127,6 +126,7 @@ Exp : Exp ASSIGNOP Exp { $$ = newAstNode("Exp", 3, $1, $2, $3); }
     | LP error RP
     | ID LP error RP
     | Exp LB error RB
+    | error LB Exp RB
     ;
 Args : Exp COMMA Args { $$ = newAstNode("Args", 3, $1, $2, $3); }
     | Exp { $$ = newAstNode("Args", 1, $1); }
