@@ -44,6 +44,7 @@ ExtDefList : { $$ = newAstNode("ExtDefList", 0, -1); }
 ExtDef : Specifier ExtDecList SEMI { $$ = newAstNode("ExtDef", 3, $1, $2, $3); }
     | Specifier SEMI { $$ = newAstNode("ExtDef", 2, $1, $2); }
     | Specifier FunDec CompSt { $$ = newAstNode("ExtDef", 3, $1, $2, $3); }
+    | error SEMI
     ;
 ExtDecList : VarDec { $$ = newAstNode("ExtDecList", 1, $1); }
     | VarDec COMMA ExtDecList { $$ = newAstNode("ExtDecList", 3, $1, $2, $3); }
@@ -84,11 +85,13 @@ Stmt : Exp SEMI { $$ = newAstNode("Stmt", 2, $1, $2); }
     | IF LP Exp RP Stmt %prec LOWER_THAN_ELSE { $$ = newAstNode("Stmt", 5, $1, $2, $3, $4, $5); }
     | IF LP Exp RP Stmt ELSE Stmt { $$ = newAstNode("Stmt", 7, $1, $2, $3, $4, $5, $6, $7); }
     | WHILE LP Exp RP Stmt { $$ = newAstNode("Stmt", 5, $1, $2, $3, $4, $5); }
+    | error SEMI
     ;
 DefList : { $$ = newAstNode("DefList", 0, -1); }
     | Def DefList { $$ = newAstNode("DefList", 2, $1, $2); }
     ;
 Def : Specifier DecList SEMI { $$ = newAstNode("Def", 3, $1, $2, $3); }
+    | error SEMI
     ;
 DecList : Dec { $$ = newAstNode("DecList", 1, $1); }
     | Dec COMMA DecList { $$ = newAstNode("DecList", 3, $1, $2, $3); }
