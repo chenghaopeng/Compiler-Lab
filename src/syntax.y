@@ -87,6 +87,7 @@ Stmt : Exp SEMI { $$ = newAstNode("Stmt", 2, $1, $2); }
     | IF LP Exp RP Stmt ELSE Stmt { $$ = newAstNode("Stmt", 7, $1, $2, $3, $4, $5, $6, $7); }
     | WHILE LP Exp RP Stmt { $$ = newAstNode("Stmt", 5, $1, $2, $3, $4, $5); }
     | error SEMI
+    | RETURN error SEMI
     | IF LP error RP Stmt %prec LOWER_THAN_ELSE
     | IF LP error RP Stmt ELSE Stmt
     | WHILE LP error RP Stmt
