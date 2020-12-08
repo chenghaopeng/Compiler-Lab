@@ -44,6 +44,7 @@ ExtDefList : { $$ = newAstNode("ExtDefList", 0, -1); }
 ExtDef : Specifier ExtDecList SEMI { $$ = newAstNode("ExtDef", 3, $1, $2, $3); }
     | Specifier SEMI { $$ = newAstNode("ExtDef", 2, $1, $2); }
     | Specifier FunDec CompSt { $$ = newAstNode("ExtDef", 3, $1, $2, $3); }
+    | error SEMI
     ;
 ExtDecList : VarDec { $$ = newAstNode("ExtDecList", 1, $1); }
     | VarDec COMMA ExtDecList { $$ = newAstNode("ExtDecList", 3, $1, $2, $3); }
@@ -53,6 +54,7 @@ Specifier : TYPE { $$ = newAstNode("Specifier", 1, $1); }
     ;
 StructSpecifier : STRUCT OptTag LC DefList RC { $$ = newAstNode("StructSpecifier", 5, $1, $2, $3, $4, $5); }
     | STRUCT Tag { $$ = newAstNode("StructSpecifier", 2, $1, $2); }
+    | error SEMI
     ;
 OptTag : { $$ = newAstNode("OptTag", 0, -1); }
     | ID { $$ = newAstNode("OptTag", 1, $1); }
@@ -87,6 +89,7 @@ Stmt : Exp SEMI { $$ = newAstNode("Stmt", 2, $1, $2); }
     | IF LP Exp RP Stmt ELSE Stmt { $$ = newAstNode("Stmt", 7, $1, $2, $3, $4, $5, $6, $7); }
     | WHILE LP Exp RP Stmt { $$ = newAstNode("Stmt", 5, $1, $2, $3, $4, $5); }
     | error SEMI
+    | error RC
     ;
 DefList : { $$ = newAstNode("DefList", 0, -1); }
     | Def DefList { $$ = newAstNode("DefList", 2, $1, $2); }
