@@ -55,6 +55,7 @@ Specifier : TYPE { $$ = newAstNode("Specifier", 1, $1); }
 StructSpecifier : STRUCT OptTag LC DefList RC { $$ = newAstNode("StructSpecifier", 5, $1, $2, $3, $4, $5); }
     | STRUCT Tag { $$ = newAstNode("StructSpecifier", 2, $1, $2); }
     | STRUCT OptTag LC error RC
+    | STRUCT error RC
     ;
 OptTag : { $$ = newAstNode("OptTag", 0, -1); }
     | ID { $$ = newAstNode("OptTag", 1, $1); }
