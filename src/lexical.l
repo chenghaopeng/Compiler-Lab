@@ -39,19 +39,19 @@ AND &&
 OR \|\|
 DOT \.
 NOT !
-TYPE int|float
 LP \(
 RP \)
 LB \[
 RB \]
 LC \{
 RC \}
+ID {LETTER}({LETTER}|{DIGIT})*
+TYPE int|float
 STRUCT struct
 RETURN return
 IF if
 ELSE else
 WHILE while
-ID {LETTER}({LETTER}|{DIGIT})*
 
 %%
 
