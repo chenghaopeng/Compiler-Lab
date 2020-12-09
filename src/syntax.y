@@ -45,6 +45,7 @@ ExtDef : Specifier ExtDecList SEMI { $$ = newAstNode("ExtDef", 3, $1, $2, $3); }
     | Specifier SEMI { $$ = newAstNode("ExtDef", 2, $1, $2); }
     | Specifier FunDec CompSt { $$ = newAstNode("ExtDef", 3, $1, $2, $3); }
     | Specifier error SEMI
+    | error SEMI
     ;
 ExtDecList : VarDec { $$ = newAstNode("ExtDecList", 1, $1); }
     | VarDec COMMA ExtDecList { $$ = newAstNode("ExtDecList", 3, $1, $2, $3); }
@@ -138,5 +139,5 @@ Args : Exp COMMA Args { $$ = newAstNode("Args", 3, $1, $2, $3); }
 
 void yyerror (const char* msg) {
     flag = 0;
-    fprintf(stderr, "Error type B at Line %d: %s, unexcepted %s. yylval=%d\n", yylineno, msg, yytext, yylval);
+    fprintf(stderr, "Error type B at Line %d: %s, unexpected %s. yylval=%d\n", yylineno, msg, yytext, yylval);
 }
