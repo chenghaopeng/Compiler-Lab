@@ -6,12 +6,11 @@
 #include <cstdio>
 using namespace std;
 
-#define YYDEBUG 1
-
 extern "C" {
     void yyread(char*);
     int yyparse(void);
     char* yytext;
+    int yydebug;
 }
 
 struct AstNode {
@@ -114,6 +113,7 @@ void print (int u, int dep) {
 int main (int argc, char* argv[]) {
     if (argc > 1) {
         yyread(argv[1]);
+        yydebug = 1;
         yyparse();
         // if (flag)
         print(nodes.size() - 1, 0);
