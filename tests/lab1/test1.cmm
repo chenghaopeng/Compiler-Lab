@@ -2,8 +2,8 @@ int while;
 
 
 struct {
-    
-}
+
+};
 
 
 int a {
