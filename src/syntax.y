@@ -45,7 +45,6 @@ ExtDef : Specifier ExtDecList SEMI { $$ = newAstNode("ExtDef", 3, $1, $2, $3); }
     | Specifier SEMI { $$ = newAstNode("ExtDef", 2, $1, $2); }
     | Specifier FunDec CompSt { $$ = newAstNode("ExtDef", 3, $1, $2, $3); }
     | Specifier error SEMI
-    | Specifier error CompSt
     | Specifier FunDec error
     ;
 ExtDecList : VarDec { $$ = newAstNode("ExtDecList", 1, $1); }
