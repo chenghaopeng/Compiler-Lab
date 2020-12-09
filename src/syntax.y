@@ -34,7 +34,6 @@
 %left LP RP LB RB DOT
 %nonassoc LOWER_THAN_ELSE
 %nonassoc ELSE
-%nonassoc SEMI
 
 %%
 Program : ExtDefList { $$ = newAstNode("Program", 1, $1); }
@@ -72,7 +71,6 @@ VarDec : ID { $$ = newAstNode("VarDec", 1, $1); }
 FunDec : ID LP VarList RP { $$ = newAstNode("FunDec", 4, $1, $2, $3, $4); }
     | ID LP RP { $$ = newAstNode("FunDec", 3, $1, $2, $3); }
     | ID LP error RP
-    | error LP VarList RP
     ;
 VarList : ParamDec COMMA VarList { $$ = newAstNode("VarList", 3, $1, $2, $3); }
     | ParamDec { $$ = newAstNode("VarList", 1, $1); }
