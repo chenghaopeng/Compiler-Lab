@@ -1,5 +1,6 @@
+int int = 1;
 int int {
-    
+
 }
 int main()
 {
