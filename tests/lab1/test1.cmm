@@ -3,7 +3,7 @@ int while;
 
 struct {
     int a, int b
-};
+}
 
 
 int a {
