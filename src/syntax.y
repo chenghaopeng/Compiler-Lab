@@ -45,7 +45,6 @@ ExtDef : Specifier ExtDecList SEMI { $$ = newAstNode("ExtDef", 3, $1, $2, $3); }
     | Specifier SEMI { $$ = newAstNode("ExtDef", 2, $1, $2); }
     | Specifier FunDec CompSt { $$ = newAstNode("ExtDef", 3, $1, $2, $3); }
     | Specifier error SEMI
-    | error RC
     ;
 ExtDecList : VarDec { $$ = newAstNode("ExtDecList", 1, $1); }
     | VarDec COMMA ExtDecList { $$ = newAstNode("ExtDecList", 3, $1, $2, $3); }
@@ -56,6 +55,7 @@ Specifier : TYPE { $$ = newAstNode("Specifier", 1, $1); }
 StructSpecifier : STRUCT OptTag LC DefList RC { $$ = newAstNode("StructSpecifier", 5, $1, $2, $3, $4, $5); }
     | STRUCT Tag { $$ = newAstNode("StructSpecifier", 2, $1, $2); }
     | STRUCT OptTag LC error RC
+    | STRUCT error LC DefList RC
     | STRUCT error RC
     ;
 OptTag : { $$ = newAstNode("OptTag", 0, -1); }
