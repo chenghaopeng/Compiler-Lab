@@ -138,5 +138,5 @@ Args : Exp COMMA Args { $$ = newAstNode("Args", 3, $1, $2, $3); }
 
 void yyerror (const char* msg) {
     flag = 0;
-    fprintf(stderr, "Error type B at Line %d: %s.\n", yylineno, msg);
+    fprintf(stderr, "Error type B at Line %d: %s, unexcepted %s.\n", yylineno, msg, yytext);
 }
