@@ -81,7 +81,6 @@ ParamDec : Specifier VarDec { $$ = newAstNode("ParamDec", 2, $1, $2); }
     ;
 CompSt : LC DefList StmtList RC { $$ = newAstNode("CompSt", 4, $1, $2, $3, $4); }
     | error RC
-    | LC error StmtList RC
     ;
 StmtList : { $$ = newAstNode("StmtList", 0, -1); }
     | Stmt StmtList { $$ = newAstNode("StmtList", 2, $1, $2); }
