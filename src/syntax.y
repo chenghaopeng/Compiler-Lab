@@ -102,6 +102,7 @@ DefList : { $$ = newAstNode("DefList", 0, -1); }
     ;
 Def : Specifier DecList SEMI { $$ = newAstNode("Def", 3, $1, $2, $3); }
     | Specifier error SEMI
+    | Specifier error RC
     ;
 DecList : Dec { $$ = newAstNode("DecList", 1, $1); }
     | Dec COMMA DecList { $$ = newAstNode("DecList", 3, $1, $2, $3); }
