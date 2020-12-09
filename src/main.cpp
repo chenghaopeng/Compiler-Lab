@@ -115,8 +115,7 @@ int main (int argc, char* argv[]) {
         yyread(argv[1]);
         yydebug = 1;
         yyparse();
-        // if (flag)
-        print(nodes.size() - 1, 0);
+        if (flag || yydebug) print(nodes.size() - 1, 0);
     }
     return 0;
 }
