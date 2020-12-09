@@ -76,18 +76,18 @@ void print_number (string number) {
         fprintf(stderr, "%u", n);
     }
     else {
-        double f = 0, a = 0, b = 0;
-        int i, j = 0;
-        for (i = 0; number[i] != '.'; ++i) a = a * 10 + number[i] - '0';
-        for (i++; i < number.size() && number[i] != 'e' && number[i] != 'E'; ++i, ++j) b = b * 10 + number[i] - '0';
-        while (j--) b /= 10;
-        f = a + b;
-        if (i < number.size()) {
-            int n = atoi(number.c_str() + i + 1);
-            if (n > 0) for (int i = 0; i < n; ++i) f *= 10;
-            if (n < 0) for (int i = 0; i < -n; ++i) f /= 10;
-        }
-        fprintf(stderr, "%f", f);
+        // double f = 0, a = 0, b = 0;
+        // int i, j = 0;
+        // for (i = 0; number[i] != '.'; ++i) a = a * 10 + number[i] - '0';
+        // for (i++; i < number.size() && number[i] != 'e' && number[i] != 'E'; ++i, ++j) b = b * 10 + number[i] - '0';
+        // while (j--) b /= 10;
+        // f = a + b;
+        // if (i < number.size()) {
+        //     int n = atoi(number.c_str() + i + 1);
+        //     if (n > 0) for (int i = 0; i < n; ++i) f *= 10;
+        //     if (n < 0) for (int i = 0; i < -n; ++i) f /= 10;
+        // }
+        fprintf(stderr, "%f", atof(number.c_str()));
     }
 }
 
