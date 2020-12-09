@@ -67,6 +67,7 @@ Tag : ID { $$ = newAstNode("Tag", 1, $1); }
 VarDec : ID { $$ = newAstNode("VarDec", 1, $1); }
     | VarDec LB INT RB { $$ = newAstNode("VarDec", 4, $1, $2, $3, $4); }
     | VarDec LB error RB
+    | error SEMI
     ;
 FunDec : ID LP VarList RP { $$ = newAstNode("FunDec", 4, $1, $2, $3, $4); }
     | ID LP RP { $$ = newAstNode("FunDec", 3, $1, $2, $3); }
