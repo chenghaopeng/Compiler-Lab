@@ -113,7 +113,7 @@ void print (int u, int dep) {
 int main (int argc, char* argv[]) {
     if (argc > 1) {
         yyread(argv[1]);
-        yydebug = 1;
+        // yydebug = 1;
         yyparse();
         if (flag || yydebug) print(nodes.size() - 1, 0);
     }
