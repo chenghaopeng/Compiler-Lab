@@ -44,7 +44,7 @@ ExtDefList : { $$ = newAstNode("ExtDefList", 0, -1); }
 ExtDef : Specifier ExtDecList SEMI { $$ = newAstNode("ExtDef", 3, $1, $2, $3); }
     | Specifier SEMI { $$ = newAstNode("ExtDef", 2, $1, $2); }
     | Specifier FunDec CompSt { $$ = newAstNode("ExtDef", 3, $1, $2, $3); }
-    | Specifier error SEMI { printf("test1"); }
+    | Specifier error SEMI
     ;
 ExtDecList : VarDec { $$ = newAstNode("ExtDecList", 1, $1); }
     | VarDec COMMA ExtDecList { $$ = newAstNode("ExtDecList", 3, $1, $2, $3); }
@@ -71,6 +71,7 @@ VarDec : ID { $$ = newAstNode("VarDec", 1, $1); }
 FunDec : ID LP VarList RP { $$ = newAstNode("FunDec", 4, $1, $2, $3, $4); }
     | ID LP RP { $$ = newAstNode("FunDec", 3, $1, $2, $3); }
     | ID LP error RP
+    | error LP VarList RP
     ;
 VarList : ParamDec COMMA VarList { $$ = newAstNode("VarList", 3, $1, $2, $3); }
     | ParamDec { $$ = newAstNode("VarList", 1, $1); }
