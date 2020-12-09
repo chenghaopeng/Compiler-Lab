@@ -6,6 +6,8 @@
 #include <cstdio>
 using namespace std;
 
+#define YYDEBUG 1
+
 extern "C" {
     void yyread(char*);
     int yyparse(void);
