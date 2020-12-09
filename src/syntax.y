@@ -34,6 +34,7 @@
 %left LP RP LB RB DOT
 %nonassoc LOWER_THAN_ELSE
 %nonassoc ELSE
+%nonassoc SEMI
 
 %%
 Program : ExtDefList { $$ = newAstNode("Program", 1, $1); }
