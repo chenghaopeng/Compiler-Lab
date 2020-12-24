@@ -13,6 +13,6 @@ struct AstNode {
     AstNode () { name = opt = ""; lineno = lc = rc = -1; }
 };
 
-vector<AstNode> nodes;
+extern vector<AstNode> nodes;
 
 #endif

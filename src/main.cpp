@@ -17,6 +17,8 @@ extern "C" {
 
 int flag = 1;
 
+vector<AstNode> nodes;
+
 extern "C"
 int newAstNode (char* name, int num, ...) {
     va_list args;
