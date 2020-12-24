@@ -3,10 +3,10 @@
 #include <iostream>
 using namespace std;
 
-vector<AstNode>* nodes;
+vector<AstNode>* ptrNodes;
 
 AstNode get (int i) {
-    return (*nodes)[i];
+    return (*ptrNodes)[i];
 }
 
 string getProduction (int u) {
@@ -26,6 +26,6 @@ void analyseProgram (int u) {
 }
 
 void semantic (vector<AstNode>* _nodes) {
-    nodes = _nodes;
-    analyseProgram(nodes->size() - 1);
+    ptrNodes = _nodes;
+    analyseProgram(ptrNodes->size() - 1);
 }
