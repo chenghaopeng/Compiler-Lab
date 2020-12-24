@@ -13,7 +13,7 @@ struct AstNode {
     AstNode () { name = opt = ""; lineno = lc = rc = -1; }
 };
 
-vector<AstNode> nodes;
+static vector<AstNode> nodes;
 
 void semantic();
 
