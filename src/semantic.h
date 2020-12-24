@@ -1,5 +1,5 @@
-#ifndef SEMANTIC_H
-#define SEMANTIC_H
+#ifndef _SEMANTIC_H_
+#define _SEMANTIC_H_
 
 #include <string>
 #include <vector>
