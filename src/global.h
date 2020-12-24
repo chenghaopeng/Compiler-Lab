@@ -1,5 +1,5 @@
-#ifndef _SEMANTIC_H_
-#define _SEMANTIC_H_
+#ifndef GLOBAL_H
+#define GLOBAL_H
 
 #include <string>
 #include <vector>
@@ -13,8 +13,6 @@ struct AstNode {
     AstNode () { name = opt = ""; lineno = lc = rc = -1; }
 };
 
-static vector<AstNode> nodes;
-
-void semantic();
+void semantic(vector<AstNode>*);
 
 #endif

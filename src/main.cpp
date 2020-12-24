@@ -4,7 +4,7 @@
 #include <cstdarg>
 #include <iomanip>
 #include <cstdio>
-#include "semantic.h"
+#include "global.h"
 using namespace std;
 
 extern "C" {
@@ -15,6 +15,8 @@ extern "C" {
 }
 
 int flag = 1;
+
+vector<AstNode> nodes;
 
 extern "C"
 int newAstNode (char* name, int num, ...) {
@@ -107,7 +109,7 @@ int main (int argc, char* argv[]) {
         // yydebug = 1;
         yyparse();
         if (flag || yydebug) print(nodes.size() - 1, 0);
-        semantic();
+        semantic(&nodes);
     }
     return 0;
 }

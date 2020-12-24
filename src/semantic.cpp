@@ -1,5 +1,6 @@
-#include "semantic.h"
+#include "global.h"
+#include <vector>
 
-void semantic () {
+void semantic (vector<AstNode> *nodes) {
     
 }
