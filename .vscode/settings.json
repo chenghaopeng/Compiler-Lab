@@ -2,6 +2,13 @@
     "files.associations": {
         "algorithm": "cpp",
         "iostream": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "__functional_base": "cpp",
+        "array": "cpp",
+        "istream": "cpp",
+        "locale": "cpp",
+        "memory": "cpp",
+        "tuple": "cpp",
+        "utility": "cpp"
     }
 }
