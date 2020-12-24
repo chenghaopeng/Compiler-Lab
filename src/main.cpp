@@ -4,6 +4,8 @@
 #include <cstdarg>
 #include <iomanip>
 #include <cstdio>
+#include "main.h"
+#include "semantic.h"
 using namespace std;
 
 extern "C" {
@@ -13,17 +15,7 @@ extern "C" {
     int yydebug;
 }
 
-struct AstNode {
-    string name;
-    int lineno;
-    string opt;
-    int lc, rc;
-    AstNode () { name = opt = ""; lineno = lc = rc = -1; }
-};
-
 int flag = 1;
-
-vector<AstNode> nodes;
 
 extern "C"
 int newAstNode (char* name, int num, ...) {
@@ -116,6 +108,7 @@ int main (int argc, char* argv[]) {
         // yydebug = 1;
         yyparse();
         if (flag || yydebug) print(nodes.size() - 1, 0);
+        semantic();
     }
     return 0;
 }
