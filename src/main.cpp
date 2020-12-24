@@ -4,7 +4,6 @@
 #include <cstdarg>
 #include <iomanip>
 #include <cstdio>
-#include "main.h"
 #include "semantic.h"
 using namespace std;
 
@@ -16,8 +15,6 @@ extern "C" {
 }
 
 int flag = 1;
-
-vector<AstNode> nodes;
 
 extern "C"
 int newAstNode (char* name, int num, ...) {
