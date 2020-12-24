@@ -1,3 +1,6 @@
+#ifndef MAIN_H
+#define MAIN_H
+
 #include <string>
 #include <vector>
 using namespace std;
@@ -11,3 +14,5 @@ struct AstNode {
 };
 
 vector<AstNode> nodes;
+
+#endif
