@@ -30,7 +30,7 @@
 %left RELOP
 %left PLUS MINUS
 %left STAR DIV
-%right NOT
+%right NOT NEG
 %left LP RP LB RB DOT
 %nonassoc LOWER_THAN_ELSE
 %nonassoc ELSE
@@ -118,7 +118,7 @@ Exp : Exp ASSIGNOP Exp { $$ = newAstNode("Exp", 3, $1, $2, $3); }
     | Exp STAR Exp { $$ = newAstNode("Exp", 3, $1, $2, $3); }
     | Exp DIV Exp { $$ = newAstNode("Exp", 3, $1, $2, $3); }
     | LP Exp RP { $$ = newAstNode("Exp", 3, $1, $2, $3); }
-    | MINUS Exp { $$ = newAstNode("Exp", 2, $1, $2); }
+    | MINUS Exp %prec NEG { $$ = newAstNode("Exp", 2, $1, $2); }
     | NOT Exp { $$ = newAstNode("Exp", 2, $1, $2); }
     | ID LP Args RP { $$ = newAstNode("Exp", 4, $1, $2, $3, $4); }
     | ID LP RP { $$ = newAstNode("Exp", 3, $1, $2, $3); }
