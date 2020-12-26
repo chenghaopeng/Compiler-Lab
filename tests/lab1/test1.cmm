@@ -1,8 +1,4 @@
 int main () {
-    struct cc {
-        int cc,dd;
-    } ee;
-    struct {
-        int cc;
-    } rr;
+    int a, b, c;
+    int c;
 }
