@@ -1,13 +1,5 @@
-int func(int i) 
+int main() 
 {
-   return i;
-}
-
-int func()
-{
-   return 0;
-}
-
-int main()
-{
+   float j = 1.7;
+   return j;
 }
