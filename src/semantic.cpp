@@ -462,7 +462,7 @@ void analyseStmt (int u, Symbol* funDec) {
     }
     else if (production == "RETURN Exp SEMI") {
         Type* type = analyseExp(sons[1]);
-        if (!typeEqual(type, funDec->type)) {
+        if (!typeEqual(type, funDec->declaim->type)) {
             semanticError(8, Stmt.lineno, "返回值类型错误");
         }
     }
