@@ -287,6 +287,7 @@ string analyseOptTag (int u) {
         return "0" + randomString(10);
     }
     else if (production == "ID") {
+        cout << "FLAG\n";
         return analyseID(sons[0]);
     }
     else error(7, production);
@@ -492,7 +493,6 @@ void analyseStmt (int u, Symbol* funDec) {
 }
 
 Field* analyseDefList (int u, SymbolKind kind) {
-    cout << "FLAG\n";
     AstNode DefList = get(u);
     string production = getProduction(u);
     vector<int> sons = getSons(u);
