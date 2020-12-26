@@ -34,7 +34,6 @@ struct Field {
 };
 
 struct StructureType {
-    string name;
     Field* field;
 };
 

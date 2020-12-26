@@ -252,7 +252,6 @@ Type* analyseStructSpecifier (int u) {
         Type* type = new Type;
         type->kind = STRUCTURE;
         type->valueType = LEFT;
-        type->structure.name = structName;
         debug_flag;
         type->structure.field = analyseDefList(sons[3], FIELD);
         debug_flag;
