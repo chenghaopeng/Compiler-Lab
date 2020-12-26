@@ -5,6 +5,7 @@ struct Position
 
 int main()
 {
-   int i;
-   i.x;
+   struct Position p;
+   if (p.n == 3.7)
+      return 0;
 }
