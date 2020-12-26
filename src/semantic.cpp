@@ -7,6 +7,7 @@
 using namespace std;
 
 #define debug_print if (DEBUG) cout << __LINE__ << ": " << __FUNCTION__ << " (" << production << ")\n"
+#define debug_flag if (DEBUG) cout << "FLAG: " << __LINE__ << " " << __FUNCTION__ << "\n"
 
 const int DEBUG = 1;
 
@@ -245,12 +246,16 @@ Type* analyseStructSpecifier (int u) {
     vector<int> sons = getSons(u);
     debug_print;
     if (production == "STRUCT OptTag LC DefList RC") {
+        debug_flag;
+        debug_flag;
         string structName = analyseOptTag(sons[1]);
         Type* type = new Type;
         type->kind = STRUCTURE;
         type->valueType = LEFT;
         type->structure.name = structName;
+        debug_flag;
         type->structure.field = analyseDefList(sons[3], FIELD);
+        debug_flag;
         if (symbolConflit(structName, STRUCT)) {
             semanticError(16, StructSpecifier.lineno, "冲突的结构体名");
         }
