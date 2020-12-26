@@ -724,7 +724,7 @@ Type* analyseExp (int u) {
                 return field->type;
             }
         }
-        semanticError(16, Exp.lineno, "访问结构体中不存在的域");
+        semanticError(14, Exp.lineno, "访问结构体中不存在的域");
         return nullptr;
     }
     else if (production == "ID") {
@@ -734,7 +734,7 @@ Type* analyseExp (int u) {
             return symbol->type;
         }
         else {
-            semanticError(16, Exp.lineno, "变量未定义");
+            semanticError(1, Exp.lineno, "变量未定义");
             return nullptr;
         }
     }
