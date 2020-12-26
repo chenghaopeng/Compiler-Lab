@@ -47,7 +47,7 @@ bool symbolConflit (string name, SymbolKind kind) {
                     }
                     break;
                 case FUNC:
-                    if (kind == STRUCT) {
+                    if (kind == FUNC) {
                         return true;
                     }
                     break;
