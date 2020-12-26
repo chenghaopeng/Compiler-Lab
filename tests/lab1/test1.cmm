@@ -3,6 +3,8 @@ struct {
     float b;
 } x;
 
+int a;
+
 int main (int a) {
     x.a = a;
 }
