@@ -779,9 +779,7 @@ FunctionParameter* analyseArgs (int u) {
 }
 
 string analyseID (int u) {
-    string id = get(u).opt;
-    cout << "FLAG\n";
-    return id;
+    return get(u).opt;
 }
 
 int analyseINT (int u) {
