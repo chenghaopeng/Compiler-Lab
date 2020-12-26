@@ -3,7 +3,6 @@
 #include <vector>
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
 using namespace std;
 
 #define debug_print if (DEBUG) { cout << __LINE__ << ": " << __FUNCTION__ << " (" << production << ")\n"; for (Symbol* symbol : symbolList) { cout << "  name:" << symbol->name << " kind:" << symbol->kind << '\n'; } }
@@ -146,7 +145,6 @@ vector<int> getSons (int u) {
 }
 
 string randomString (int size) {
-    srand(time(NULL));
     string s = "";
     for (int i = 0; i < size; ++i) {
         int t = rand() % (10 + 26 + 26);

@@ -4,6 +4,8 @@
 #include <cstdarg>
 #include <iomanip>
 #include <cstdio>
+#include <ctime>
+#include <cstdlib>
 #include "global.h"
 using namespace std;
 
@@ -104,6 +106,7 @@ void print (int u, int dep) {
 }
 
 int main (int argc, char* argv[]) {
+    srand(time(NULL));
     if (argc > 1) {
         yyread(argv[1]);
         // yydebug = 1;
