@@ -16,7 +16,7 @@ vector<Symbol*> symbolList;
 
 Symbol* symbolGet (string name, SymbolKind kind) {
     for (Symbol* symbol : symbolList) {
-        if (symbol->name == name || symbol->kind == kind) {
+        if (symbol->name == name && symbol->kind == kind) {
             return symbol;
         }
     }
