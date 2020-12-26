@@ -5,7 +5,7 @@ CXX = g++ -g
 FLEX = flex
 BISON = bison
 CFLAGS = -std=c99
-CXXFLAGS = -std=c++11
+CXXFLAGS = -std=c++14
 
 CFILES = $(shell find . -name "*.c")
 CXXFILES = $(shell find . -name "*.cpp")
