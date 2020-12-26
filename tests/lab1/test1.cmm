@@ -1,5 +1,5 @@
 int main () {
-    struct {
+    struct cc {
         int cc,dd;
     } ee;
     struct {
