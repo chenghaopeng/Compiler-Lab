@@ -416,6 +416,7 @@ FunctionParameter* analyseParamDec (int u) {
     if (production == "Specifier VarDec") {
         Type* type = analyseSpecifier(sons[0]);
         Symbol* symbol = analyseVarDec(sons[1], VAR, type);
+        if (!symbol) return nullptr;
         FunctionParameter* parameter = new FunctionParameter;
         parameter->type = symbol->type;
         return parameter;
