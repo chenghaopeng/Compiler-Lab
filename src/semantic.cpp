@@ -9,7 +9,7 @@ using namespace std;
 #define debug_print if (DEBUG) cout << __LINE__ << ": " << __FUNCTION__ << " (" << production << ")\n"
 #define debug_flag if (DEBUG) cout << "FLAG: " << __LINE__ << " " << __FUNCTION__ << "\n"
 
-const int DEBUG = 0;
+const int DEBUG = 1;
 
 vector<AstNode>* ptrNodes;
 
