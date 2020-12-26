@@ -9,7 +9,7 @@ using namespace std;
 #define debug_print if (DEBUG) { cout << __LINE__ << ": " << __FUNCTION__ << " (" << production << ")\n"; for (Symbol* symbol : symbolList) { cout << "  name:" << symbol->name << " kind:" << symbol->kind << '\n'; } }
 #define debug_flag if (DEBUG) cout << "FLAG: " << __LINE__ << " " << __FUNCTION__ << "\n"
 
-const int DEBUG = 1;
+const int DEBUG = 0;
 
 vector<AstNode>* ptrNodes;
 
