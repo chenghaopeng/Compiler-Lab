@@ -247,8 +247,8 @@ Type* analyseStructSpecifier (int u) {
     debug_print;
     if (production == "STRUCT OptTag LC DefList RC") {
         debug_flag;
-        debug_flag;
         string structName = analyseOptTag(sons[1]);
+        debug_flag;
         Type* type = new Type;
         type->kind = STRUCTURE;
         type->valueType = LEFT;
