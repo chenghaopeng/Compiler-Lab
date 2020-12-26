@@ -287,7 +287,6 @@ string analyseOptTag (int u) {
         return "0" + randomString(10);
     }
     else if (production == "ID") {
-        cout << "FLAG\n";
         return analyseID(sons[0]);
     }
     else error(7, production);
@@ -780,7 +779,9 @@ FunctionParameter* analyseArgs (int u) {
 }
 
 string analyseID (int u) {
-    return get(u).opt;
+    string id = get(u).opt;
+    cout << "FLAG\n";
+    return id;
 }
 
 int analyseINT (int u) {
