@@ -20,7 +20,7 @@ int main () {
     x.a = 1;
     a[1];
     z[1.5];
-    f();
+    f(1);
 }
 
 int main () {

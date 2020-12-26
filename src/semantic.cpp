@@ -343,6 +343,8 @@ Symbol* analyseVarDec (int u, SymbolKind kind, Type* type) {
     return nullptr;
 }
 
+bool validFunc = false;
+
 Symbol* analyseFunDec (int u, Type* type) {
     AstNode FunDec = get(u);
     string production = getProduction(u);
@@ -355,12 +357,13 @@ Symbol* analyseFunDec (int u, Type* type) {
         symbol->kind = FUNC;
         FunctionDeclaim* functionDeclaim = new FunctionDeclaim;
         functionDeclaim->type = type;
+        validFunc = true;
         functionDeclaim->parameter = analyseVarList(sons[2]);
         symbol->declaim = functionDeclaim;
         if (symbolConflit(funcitonName, FUNC)) {
             semanticError(4, FunDec.lineno, "冲突的函数名");
         }
-        else {
+        else if (validFunc) {
             symbolInsert(symbol);
         }
         return symbol;
@@ -392,7 +395,11 @@ FunctionParameter* analyseVarList (int u) {
     vector<int> sons = getSons(u);
     debug_print
     if (production == "ParamDec") {
-        return analyseParamDec(sons[0]);
+        FunctionParameter* parameter = analyseParamDec(sons[0]);
+        if (!parameter) {
+            validFunc = false;
+        }
+        return parameter;
     }
     else if (production == "ParamDec COMMA VarList") {
         FunctionParameter* parameters = analyseParamDec(sons[0]);
@@ -400,6 +407,7 @@ FunctionParameter* analyseVarList (int u) {
             parameters->next = analyseVarList(sons[2]);
         }
         else {
+            validFunc = false;
             parameters = analyseVarList(sons[2]);
         }
         return parameters;
