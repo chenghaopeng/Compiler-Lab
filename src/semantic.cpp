@@ -108,8 +108,8 @@ bool functionParameterTypeEqual (FunctionParameter* p1, FunctionParameter* p2) {
     return true;
 }
 
-void error (int code) {
-    cout << "ERROR!! : " << code << '\n';
+void error (int code, string ext) {
+    cout << "ERROR!! : " << code << ", " << ext << '\n';
 }
 
 void semanticError (int code, int lineno, char* reason) {
@@ -151,7 +151,7 @@ void analyseProgram (int u) {
     if (production == "ExtDefList") {
         analyseExtDefList(sons[0]);
     }
-    else error(1);
+    else error(1, production);
 }
 
 void analyseExtDefList (int u) {
@@ -162,7 +162,7 @@ void analyseExtDefList (int u) {
         analyseExtDef(sons[0]);
         analyseExtDefList(sons[1]);
     }
-    else error(2);
+    else error(2, production);
 }
 
 void analyseExtDef (int u) {
@@ -182,7 +182,7 @@ void analyseExtDef (int u) {
         Symbol* funDec = analyseFunDec(sons[1], type);
         analyseCompSt(sons[2], funDec);
     }
-    else error(3);
+    else error(3, production);
 }
 
 void analyseExtDecList (int u, Type* type) {
@@ -195,7 +195,7 @@ void analyseExtDecList (int u, Type* type) {
         analyseVarDec(sons[0], VAR, type);
         analyseExtDecList(sons[2], type);
     }
-    else error(4);
+    else error(4, production);
 }
 
 Type* analyseSpecifier (int u) {
@@ -208,13 +208,13 @@ Type* analyseSpecifier (int u) {
         AstNode TYPE = get(sons[0]);
         if (TYPE.name == "INT") type->basic = INT;
         else if (TYPE.name == "FLOAT") type->basic = FLOAT;
-        else error(5);
+        else error(5, production);
         return type;
     }
     else if (production == "StructSpecifier") {
         return analyseStructSpecifier(sons[1]);
     }
-    else error(5);
+    else error(5, production);
     return nullptr;
 }
 
@@ -251,7 +251,7 @@ Type* analyseStructSpecifier (int u) {
             return nullptr;
         }
     }
-    else error(6);
+    else error(6, production);
     return nullptr;
 }
 
@@ -264,7 +264,7 @@ string analyseOptTag (int u) {
     else if (production == "ID") {
         return analyseID(sons[0]);
     }
-    else error(7);
+    else error(7, production);
     return "";
 }
 
@@ -274,7 +274,7 @@ string analyseTag (int u) {
     if (production == "ID") {
         return analyseID(sons[0]);
     }
-    else error(8);
+    else error(8, production);
     return "";
 }
 
@@ -286,7 +286,7 @@ Symbol* analyseVarDec (int u, SymbolKind kind, Type* type) {
         if (symbolConflit(id, kind)) {
             if (kind == VAR) semanticError(3, VarDec.lineno, "冲突的变量名");
             else if (kind == FIELD) semanticError(15, VarDec.lineno, "冲突的域名");
-            else error(9);
+            else error(9, production);
             return nullptr;
         }
         else {
@@ -310,7 +310,7 @@ Symbol* analyseVarDec (int u, SymbolKind kind, Type* type) {
         }
         return symbol;
     }
-    else error(9);
+    else error(9, production);
     return nullptr;
 }
 
@@ -351,7 +351,7 @@ Symbol* analyseFunDec (int u, Type* type) {
         }
         return symbol;
     }
-    else error(10);
+    else error(10, production);
     return nullptr;
 }
 
@@ -371,7 +371,7 @@ FunctionParameter* analyseVarList (int u) {
         }
         return parameters;
     }
-    else error(11);
+    else error(11, production);
     return nullptr;
 }
 
@@ -385,7 +385,7 @@ FunctionParameter* analyseParamDec (int u) {
         parameter->type = symbol->type;
         return parameter;
     }
-    else error(12);
+    else error(12, production);
     return nullptr;
 }
 
@@ -396,7 +396,7 @@ void analyseCompSt (int u, Symbol* funDec) {
         analyseDefList(sons[1], VAR);
         analyseStmtList(sons[2], funDec);
     }
-    else error(13);
+    else error(13, production);
 }
 
 void analyseStmtList (int u, Symbol* funDec) {
@@ -407,7 +407,7 @@ void analyseStmtList (int u, Symbol* funDec) {
         analyseStmt(sons[0], funDec);
         analyseStmtList(sons[1], funDec);
     }
-    else error(14);
+    else error(14, production);
 }
 
 void analyseStmt (int u, Symbol* funDec) {
@@ -447,7 +447,7 @@ void analyseStmt (int u, Symbol* funDec) {
         }
         analyseStmt(sons[4], funDec);
     }
-    else error(15);
+    else error(15, production);
 }
 
 Field* analyseDefList (int u, SymbolKind kind) {
@@ -472,9 +472,9 @@ Field* analyseDefList (int u, SymbolKind kind) {
                 return analyseDefList(sons[1], kind);
             }
         }
-        else error(16);
+        else error(16, production);
     }
-    else error(16);
+    else error(16, production);
     return nullptr;
 }
 
@@ -501,9 +501,9 @@ Field* analyseDef (int u, SymbolKind kind) {
             }
             return head->next;
         }
-        else error(17);
+        else error(17, production);
     }
-    else error(17);
+    else error(17, production);
     return nullptr;
 }
 
@@ -523,7 +523,7 @@ Symbol* analyseDecList (int u, SymbolKind kind, Type* type) {
         }
         return symbol;
     }
-    else error(18);
+    else error(18, production);
     return nullptr;
 }
 
@@ -549,9 +549,9 @@ Symbol* analyseDec (int u, SymbolKind kind, Type* type) {
             semanticError(15, Dec.lineno, "在域上初始化");
             return symbol;
         }
-        else error(19);
+        else error(19, production);
     }
-    else error(19);
+    else error(19, production);
     return nullptr;
 }
 
@@ -701,7 +701,7 @@ Type* analyseExp (int u) {
         type->basic = FLOAT;
         return type;
     }
-    else error(20);
+    else error(20, production);
     return nullptr;
 }
 
@@ -721,7 +721,7 @@ FunctionParameter* analyseArgs (int u) {
         parameter->type = type;
         return parameter;
     }
-    else error(21);
+    else error(21, production);
     return nullptr;
 }
 
