@@ -233,7 +233,7 @@ Type* analyseSpecifier (int u) {
         return type;
     }
     else if (production == "StructSpecifier") {
-        return analyseStructSpecifier(sons[1]);
+        return analyseStructSpecifier(sons[0]);
     }
     else error(5, production);
     return nullptr;
