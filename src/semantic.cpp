@@ -492,6 +492,7 @@ void analyseStmt (int u, Symbol* funDec) {
 }
 
 Field* analyseDefList (int u, SymbolKind kind) {
+    cout << "FLAG\n";
     AstNode DefList = get(u);
     string production = getProduction(u);
     vector<int> sons = getSons(u);
