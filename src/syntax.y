@@ -24,6 +24,7 @@
 %token IF ELSE
 %token WHILE
 
+%nonassoc error
 %right ASSIGNOP
 %left OR
 %left AND
