@@ -208,7 +208,7 @@ Type* analyseSpecifier (int u) {
         AstNode TYPE = get(sons[0]);
         if (TYPE.name == "INT") type->basic = INT;
         else if (TYPE.name == "FLOAT") type->basic = FLOAT;
-        else error(5, production);
+        else error(5, TYPE.name);
         return type;
     }
     else if (production == "StructSpecifier") {
@@ -286,7 +286,7 @@ Symbol* analyseVarDec (int u, SymbolKind kind, Type* type) {
         if (symbolConflit(id, kind)) {
             if (kind == VAR) semanticError(3, VarDec.lineno, "冲突的变量名");
             else if (kind == FIELD) semanticError(15, VarDec.lineno, "冲突的域名");
-            else error(9, production);
+            else error(9, "啥东西啊");
             return nullptr;
         }
         else {
@@ -472,7 +472,7 @@ Field* analyseDefList (int u, SymbolKind kind) {
                 return analyseDefList(sons[1], kind);
             }
         }
-        else error(16, production);
+        else error(16, "啥东西啊");
     }
     else error(16, production);
     return nullptr;
@@ -501,7 +501,7 @@ Field* analyseDef (int u, SymbolKind kind) {
             }
             return head->next;
         }
-        else error(17, production);
+        else error(17, "啥东西啊");
     }
     else error(17, production);
     return nullptr;
@@ -549,7 +549,7 @@ Symbol* analyseDec (int u, SymbolKind kind, Type* type) {
             semanticError(15, Dec.lineno, "在域上初始化");
             return symbol;
         }
-        else error(19, production);
+        else error(19, "啥东西啊");
     }
     else error(19, production);
     return nullptr;
