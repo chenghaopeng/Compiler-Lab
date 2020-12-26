@@ -1,10 +1,23 @@
 struct {
     int a;
-    float b;
+    float b = 5;
 } x;
 
 int a;
 
 int main () {
-    int b = a();
+    int a;
+    int x;
+    int z[1.2];
+    b = 1;
+    c();
+    a = 1.2;
+    1 = 2;
+    x.a = 1;
+    a[1];
+    z[1.5];
+}
+
+int main () {
+
 }
