@@ -590,7 +590,7 @@ Symbol* analyseDec (int u, SymbolKind kind, Type* type) {
             if (type->valueType != LEFT) {
                 semanticError(6, Dec.lineno, "变量定义时赋值号左边不为左值表达式");
             }
-            else if (!typeEqual(type, expType)) {
+            if (!typeEqual(type, expType)) {
                 semanticError(5, Dec.lineno, "变量定义时赋值号两边类型不一致");
             }
             return symbol;
@@ -616,7 +616,7 @@ Type* analyseExp (int u) {
         if (type1 && type1->valueType != LEFT) {
             semanticError(6, Exp.lineno, "表达式赋值号左边不为左值表达式");
         }
-        else if (!typeEqual(type1, type2)) {
+        if (!typeEqual(type1, type2)) {
             semanticError(5, Exp.lineno, "表达式赋值号两边类型不一致");
         }
         return type1 ? type1 : type2;
