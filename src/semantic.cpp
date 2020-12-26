@@ -206,8 +206,8 @@ Type* analyseSpecifier (int u) {
         type->kind = BASIC;
         type->valueType = LEFT;
         AstNode TYPE = get(sons[0]);
-        if (TYPE.opt == "INT") type->basic = INT;
-        else if (TYPE.opt == "FLOAT") type->basic = FLOAT;
+        if (TYPE.opt == "int") type->basic = INT;
+        else if (TYPE.opt == "float") type->basic = FLOAT;
         else error(5, TYPE.opt);
         return type;
     }
