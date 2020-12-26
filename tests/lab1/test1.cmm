@@ -5,6 +5,6 @@ struct {
 
 int a;
 
-int main (int a) {
-    x.a = a;
+int main () {
+    int b = a();
 }
