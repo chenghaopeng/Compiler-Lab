@@ -109,7 +109,7 @@ bool functionParameterTypeEqual (FunctionParameter* p1, FunctionParameter* p2) {
 }
 
 void error (int code, string ext) {
-    cout << "ERROR!! : " << code << ", " << ext << '\n';
+    cout << "ERROR!! : " << code << ", '" << ext << "'" << '\n';
 }
 
 void semanticError (int code, int lineno, char* reason) {
