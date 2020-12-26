@@ -12,7 +12,7 @@ int f (int a, int bb) {
 int main () {
     int a;
     int x;
-    int z[1.2];
+    int z[1][2];
     b = 1;
     c();
     a = 1.2;
