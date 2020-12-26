@@ -33,12 +33,12 @@ bool symbolConflit (string name, SymbolKind kind) {
         if (symbol->name == name) {
             switch (symbol->kind) {
                 case VAR:
-                    if (kind == VAR || kind == FIELD || kind == STRUCT) {
+                    if (kind == VAR || kind == STRUCT) {
                         return true;
                     }
                     break;
                 case FIELD:
-                    if (kind == VAR || kind == FIELD) {
+                    if (kind == FIELD) {
                         return true;
                     }
                     break;
