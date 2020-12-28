@@ -807,6 +807,6 @@ void semantic (vector<AstNode>* _nodes) {
     ptrNodes = _nodes;
     analyseProgram(ptrNodes->size() - 1);
     for (string error : errors) {
-        cout << error;
+        fprintf(stderr, "%s", error.c_str());
     }
 }
