@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <cstdlib>
+#include <set>
 using namespace std;
 
 #define debug_print if (DEBUG) { cout << __LINE__ << ": " << __FUNCTION__ << " (" << production << ")\n"; for (Symbol* symbol : symbolList) { cout << "  name:" << symbol->name << " kind:" << symbol->kind << '\n'; } }
@@ -114,8 +115,15 @@ void error (int code, string ext) {
     cout << "ERROR!! : " << code << ", '" << ext << "'" << '\n';
 }
 
+set<int> linenos;
+vector<string> errors;
+
 void semanticError (int code, int lineno, char* reason) {
-    fprintf(stderr, "Error type %d at Line %d: %s.\n", code, lineno, reason);
+    if (linenos.find(lineno) != linenos.end()) return;
+    linenos.insert(lineno);
+    char s[128];
+    sprintf(s, "Error type %d at Line %d: %s.\n", code, lineno, reason);
+    errors.push_back(string(s));
 }
 
 AstNode get (int i) {
@@ -798,4 +806,7 @@ int analyseINT (int u) {
 void semantic (vector<AstNode>* _nodes) {
     ptrNodes = _nodes;
     analyseProgram(ptrNodes->size() - 1);
+    for (string error : errors) {
+        cout << error;
+    }
 }
