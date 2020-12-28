@@ -1,5 +1,20 @@
+
+struct a {
+    int d, e;
+    struct {
+        float ee[10];
+    } bb;
+};
+struct aa {
+    int b, c;
+    struct {
+        float cc[8];
+    } dd;
+};
+int a () {}
 int main () {
-    int a, b, c;
-    int c;
-    b();
+    struct a A;
+    struct aa AA;
+    A.d = 1;
+    A = AA;
 }

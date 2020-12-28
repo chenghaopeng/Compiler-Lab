@@ -621,7 +621,7 @@ Type* analyseExp (int u) {
         if (type1 && type1->valueType != LEFT) {
             semanticError(6, Exp.lineno, "表达式赋值号左边不为左值表达式");
         }
-        if (type1 && !typeEqual(type1, type2)) {
+        if (type1 && type2 && !typeEqual(type1, type2)) {
             semanticError(5, Exp.lineno, "表达式赋值号两边类型不一致");
         }
         return type1 ? type1 : type2;
@@ -629,7 +629,7 @@ Type* analyseExp (int u) {
     else if (production == "Exp AND Exp" || production == "Exp OR Exp" || production == "Exp RELOP Exp") {
         Type* type1 = analyseExp(sons[0]);
         Type* type2 = analyseExp(sons[2]);
-        if (!(typeIsBasic(type1, INT) && typeIsBasic(type2, INT))) {
+        if (type1 && type2 && !(typeIsBasic(type1, INT) && typeIsBasic(type2, INT))) {
             semanticError(7, Exp.lineno, "and/or/relop 的运算数不全是 int");
         }
         Type* type = new Type;
@@ -641,10 +641,10 @@ Type* analyseExp (int u) {
     else if (production == "Exp PLUS Exp" || production == "Exp MINUS Exp" || production == "Exp STAR Exp" || production == "Exp DIV Exp") {
         Type* type1 = analyseExp(sons[0]);
         Type* type2 = analyseExp(sons[2]);
-        if (!(typeIsBasic(type1) && typeIsBasic(type2))) {
+        if (type1 && type2 && !(typeIsBasic(type1) && typeIsBasic(type2))) {
             semanticError(7, Exp.lineno, "plus/minus/star/div 的运算数不全是基本类型");
         }
-        else if (!typeEqual(type1, type2)) {
+        else if (type1 && type2 && !typeEqual(type1, type2)) {
             semanticError(7, Exp.lineno, "plus/minus/star/div 的运算数类型不一致");
         }
         return type1 ? type1 : type2;
@@ -654,16 +654,17 @@ Type* analyseExp (int u) {
     }
     else if (production == "MINUS Exp") {
         Type* type = analyseExp(sons[1]);
-        if (!typeIsBasic(type)) {
+        if (type && !typeIsBasic(type)) {
             semanticError(7, Exp.lineno, "minus 的运算数不是基本类型");
         }
         return type;
     }
     else if (production == "NOT Exp") {
-        if (!typeIsBasic(analyseExp(sons[1]), INT)) {
+        Type* type = analyseExp(sons[1]);
+        if (type && !typeIsBasic(type, INT)) {
             semanticError(7, Exp.lineno, "not 的运算数不全是 int");
         }
-        Type* type = new Type;
+        type = new Type;
         type->kind = BASIC;
         type->valueType = RIGHT;
         type->basic = INT;
@@ -709,11 +710,11 @@ Type* analyseExp (int u) {
     else if (production == "Exp LB Exp RB") {
         Type* varType = analyseExp(sons[0]);
         Type* indType = analyseExp(sons[2]);
-        if (!varType || varType->kind != ARRAY) {
+        if (varType && varType->kind != ARRAY) {
             semanticError(10, Exp.lineno, "对非数组使用下标");
             return nullptr;
         }
-        if (!typeIsBasic(indType, INT)) {
+        if (indType && !typeIsBasic(indType, INT)) {
             semanticError(12, Exp.lineno, "数组下标不为整数");
         }
         return varType->array.type;
