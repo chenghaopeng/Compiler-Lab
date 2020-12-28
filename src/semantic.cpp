@@ -726,6 +726,7 @@ Type* analyseExp (int u) {
             semanticError(13, Exp.lineno, "对非结构体使用域");
             return nullptr;
         }
+        if (!varType) return nullptr;
         for (Field* field = varType->structure.field; field; field = field->next) {
             if (field->name == fieldName) {
                 return field->type;
