@@ -468,20 +468,20 @@ void analyseStmt (int u, Symbol* funDec) {
     }
     else if (production == "RETURN Exp SEMI") {
         Type* type = analyseExp(sons[1]);
-        if (!typeEqual(type, funDec->declaim->type)) {
+        if (type && !typeEqual(type, funDec->declaim->type)) {
             semanticError(8, Stmt.lineno, "返回值类型错误");
         }
     }
     else if (production == "IF LP Exp RP Stmt") {
         Type* type = analyseExp(sons[2]);
-        if (!typeIsBasic(type, INT)) {
+        if (type && !typeIsBasic(type, INT)) {
             semanticError(7, Stmt.lineno, "if 条件不是 int");
         }
         analyseStmt(sons[4], funDec);
     }
     else if (production == "IF LP Exp RP Stmt ELSE Stmt") {
         Type* type = analyseExp(sons[2]);
-        if (!typeIsBasic(type, INT)) {
+        if (type && !typeIsBasic(type, INT)) {
             semanticError(7, Stmt.lineno, "if 条件不是 int");
         }
         analyseStmt(sons[4], funDec);
@@ -489,7 +489,7 @@ void analyseStmt (int u, Symbol* funDec) {
     }
     else if (production == "WHILE LP Exp RP Stmt") {
         Type* type = analyseExp(sons[2]);
-        if (!typeIsBasic(type, INT)) {
+        if (type && !typeIsBasic(type, INT)) {
             semanticError(7, Stmt.lineno, "while 条件不是 int");
         }
         analyseStmt(sons[4], funDec);
@@ -722,7 +722,7 @@ Type* analyseExp (int u) {
     else if (production == "Exp DOT ID") {
         Type* varType = analyseExp(sons[0]);
         string fieldName = analyseID(sons[2]);
-        if (!varType || varType->kind != STRUCT) {
+        if (varType && varType->kind != STRUCT) {
             semanticError(13, Exp.lineno, "对非结构体使用域");
             return nullptr;
         }
