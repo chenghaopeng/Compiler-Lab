@@ -17,5 +17,5 @@ int main () {
     struct aa AA;
     A.d = 1;
     A = AA;
-    main[1] = 1;
+    main.a = 1;
 }
