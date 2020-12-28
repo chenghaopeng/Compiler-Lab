@@ -710,6 +710,7 @@ Type* analyseExp (int u) {
     else if (production == "Exp LB Exp RB") {
         Type* varType = analyseExp(sons[0]);
         Type* indType = analyseExp(sons[2]);
+        if (!varType) return nullptr;
         if (varType && varType->kind != ARRAY) {
             semanticError(10, Exp.lineno, "对非数组使用下标");
             return nullptr;
