@@ -62,8 +62,7 @@ void symbolInsert (Symbol* symbol) {
 }
 
 bool typeEqual (Type* t1, Type* t2) {
-    if (t1 == t2) return true;
-    if ((t1 && !t2) || (!t1 && t2)) return false;
+    if (!t1 || !t2) return false;
     if (t1->kind != t2->kind) return false;
     switch (t1->kind) {
         case BASIC:
