@@ -185,6 +185,7 @@ void analyseExtDef (int u) {
     debug_print
     if (production == "Specifier ExtDecList SEMI") {
         Type* type = analyseSpecifier(sons[0]);
+        if (!type) return;
         type->valueType = LEFT;
         analyseExtDecList(sons[1], type);
     }
@@ -193,6 +194,7 @@ void analyseExtDef (int u) {
     }
     else if (production == "Specifier FunDec CompSt") {
         Type* type = analyseSpecifier(sons[0]);
+        if (!type) return;
         type->valueType = RIGHT;
         Symbol* funDec = analyseFunDec(sons[1], type);
         analyseCompSt(sons[2], funDec);
@@ -251,14 +253,15 @@ Type* analyseStructSpecifier (int u) {
         if (symbolConflit(structName, STRUCT)) {
             semanticError(16, StructSpecifier.lineno, "冲突的结构体名");
         }
-        else {
+        else if (type->structure.field) {
             Symbol* symbol = new Symbol;
             symbol->name = structName;
             symbol->kind = STRUCT;
             symbol->type = type;
             symbolInsert(symbol);
+            return type;
         }
-        return type;
+        return nullptr;
     }
     else if (production == "STRUCT Tag") {
         string structName = analyseTag(sons[1]);
@@ -515,10 +518,11 @@ Field* analyseDefList (int u, SymbolKind kind) {
                 Field* tmp = field;
                 while (field->next) field = field->next;
                 field->next = analyseDefList(sons[1], kind);
-                return tmp;
+                if (field->next) return tmp;
+                return nullptr;
             }
             else {
-                return analyseDefList(sons[1], kind);
+                return nullptr;
             }
         }
         else error(16, "啥东西啊");
