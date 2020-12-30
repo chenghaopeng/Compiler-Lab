@@ -15,4 +15,6 @@ struct AstNode {
 
 void semantic(vector<AstNode>*);
 
+void ir(vector<AstNode>*);
+
 #endif

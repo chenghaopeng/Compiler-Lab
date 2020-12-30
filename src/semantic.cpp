@@ -8,6 +8,8 @@ using namespace std;
 #define debug_print if (DEBUG) { cout << __LINE__ << ": " << __FUNCTION__ << " (" << production << ")\n"; for (Symbol* symbol : symbolList) { cout << "  name:" << symbol->name << " kind:" << symbol->kind << '\n'; } }
 #define debug_flag if (DEBUG) cout << "FLAG: " << __LINE__ << " " << __FUNCTION__ << "\n"
 
+#define preprocess(node) AstNode node = get(u); string production = getProduction(u); vector<int> sons = getSons(u);
+
 const int DEBUG = 0;
 
 vector<AstNode>* ptrNodes;
@@ -155,9 +157,7 @@ string randomString (int size) {
 }
 
 void analyseProgram (int u) {
-    AstNode Program = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(Program)
     debug_print
     if (production == "ExtDefList") {
         analyseExtDefList(sons[0]);
@@ -166,9 +166,7 @@ void analyseProgram (int u) {
 }
 
 void analyseExtDefList (int u) {
-    AstNode ExtDefList = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(ExtDefList)
     debug_print
     if (production == "") { /*  */ }
     else if (production == "ExtDef ExtDefList") {
@@ -179,9 +177,7 @@ void analyseExtDefList (int u) {
 }
 
 void analyseExtDef (int u) {
-    AstNode ExtDef = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(ExtDef)
     debug_print
     if (production == "Specifier ExtDecList SEMI") {
         Type* type = analyseSpecifier(sons[0]);
@@ -201,9 +197,7 @@ void analyseExtDef (int u) {
 }
 
 void analyseExtDecList (int u, Type* type) {
-    AstNode ExtDecList = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(ExtDecList)
     debug_print
     if (production == "VarDec") {
         analyseVarDec(sons[0], VAR, type);
@@ -216,9 +210,7 @@ void analyseExtDecList (int u, Type* type) {
 }
 
 Type* analyseSpecifier (int u) {
-    AstNode Specifier = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(Specifier)
     debug_print
     if (production == "TYPE") {
         Type* type = new Type;
@@ -238,9 +230,7 @@ Type* analyseSpecifier (int u) {
 }
 
 Type* analyseStructSpecifier (int u) {
-    AstNode StructSpecifier = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(StructSpecifier)
     debug_print
     if (production == "STRUCT OptTag LC DefList RC") {
         string structName = analyseOptTag(sons[1]);
@@ -276,9 +266,7 @@ Type* analyseStructSpecifier (int u) {
 }
 
 string analyseOptTag (int u) {
-    AstNode OptTag = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(OptTag)
     debug_print
     if (production == "") {
         return "0" + randomString(10);
@@ -291,9 +279,7 @@ string analyseOptTag (int u) {
 }
 
 string analyseTag (int u) {
-    AstNode Tag = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(Tag)
     debug_print
     if (production == "ID") {
         return analyseID(sons[0]);
@@ -303,9 +289,7 @@ string analyseTag (int u) {
 }
 
 Symbol* analyseVarDec (int u, SymbolKind kind, Type* type) {
-    AstNode VarDec = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(VarDec)
     debug_print
     if (production == "ID") {
         string id = analyseID(sons[0]);
@@ -343,9 +327,7 @@ Symbol* analyseVarDec (int u, SymbolKind kind, Type* type) {
 bool validFunc = false;
 
 Symbol* analyseFunDec (int u, Type* type) {
-    AstNode FunDec = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(FunDec)
     debug_print
     if (production == "ID LP VarList RP") {
         string funcitonName = analyseID(sons[0]);
@@ -387,9 +369,7 @@ Symbol* analyseFunDec (int u, Type* type) {
 }
 
 FunctionParameter* analyseVarList (int u) {
-    AstNode VarList = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(VarList)
     debug_print
     if (production == "ParamDec") {
         FunctionParameter* parameter = analyseParamDec(sons[0]);
@@ -414,9 +394,7 @@ FunctionParameter* analyseVarList (int u) {
 }
 
 FunctionParameter* analyseParamDec (int u) {
-    AstNode ParamDec = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(ParamDec)
     debug_print
     if (production == "Specifier VarDec") {
         Type* type = analyseSpecifier(sons[0]);
@@ -431,9 +409,7 @@ FunctionParameter* analyseParamDec (int u) {
 }
 
 void analyseCompSt (int u, Symbol* funDec) {
-    AstNode CompSt = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(CompSt)
     debug_print
     if (production == "LC DefList StmtList RC") {
         analyseDefList(sons[1], VAR);
@@ -443,9 +419,7 @@ void analyseCompSt (int u, Symbol* funDec) {
 }
 
 void analyseStmtList (int u, Symbol* funDec) {
-    AstNode StmtList = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(StmtList)
     debug_print
     if (production == "") { /* */ }
     else if (production == "Stmt StmtList") {
@@ -456,9 +430,7 @@ void analyseStmtList (int u, Symbol* funDec) {
 }
 
 void analyseStmt (int u, Symbol* funDec) {
-    AstNode Stmt = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(Stmt)
     debug_print
     if (production == "Exp SEMI") {
         Type* type = analyseExp(sons[0]);
@@ -498,9 +470,7 @@ void analyseStmt (int u, Symbol* funDec) {
 }
 
 Field* analyseDefList (int u, SymbolKind kind) {
-    AstNode DefList = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(DefList)
     debug_print
     if (production == "") { /* */ }
     else if (production == "Def DefList") {
@@ -528,9 +498,7 @@ Field* analyseDefList (int u, SymbolKind kind) {
 }
 
 Field* analyseDef (int u, SymbolKind kind) {
-    AstNode Def = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(Def)
     debug_print
     if (production == "Specifier DecList SEMI") {
         Type* type = analyseSpecifier(sons[0]);
@@ -559,9 +527,7 @@ Field* analyseDef (int u, SymbolKind kind) {
 }
 
 Symbol* analyseDecList (int u, SymbolKind kind, Type* type) {
-    AstNode DecList = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(DecList)
     debug_print
     if (production == "Dec") {
         return analyseDec(sons[0], kind, type);
@@ -581,9 +547,7 @@ Symbol* analyseDecList (int u, SymbolKind kind, Type* type) {
 }
 
 Symbol* analyseDec (int u, SymbolKind kind, Type* type) {
-    AstNode Dec = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(Dec)
     debug_print
     if (production == "VarDec") {
         return analyseVarDec(sons[0], kind, type);
@@ -611,9 +575,7 @@ Symbol* analyseDec (int u, SymbolKind kind, Type* type) {
 }
 
 Type* analyseExp (int u) {
-    AstNode Exp = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(Exp)
     debug_print
     if (production == "Exp ASSIGNOP Exp") {
         Type* type1 = analyseExp(sons[0]);
@@ -766,9 +728,7 @@ Type* analyseExp (int u) {
 }
 
 FunctionParameter* analyseArgs (int u) {
-    AstNode Args = get(u);
-    string production = getProduction(u);
-    vector<int> sons = getSons(u);
+    preprocess(Args)
     debug_print
     if (production == "Exp COMMA Args") {
         Type* type = analyseExp(sons[0]);
