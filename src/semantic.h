@@ -1,5 +1,10 @@
 #include <string>
+#include <vector>
 using namespace std;
+
+#define debug_print if (DEBUG) { cout << __LINE__ << ": " << __FUNCTION__ << " (" << production << ")\n"; }
+#define debug_flag if (DEBUG) cout << "FLAG: " << __LINE__ << " " << __FUNCTION__ << "\n"
+#define preprocess(node) AstNode node = get(u); string production = getProduction(u); vector<int> sons = getSons(u);
 
 struct Type;
 
@@ -80,6 +85,17 @@ struct Symbol {
         next = nullptr;
     }
 };
+
+vector<Symbol*> symbolList;
+
+Symbol* symbolGet (string, SymbolKind);
+bool symbolExist (string, SymbolKind);
+bool symbolConflit (string, SymbolKind);
+void symbolInsert (Symbol*);
+bool typeEqual (Type*, Type*);
+bool typeIsBasic (Type*);
+bool typeIsBasic (Type*, BasicType);
+bool functionParameterTypeEqual (FunctionParameter*, FunctionParameter*);
 
 void analyseProgram (int);
 void analyseExtDefList (int);

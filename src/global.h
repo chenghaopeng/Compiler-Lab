@@ -13,8 +13,14 @@ struct AstNode {
     AstNode () { name = opt = ""; lineno = lc = rc = -1; }
 };
 
-void semantic(vector<AstNode>*);
+vector<AstNode>* ptrNodes;
 
-void ir(vector<AstNode>*);
+AstNode get (int);
+string getProduction (int);
+vector<int> getSons (int);
+
+void init(vector<AstNode>*);
+void semantic();
+void ir();
 
 #endif

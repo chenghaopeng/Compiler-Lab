@@ -112,7 +112,8 @@ int main (int argc, char* argv[]) {
         // yydebug = 1;
         yyparse();
         // if (flag || yydebug) print(nodes.size() - 1, 0);
-        semantic(&nodes);
+        init(&nodes);
+        semantic();
     }
     return 0;
 }

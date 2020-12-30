@@ -5,16 +5,7 @@
 #include <cstdlib>
 using namespace std;
 
-#define debug_print if (DEBUG) { cout << __LINE__ << ": " << __FUNCTION__ << " (" << production << ")\n"; for (Symbol* symbol : symbolList) { cout << "  name:" << symbol->name << " kind:" << symbol->kind << '\n'; } }
-#define debug_flag if (DEBUG) cout << "FLAG: " << __LINE__ << " " << __FUNCTION__ << "\n"
-
-#define preprocess(node) AstNode node = get(u); string production = getProduction(u); vector<int> sons = getSons(u);
-
 const int DEBUG = 0;
-
-vector<AstNode>* ptrNodes;
-
-vector<Symbol*> symbolList;
 
 Symbol* symbolGet (string name, SymbolKind kind) {
     for (Symbol* symbol : symbolList) {
@@ -755,7 +746,6 @@ int analyseINT (int u) {
     return atoi(get(u).opt.c_str());
 }
 
-void semantic (vector<AstNode>* _nodes) {
-    ptrNodes = _nodes;
+void semantic () {
     analyseProgram(ptrNodes->size() - 1);
 }
