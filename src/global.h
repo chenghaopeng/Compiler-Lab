@@ -1,4 +1,4 @@
-#ifndef GLOBAL_H
+#ifdef GLOBAL_H
 #define GLOBAL_H
 
 #include <string>
