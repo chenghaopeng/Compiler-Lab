@@ -1,4 +1,4 @@
-#ifdef GLOBAL_H
+#ifndef GLOBAL_H
 #define GLOBAL_H
 
 #include <string>
@@ -12,8 +12,6 @@ struct AstNode {
     int lc, rc;
     AstNode () { name = opt = ""; lineno = lc = rc = -1; }
 };
-
-vector<AstNode>* ptrNodes;
 
 AstNode get (int);
 string getProduction (int);

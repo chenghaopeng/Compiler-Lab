@@ -7,6 +7,8 @@ using namespace std;
 
 const int DEBUG = 0;
 
+vector<AstNode>* ptrNodes;
+
 Symbol* symbolGet (string name, SymbolKind kind) {
     for (Symbol* symbol : symbolList) {
         if (symbol->name == name && symbol->kind == kind) {
@@ -746,6 +748,10 @@ int analyseINT (int u) {
     return atoi(get(u).opt.c_str());
 }
 
-void semantic () {
+void init (vector<AstNode>* _nodes) {
+    ptrNodes = _nodes;
+}
+
+void semantic (vector<AstNode>* _nodes) {
     analyseProgram(ptrNodes->size() - 1);
 }
