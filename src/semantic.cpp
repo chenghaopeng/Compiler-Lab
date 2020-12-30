@@ -752,6 +752,6 @@ void init (vector<AstNode>* _nodes) {
     ptrNodes = _nodes;
 }
 
-void semantic () {
-    analyseProgram(ptrNodes->size() - 1);
+void semantic (int root) {
+    analyseProgram(root);
 }

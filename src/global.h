@@ -18,7 +18,7 @@ string getProduction (int);
 vector<int> getSons (int);
 
 void init(vector<AstNode>*);
-void semantic();
-void ir();
+void semantic(int);
+void ir(int);
 
 #endif
