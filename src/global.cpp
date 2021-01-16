@@ -1,4 +1,3 @@
-#include <iostream>
 #include "global.h"
 
 vector<AstNode>* ptrNodes;
@@ -174,6 +173,80 @@ void irInsert (InterRepresentation* ir) {
 
 void irPrint () {
     for (InterRepresentation* ir : irList) {
-        cout << ir << '\n';
+        switch (ir->kind) {
+        case LABEL:
+            printf("LABEL label%d :\n", ir->labelId);
+            break;
+        case FUNCTION:
+            printf("FUNCTION %s :\n", ir->functionName);
+            break;
+        case ASSIGN:
+            printf("%s := %s\n", irGetOperand(ir->assign.left).c_str(), irGetOperand(ir->assign.right).c_str());
+            break;
+        case ADD:
+            printf("%s := %s + %s\n", irGetOperand(ir->binaryAssign.left).c_str(), irGetOperand(ir->binaryAssign.op1).c_str(), irGetOperand(ir->binaryAssign.op2).c_str());
+            break;
+        case SUB:
+            printf("%s := %s - %s\n", irGetOperand(ir->binaryAssign.left).c_str(), irGetOperand(ir->binaryAssign.op1).c_str(), irGetOperand(ir->binaryAssign.op2).c_str());
+            break;
+        case DIV:
+            printf("%s := %s / %s\n", irGetOperand(ir->binaryAssign.left).c_str(), irGetOperand(ir->binaryAssign.op1).c_str(), irGetOperand(ir->binaryAssign.op2).c_str());
+            break;
+        case MUL:
+            printf("%s := %s * %s\n", irGetOperand(ir->binaryAssign.left).c_str(), irGetOperand(ir->binaryAssign.op1).c_str(), irGetOperand(ir->binaryAssign.op2).c_str());
+            break;
+        case GOTO:
+            printf("GOTO label%d\n", ir->gotoId);
+            break;
+        case IF_GOTO:
+            printf("IF %s %s %s GOTO label%d\n", irGetOperand(ir->if_goto.left).c_str(), irGetRelop(ir->if_goto.kind), irGetOperand(ir->if_goto.right).c_str(), ir->if_goto.gotoId);
+            break;
+        case RETURN:
+            printf("RETURN %s\n", irGetOperand(ir->returnVal).c_str());
+            break;
+        case DEC:
+            printf("DEC %s %d\n", irGetVariable(ir->dec.var).c_str(), ir->dec.size);
+            break;
+        case ARG:
+            printf("ARG %s\n", irGetOperand(ir->arg).c_str());
+            break;
+        case CALL:
+            printf("%s := CALL %s\n", irGetVariable(ir->call.ret).c_str(), ir->call.functionName);
+            break;
+        case PARAM:
+            printf("PARAM %s\n", irGetVariable(ir->param).c_str());
+            break;
+        case READ:
+            printf("READ %s\n", irGetOperand(ir->rw).c_str());
+            break;
+        case WRITE:
+            printf("WRITE %s\n", irGetOperand(ir->rw).c_str());
+            break;
+        default:
+            break;
+        }
     }
+}
+
+string irGetOperand (Operand* operand) {
+    switch (operand->kind) {
+    case VARIABLE:
+        return irGetVariable(operand->var);
+        break;
+    case CONSTANT:
+        return "#" + to_string(operand->constVal);
+        break;
+    case REF:
+        return "&" + irGetOperand(operand->ref);
+        break;
+    case DEREF:
+        return "*" + irGetOperand(operand->ref);
+        break;
+    default:
+        break;
+    }
+}
+
+string irGetVariable (Variable* variable) {
+    return string(variable->kind == V ? "V" : "T") + to_string(variable->id);
 }

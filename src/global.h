@@ -9,6 +9,8 @@ using namespace std;
 #define debug_flag if (DEBUG) cout << "FLAG: " << __LINE__ << " " << __FUNCTION__ << "\n"
 #define preprocess(node) AstNode node = get(u); string production = getProduction(u); vector<int> sons = getSons(u);
 
+#define irGetRelop(kind) (kind == LT ? "<" : kind == GT ? ">" : kind == LE ? "<=" : kind == GE ? ">=" : kind == EQ ? "==" : "!=")
+
 struct AstNode {
     string name;
     int lineno;
@@ -186,6 +188,8 @@ string randomString (int);
 
 void irInsert (InterRepresentation*);
 void irPrint ();
+string irGetOperand (Operand*);
+string irGetVariable (Variable*);
 
 void init(vector<AstNode>*);
 void semantic(int);
