@@ -5,6 +5,10 @@
 #include <vector>
 using namespace std;
 
+#define debug_print if (DEBUG) { cout << __LINE__ << ": " << __FUNCTION__ << " (" << production << ")\n"; }
+#define debug_flag if (DEBUG) cout << "FLAG: " << __LINE__ << " " << __FUNCTION__ << "\n"
+#define preprocess(node) AstNode node = get(u); string production = getProduction(u); vector<int> sons = getSons(u);
+
 struct AstNode {
     string name;
     int lineno;
