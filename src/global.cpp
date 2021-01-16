@@ -248,5 +248,5 @@ string irGetOperand (Operand* operand) {
 }
 
 string irGetVariable (Variable* variable) {
-    return string(variable->kind == V ? "V" : "T") + to_string(variable->id);
+    return string(variable->kind == V ? "v" : "t") + to_string(variable->id);
 }
