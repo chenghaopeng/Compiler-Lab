@@ -173,6 +173,7 @@ void irInsert (InterRepresentation* ir) {
 
 void irPrint () {
     for (InterRepresentation* ir : irList) {
+        printf("%d\n", ir->kind);
         switch (ir->kind) {
         case LABEL:
             printf("LABEL label%d :\n", ir->labelId);
