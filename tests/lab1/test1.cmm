@@ -1,9 +1,8 @@
-struct a {
-    int aa, bb, cc;
-} b;
-struct c {
-    int dd, aa, ee;
-} d;
-int main () {
-    return d.aa;
+int main() {
+ int n;
+ n = read();
+ if (n > 0) write(1);
+ else if (n < 0) write (-1);
+ else write(0);
+ return 0;
 }
