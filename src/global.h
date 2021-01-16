@@ -97,6 +97,79 @@ struct Symbol {
     }
 };
 
+enum RepresentationKind {
+    LABEL,
+    FUNCTION,
+    ASSION,
+    ADD,
+    SUB,
+    DIV,
+    MUL,
+    GOTO,
+    IF_GOTO,
+    RETURN,
+    DEC,
+    ARG,
+    CALL,
+    PARAM,
+    READ,
+    WRITE
+};
+
+enum RelopKind {
+    LT,
+    GT,
+    LE,
+    GE,
+    EQ,
+    NEQ
+};
+
+enum OperandKind {
+    VARIABLE,
+    CONSTANT,
+    REF,
+    DEREF
+};
+
+enum VariableKind {
+    T,
+    V
+};
+
+struct Variable {
+    VariableKind kind;
+    int id;
+};
+
+struct Operand {
+    OperandKind kind;
+    union {
+        Variable* var;
+        int constVal;
+        Operand* ref;
+        Operand* deref;
+    };
+};
+
+struct InterRepresentation {
+    RepresentationKind kind;
+    union {
+        int labelId;
+        char* functionName;
+        struct { Operand* left; Operand* right; } assign;
+        struct { Operand* left; Operand* op1; Operand* op2; } binaryAssign;
+        int gotoId;
+        struct { Operand* left; Operand* right; RelopKind kind; int gotoId; } if_goto;
+        Operand* returnVal;
+        struct { Variable* var; int size; } dec;
+        Operand* arg;
+        struct { Variable* ret; char* functionName; } call;
+        Variable* param;
+        Operand* rw;
+    };
+};
+
 Symbol* symbolGet (string, SymbolKind);
 bool symbolExist (string, SymbolKind);
 bool symbolConflit (string, SymbolKind);
