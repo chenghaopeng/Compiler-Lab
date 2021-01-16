@@ -107,7 +107,7 @@ void print (int u, int dep) {
 
 int main (int argc, char* argv[]) {
     srand(time(NULL));
-    if (argc > 1) {
+    if (argc > 2) {
         yyread(argv[1]);
         // yydebug = 1;
         yyparse();
@@ -116,7 +116,9 @@ int main (int argc, char* argv[]) {
         init(&nodes);
         semantic(root);
         ir(root);
-        irPrint();
+        FILE* fp = fopen(argv[2], "w");
+        irPrint(fp);
+        fclose(fp);
     }
     return 0;
 }

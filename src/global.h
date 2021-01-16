@@ -185,7 +185,7 @@ vector<int> getSons (int);
 string randomString (int);
 
 void irInsert (InterRepresentation*);
-void irPrint ();
+void irPrint (FILE*);
 string irGetOperand (Operand*);
 string irGetVariable (Variable*);
 
