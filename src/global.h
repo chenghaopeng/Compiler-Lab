@@ -16,6 +16,7 @@ struct AstNode {
 AstNode get (int);
 string getProduction (int);
 vector<int> getSons (int);
+string randomString (int);
 
 void init(vector<AstNode>*);
 void semantic(int);
