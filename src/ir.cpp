@@ -193,7 +193,7 @@ void translateParamDec (int u) {
     preprocess(ParamDec)
     debug_print
     if (production == "Specifier VarDec") {
-        irInsertParam(symbolGet(get(get(sons[1]).lc).opt.c_str(), VAR));
+        irInsertParam(symbolGet(get(get(sons[1]).lc).opt, VAR));
     }
 }
 
