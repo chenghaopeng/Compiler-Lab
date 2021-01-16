@@ -231,7 +231,6 @@ void irPrint () {
 string irGetOperand (Operand* operand) {
     switch (operand->kind) {
     case VARIABLE:
-        printf("1: %d\n", operand->var);
         return irGetVariable(operand->var);
         break;
     case CONSTANT:
@@ -249,7 +248,5 @@ string irGetOperand (Operand* operand) {
 }
 
 string irGetVariable (Variable* variable) {
-    printf("2: %d\n", variable->kind);
-    printf("3: %d\n", variable->id);
     return string(variable->kind == V ? "V" : "T") + to_string(variable->id);
 }
