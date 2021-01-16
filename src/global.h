@@ -185,6 +185,7 @@ vector<int> getSons (int);
 string randomString (int);
 
 void irInsert (InterRepresentation*);
+void irPrint ();
 
 void init(vector<AstNode>*);
 void semantic(int);

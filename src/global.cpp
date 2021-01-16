@@ -1,3 +1,4 @@
+#include <iostream>
 #include "global.h"
 
 vector<AstNode>* ptrNodes;
@@ -142,4 +143,10 @@ bool functionParameterTypeEqual (FunctionParameter* p1, FunctionParameter* p2) {
 
 void irInsert (InterRepresentation* ir) {
     irList.push_back(ir);
+}
+
+void irPrint () {
+    for (InterRepresentation* ir : irList) {
+        cout << ir << '\n';
+    }
 }
