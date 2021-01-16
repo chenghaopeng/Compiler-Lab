@@ -116,6 +116,7 @@ int main (int argc, char* argv[]) {
         init(&nodes);
         semantic(root);
         ir(root);
+        irPrint();
     }
     return 0;
 }
