@@ -389,7 +389,6 @@ Operand* translateExp (int u) {
         return operand;
     }
     else if (production == "ID LP RP") {
-            printf("%s\n", get(sons[0]).opt.c_str());
         if (get(sons[0]).opt == "read") {
             Variable* var = newVar(T);
             Operand* operand = new Operand;

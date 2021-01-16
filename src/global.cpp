@@ -173,7 +173,6 @@ void irInsert (InterRepresentation* ir) {
 
 void irPrint () {
     for (InterRepresentation* ir : irList) {
-        printf("%d\n", ir->kind);
         switch (ir->kind) {
         case LABEL:
             printf("LABEL label%d :\n", ir->labelId);
@@ -218,6 +217,7 @@ void irPrint () {
             printf("PARAM %s\n", irGetVariable(ir->param).c_str());
             break;
         case READ:
+            printf("%d\n", ir->rw);
             printf("READ %s\n", irGetOperand(ir->rw).c_str());
             break;
         case WRITE:
@@ -241,7 +241,7 @@ string irGetOperand (Operand* operand) {
         return "&" + irGetOperand(operand->ref);
         break;
     case DEREF:
-        return "*" + irGetOperand(operand->ref);
+        return "*" + irGetOperand(operand->deref);
         break;
     default:
         break;
