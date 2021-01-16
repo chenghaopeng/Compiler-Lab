@@ -7,6 +7,33 @@ vector<InterRepresentation*> irList;
 
 void init (vector<AstNode>* _nodes) {
     ptrNodes = _nodes;
+    Symbol* read = new Symbol;
+    read->kind = FUNC;
+    read->name = "read";
+    FunctionDeclaim* read_declaim = new FunctionDeclaim;
+    Type* read_declaim_type = new Type;
+    read_declaim_type->kind = BASIC;
+    read_declaim_type->basic = INT;
+    read_declaim->type = read_declaim_type;
+    read_declaim->parameter = nullptr;
+    read->declaim = read_declaim;
+    symbolInsert(read);
+    Symbol* write = new Symbol;
+    write->kind = FUNC;
+    write->name = "write";
+    FunctionDeclaim* write_declaim = new FunctionDeclaim;
+    Type* write_declaim_type = new Type;
+    write_declaim_type->kind = BASIC;
+    write_declaim_type->basic = INT;
+    write_declaim->type = write_declaim_type;
+    write_declaim->parameter = new FunctionParameter;
+    Type* write_declaim_param_type = new Type;
+    write_declaim_param_type->kind = BASIC;
+    write_declaim_param_type->basic = INT;
+    write_declaim->parameter->type = write_declaim_param_type;
+    write_declaim->parameter->next = nullptr;
+    write->declaim = write_declaim;
+    symbolInsert(write);
 }
 
 AstNode get (int i) {
