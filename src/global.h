@@ -93,6 +93,15 @@ struct Symbol {
     }
 };
 
+Symbol* symbolGet (string, SymbolKind);
+bool symbolExist (string, SymbolKind);
+bool symbolConflit (string, SymbolKind);
+void symbolInsert (Symbol*);
+bool typeEqual (Type*, Type*);
+bool typeIsBasic (Type*);
+bool typeIsBasic (Type*, BasicType);
+bool functionParameterTypeEqual (FunctionParameter*, FunctionParameter*);
+
 AstNode get (int);
 string getProduction (int);
 vector<int> getSons (int);
