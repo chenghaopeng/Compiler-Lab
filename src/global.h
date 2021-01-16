@@ -156,20 +156,18 @@ struct Operand {
 
 struct InterRepresentation {
     RepresentationKind kind;
-    union {
-        int labelId;
-        const char* functionName;
-        struct { Operand* left; Operand* right; } assign;
-        struct { Operand* left; Operand* op1; Operand* op2; } binaryAssign;
-        int gotoId;
-        struct { Operand* left; Operand* right; RelopKind kind; int gotoId; } if_goto;
-        Operand* returnVal;
-        struct { Variable* var; int size; } dec;
-        Operand* arg;
-        struct { Variable* ret; const char* functionName; } call;
-        Variable* param;
-        Operand* rw;
-    };
+    int labelId;
+    string functionName;
+    struct { Operand* left; Operand* right; } assign;
+    struct { Operand* left; Operand* op1; Operand* op2; } binaryAssign;
+    int gotoId;
+    struct { Operand* left; Operand* right; RelopKind kind; int gotoId; } if_goto;
+    Operand* returnVal;
+    struct { Variable* var; int size; } dec;
+    Operand* arg;
+    struct { Variable* ret; string functionName; } call;
+    Variable* param;
+    Operand* rw;
 };
 
 Symbol* symbolGet (string, SymbolKind);

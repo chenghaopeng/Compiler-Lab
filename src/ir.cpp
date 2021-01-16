@@ -34,7 +34,7 @@ Operand* newConstant (int val) {
     return operand;
 }
 
-void irInsertFunction (const char* functionName) {
+void irInsertFunction (string functionName) {
     InterRepresentation* code = new InterRepresentation;
     code->kind = FUNCTION;
     code->functionName = functionName;
@@ -124,7 +124,7 @@ void irInsertRead (Operand* operand) {
     irInsert(code);
 }
 
-void irInsertCall (Variable* var, const char* functionName) {
+void irInsertCall (Variable* var, string functionName) {
     InterRepresentation* code = new InterRepresentation;
     code->kind = CALL;
     code->call.functionName = functionName;
@@ -171,7 +171,7 @@ void translateExtDef (int u) {
 void translateFunDec (int u) {
     preprocess(FunDec)
     debug_print
-    irInsertFunction(get(sons[0]).opt.c_str());
+    irInsertFunction(get(sons[0]).opt);
     if (production == "ID LP VarList RP") {
         translateVarList(sons[2]);
     }
@@ -386,7 +386,7 @@ Operand* translateExp (int u) {
         Operand* operand = new Operand;
         operand->kind = VARIABLE;
         operand->var = var;
-        irInsertCall(var, get(sons[0]).opt.c_str());
+        irInsertCall(var, get(sons[0]).opt);
         return operand;
     }
     else if (production == "ID LP RP") {
@@ -402,7 +402,7 @@ Operand* translateExp (int u) {
         Operand* operand = new Operand;
         operand->kind = VARIABLE;
         operand->var = var;
-        irInsertCall(var, get(sons[0]).opt.c_str());
+        irInsertCall(var, get(sons[0]).opt);
         return operand;
     }
     else if (production == "Exp LB Exp RB") {
