@@ -115,6 +115,7 @@ int main (int argc, char* argv[]) {
         int root = nodes.size() - 1;
         init(&nodes);
         semantic(root);
+        ir(root);
     }
     return 0;
 }

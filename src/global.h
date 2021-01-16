@@ -100,7 +100,7 @@ struct Symbol {
 enum RepresentationKind {
     LABEL,
     FUNCTION,
-    ASSION,
+    ASSIGN,
     ADD,
     SUB,
     DIV,
@@ -156,7 +156,7 @@ struct InterRepresentation {
     RepresentationKind kind;
     union {
         int labelId;
-        char* functionName;
+        const char* functionName;
         struct { Operand* left; Operand* right; } assign;
         struct { Operand* left; Operand* op1; Operand* op2; } binaryAssign;
         int gotoId;
@@ -164,7 +164,7 @@ struct InterRepresentation {
         Operand* returnVal;
         struct { Variable* var; int size; } dec;
         Operand* arg;
-        struct { Variable* ret; char* functionName; } call;
+        struct { Variable* ret; const char* functionName; } call;
         Variable* param;
         Operand* rw;
     };
@@ -183,6 +183,8 @@ AstNode get (int);
 string getProduction (int);
 vector<int> getSons (int);
 string randomString (int);
+
+void irInsert (InterRepresentation*);
 
 void init(vector<AstNode>*);
 void semantic(int);

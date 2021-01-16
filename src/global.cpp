@@ -2,6 +2,7 @@
 
 vector<AstNode>* ptrNodes;
 vector<Symbol*> symbolList;
+vector<InterRepresentation*> irList;
 
 void init (vector<AstNode>* _nodes) {
     ptrNodes = _nodes;
@@ -137,4 +138,8 @@ bool functionParameterTypeEqual (FunctionParameter* p1, FunctionParameter* p2) {
     }
     if ((p1 && !p2) || (!p1 && p2)) return false;
     return true;
+}
+
+void irInsert (InterRepresentation* ir) {
+    irList.push_back(ir);
 }
