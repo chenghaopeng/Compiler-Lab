@@ -19,6 +19,7 @@ Variable* newVar (VariableKind kind) {
     else {
         var->id = T_count++;
     }
+    return var;
 }
 
 int label_count = 0;
