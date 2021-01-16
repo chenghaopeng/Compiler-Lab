@@ -178,7 +178,7 @@ void irPrint () {
             printf("LABEL label%d :\n", ir->labelId);
             break;
         case FUNCTION:
-            printf("FUNCTION %s :\n", ir->functionName);
+            printf("FUNCTION %s :\n", ir->functionName.c_str());
             break;
         case ASSIGN:
             printf("%s := %s\n", irGetOperand(ir->assign.left).c_str(), irGetOperand(ir->assign.right).c_str());
@@ -211,7 +211,7 @@ void irPrint () {
             printf("ARG %s\n", irGetOperand(ir->arg).c_str());
             break;
         case CALL:
-            printf("%s := CALL %s\n", irGetVariable(ir->call.ret).c_str(), ir->call.functionName);
+            printf("%s := CALL %s\n", irGetVariable(ir->call.ret).c_str(), ir->call.functionName.c_str());
             break;
         case PARAM:
             printf("PARAM %s\n", irGetVariable(ir->param).c_str());
