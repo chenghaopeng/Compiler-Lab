@@ -169,62 +169,67 @@ bool functionParameterTypeEqual (FunctionParameter* p1, FunctionParameter* p2) {
 
 void irInsert (InterRepresentation* ir) {
     irList.push_back(ir);
+    irPrint(stdout, ir);
 }
 
 void irPrint (FILE* fp) {
     for (InterRepresentation* ir : irList) {
-        switch (ir->kind) {
-        case LABEL:
-            fprintf(fp, "LABEL label%d :\n", ir->labelId);
-            break;
-        case FUNCTION:
-            fprintf(fp, "FUNCTION %s :\n", ir->functionName.c_str());
-            break;
-        case ASSIGN:
-            fprintf(fp, "%s := %s\n", irGetOperand(ir->assign.left).c_str(), irGetOperand(ir->assign.right).c_str());
-            break;
-        case ADD:
-            fprintf(fp, "%s := %s + %s\n", irGetOperand(ir->binaryAssign.left).c_str(), irGetOperand(ir->binaryAssign.op1).c_str(), irGetOperand(ir->binaryAssign.op2).c_str());
-            break;
-        case SUB:
-            fprintf(fp, "%s := %s - %s\n", irGetOperand(ir->binaryAssign.left).c_str(), irGetOperand(ir->binaryAssign.op1).c_str(), irGetOperand(ir->binaryAssign.op2).c_str());
-            break;
-        case DIV:
-            fprintf(fp, "%s := %s / %s\n", irGetOperand(ir->binaryAssign.left).c_str(), irGetOperand(ir->binaryAssign.op1).c_str(), irGetOperand(ir->binaryAssign.op2).c_str());
-            break;
-        case MUL:
-            fprintf(fp, "%s := %s * %s\n", irGetOperand(ir->binaryAssign.left).c_str(), irGetOperand(ir->binaryAssign.op1).c_str(), irGetOperand(ir->binaryAssign.op2).c_str());
-            break;
-        case GOTO:
-            fprintf(fp, "GOTO label%d\n", ir->gotoId);
-            break;
-        case IF_GOTO:
-            fprintf(fp, "IF %s %s %s GOTO label%d\n", irGetOperand(ir->if_goto.left).c_str(), irGetRelop(ir->if_goto.kind), irGetOperand(ir->if_goto.right).c_str(), ir->if_goto.gotoId);
-            break;
-        case RETURN:
-            fprintf(fp, "RETURN %s\n", irGetOperand(ir->returnVal).c_str());
-            break;
-        case DEC:
-            fprintf(fp, "DEC %s %d\n", irGetVariable(ir->dec.var).c_str(), ir->dec.size);
-            break;
-        case ARG:
-            fprintf(fp, "ARG %s\n", irGetOperand(ir->arg).c_str());
-            break;
-        case CALL:
-            fprintf(fp, "%s := CALL %s\n", irGetVariable(ir->call.ret).c_str(), ir->call.functionName.c_str());
-            break;
-        case PARAM:
-            fprintf(fp, "PARAM %s\n", irGetVariable(ir->param).c_str());
-            break;
-        case READ:
-            fprintf(fp, "READ %s\n", irGetOperand(ir->rw).c_str());
-            break;
-        case WRITE:
-            fprintf(fp, "WRITE %s\n", irGetOperand(ir->rw).c_str());
-            break;
-        default:
-            break;
-        }
+        irPrint(fp, ir);
+    }
+}
+
+void irPrint (FILE* fp, InterRepresentation* ir) {
+    switch (ir->kind) {
+    case LABEL:
+        fprintf(fp, "LABEL label%d :\n", ir->labelId);
+        break;
+    case FUNCTION:
+        fprintf(fp, "FUNCTION %s :\n", ir->functionName.c_str());
+        break;
+    case ASSIGN:
+        fprintf(fp, "%s := %s\n", irGetOperand(ir->assign.left).c_str(), irGetOperand(ir->assign.right).c_str());
+        break;
+    case ADD:
+        fprintf(fp, "%s := %s + %s\n", irGetOperand(ir->binaryAssign.left).c_str(), irGetOperand(ir->binaryAssign.op1).c_str(), irGetOperand(ir->binaryAssign.op2).c_str());
+        break;
+    case SUB:
+        fprintf(fp, "%s := %s - %s\n", irGetOperand(ir->binaryAssign.left).c_str(), irGetOperand(ir->binaryAssign.op1).c_str(), irGetOperand(ir->binaryAssign.op2).c_str());
+        break;
+    case DIV:
+        fprintf(fp, "%s := %s / %s\n", irGetOperand(ir->binaryAssign.left).c_str(), irGetOperand(ir->binaryAssign.op1).c_str(), irGetOperand(ir->binaryAssign.op2).c_str());
+        break;
+    case MUL:
+        fprintf(fp, "%s := %s * %s\n", irGetOperand(ir->binaryAssign.left).c_str(), irGetOperand(ir->binaryAssign.op1).c_str(), irGetOperand(ir->binaryAssign.op2).c_str());
+        break;
+    case GOTO:
+        fprintf(fp, "GOTO label%d\n", ir->gotoId);
+        break;
+    case IF_GOTO:
+        fprintf(fp, "IF %s %s %s GOTO label%d\n", irGetOperand(ir->if_goto.left).c_str(), irGetRelop(ir->if_goto.kind), irGetOperand(ir->if_goto.right).c_str(), ir->if_goto.gotoId);
+        break;
+    case RETURN:
+        fprintf(fp, "RETURN %s\n", irGetOperand(ir->returnVal).c_str());
+        break;
+    case DEC:
+        fprintf(fp, "DEC %s %d\n", irGetVariable(ir->dec.var).c_str(), ir->dec.size);
+        break;
+    case ARG:
+        fprintf(fp, "ARG %s\n", irGetOperand(ir->arg).c_str());
+        break;
+    case CALL:
+        fprintf(fp, "%s := CALL %s\n", irGetVariable(ir->call.ret).c_str(), ir->call.functionName.c_str());
+        break;
+    case PARAM:
+        fprintf(fp, "PARAM %s\n", irGetVariable(ir->param).c_str());
+        break;
+    case READ:
+        fprintf(fp, "READ %s\n", irGetOperand(ir->rw).c_str());
+        break;
+    case WRITE:
+        fprintf(fp, "WRITE %s\n", irGetOperand(ir->rw).c_str());
+        break;
+    default:
+        break;
     }
 }
 

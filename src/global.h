@@ -186,6 +186,7 @@ string randomString (int);
 
 void irInsert (InterRepresentation*);
 void irPrint (FILE*);
+void irPrint (FILE*, InterRepresentation*);
 string irGetOperand (Operand*);
 string irGetVariable (Variable*);
 
