@@ -186,7 +186,7 @@ void translateVarList (int u) {
     }
     else if (production == "ParamDec COMMA VarList") {
         translateParamDec(sons[0]);
-        translateVarList(sons[1]);
+        translateVarList(sons[2]);
     }
 }
 
