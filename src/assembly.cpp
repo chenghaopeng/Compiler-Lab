@@ -215,6 +215,6 @@ void asmPrint (FILE* fp) {
         }
     }
     for (string out : outs) {
-        fprintf(fp, "%s\n", (out[0] == '.' || out.find(':') != string::npos ? "" : "  " + out).c_str());
+        fprintf(fp, "%s\n", ((out[0] == '.' || out.find(':') != string::npos ? "" : "  ") + out).c_str());
     }
 }
