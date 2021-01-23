@@ -35,20 +35,20 @@ write:
 mod:
   la $9, v0
   lw $8, 0($9)
-  addi $sp, $sp, -4
   lw $10, 0($sp)
-  addi $sp, $sp, -4
-  lw $8, 0($sp)
-  sw $10, 0($sp)
   addi $sp, $sp, 4
+  lw $8, 0($sp)
+  addi $sp, $sp, 4
+  addi $sp, $sp, -4
+  sw $10, 0($sp)
   la $9, v1
   lw $8, 0($9)
-  addi $sp, $sp, -4
   lw $10, 0($sp)
-  addi $sp, $sp, -4
-  lw $8, 0($sp)
-  sw $10, 0($sp)
   addi $sp, $sp, 4
+  lw $8, 0($sp)
+  addi $sp, $sp, 4
+  addi $sp, $sp, -4
+  sw $10, 0($sp)
 label0:
   la $9, v0
   lw $8, 0($9)
@@ -83,20 +83,20 @@ label2:
 gcd:
   la $9, v2
   lw $8, 0($9)
-  addi $sp, $sp, -4
   lw $10, 0($sp)
-  addi $sp, $sp, -4
-  lw $8, 0($sp)
-  sw $10, 0($sp)
   addi $sp, $sp, 4
+  lw $8, 0($sp)
+  addi $sp, $sp, 4
+  addi $sp, $sp, -4
+  sw $10, 0($sp)
   la $9, v3
   lw $8, 0($9)
-  addi $sp, $sp, -4
   lw $10, 0($sp)
-  addi $sp, $sp, -4
-  lw $8, 0($sp)
-  sw $10, 0($sp)
   addi $sp, $sp, 4
+  lw $8, 0($sp)
+  addi $sp, $sp, 4
+  addi $sp, $sp, -4
+  sw $10, 0($sp)
   la $9, v3
   lw $8, 0($9)
   li $10, 0
@@ -105,37 +105,37 @@ gcd:
 label3:
   la $9, v3
   lw $8, 0($9)
+  addi $sp, $sp, -4
   sw $8, 0($sp)
-  addi $sp, $sp, 4
   la $9, v2
   lw $8, 0($9)
+  addi $sp, $sp, -4
   sw $8, 0($sp)
-  addi $sp, $sp, 4
   la $9, t1
   lw $8, 0($9)
-  sw $ra, 0($sp)
-  addi $sp, $sp, 4
-  jal mod
   addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal mod
   lw $ra, 0($sp)
+  addi $sp, $sp, 4
   move $8, $2
   la $10, t1
   sw $8, 0($10)
   la $9, t1
   lw $8, 0($9)
+  addi $sp, $sp, -4
   sw $8, 0($sp)
-  addi $sp, $sp, 4
   la $9, v3
   lw $8, 0($9)
+  addi $sp, $sp, -4
   sw $8, 0($sp)
-  addi $sp, $sp, 4
   la $9, t2
   lw $8, 0($9)
-  sw $ra, 0($sp)
-  addi $sp, $sp, 4
-  jal gcd
   addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal gcd
   lw $ra, 0($sp)
+  addi $sp, $sp, 4
   move $8, $2
   la $10, t2
   sw $8, 0($10)
@@ -153,11 +153,11 @@ label4:
 main:
   la $9, t3
   lw $8, 0($9)
-  sw $ra, 0($sp)
-  addi $sp, $sp, 4
-  jal read
   addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal read
   lw $ra, 0($sp)
+  addi $sp, $sp, 4
   move $8, $2
   la $10, t3
   sw $8, 0($10)
@@ -170,11 +170,11 @@ main:
   sw $8, 0($12)
   la $9, t4
   lw $8, 0($9)
-  sw $ra, 0($sp)
-  addi $sp, $sp, 4
-  jal read
   addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal read
   lw $ra, 0($sp)
+  addi $sp, $sp, 4
   move $8, $2
   la $10, t4
   sw $8, 0($10)
@@ -187,30 +187,30 @@ main:
   sw $8, 0($12)
   la $9, v5
   lw $8, 0($9)
+  addi $sp, $sp, -4
   sw $8, 0($sp)
-  addi $sp, $sp, 4
   la $9, v4
   lw $8, 0($9)
+  addi $sp, $sp, -4
   sw $8, 0($sp)
-  addi $sp, $sp, 4
   la $9, t5
   lw $8, 0($9)
-  sw $ra, 0($sp)
-  addi $sp, $sp, 4
-  jal gcd
   addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal gcd
   lw $ra, 0($sp)
+  addi $sp, $sp, 4
   move $8, $2
   la $10, t5
   sw $8, 0($10)
   la $9, t5
   lw $8, 0($9)
   move $a0, $8
-  sw $ra, 0($sp)
-  addi $sp, $sp, 4
-  jal write
   addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal write
   lw $ra, 0($sp)
+  addi $sp, $sp, 4
   li $8, 0
   move $2, $8
   jr $ra

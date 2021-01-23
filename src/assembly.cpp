@@ -163,12 +163,12 @@ void asmPrint (FILE* fp) {
             add("sw " + r1 + ", 0($sp)");
             break;
         case CALL:
-            r1 = mksur(irGetVariable(ir->call.ret), newReg());
             add("addi $sp, $sp, -4");
             add("sw $ra, 0($sp)");
             add("jal " + ir->call.functionName);
             add("lw $ra, 0($sp)");
             add("addi $sp, $sp, 4");
+            r1 = mksur(irGetVariable(ir->call.ret), newReg());
             add("move " + r1 + ", $2");
             save(irGetVariable(ir->call.ret), r1);
             break;
@@ -183,12 +183,12 @@ void asmPrint (FILE* fp) {
             add("sw " + r2 + ", 0($sp)");
             break;
         case READ:
-            r1 = mksur(ir->rw);
             add("addi $sp, $sp, -4");
             add("sw $ra, 0($sp)");
             add("jal read");
             add("lw $ra, 0($sp)");
             add("addi $sp, $sp, 4");
+            r1 = mksur(ir->rw);
             add("move " + r1 + ", $2");
             save(irGetVariable(ir->rw->var), r1);
             break;
