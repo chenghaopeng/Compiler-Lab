@@ -2,7 +2,7 @@
 #include <map>
 #include <iostream>
 
-#define add(a) cout << (a) << '\n'
+#define add(a) outs.push_back(a); cout << (a) << '\n'
 
 vector<string> outs;
 map<string, bool> inData;
@@ -198,7 +198,7 @@ void asmPrint (FILE* fp) {
             add("addi $sp, $sp, -4");
             add("lw $ra, 0($sp)");
             add("move " + r1 + ", $2");
-            save(irGetVariable(ir->call.ret), r1);
+            save(irGetVariable(ir->rw->var), r1);
             break;
         case WRITE:
             r1 = mksur(ir->rw);
