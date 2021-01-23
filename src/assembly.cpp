@@ -88,6 +88,7 @@ string getLabel (int id) {
 void asmPrint (FILE* fp) {
     add(".data");
     add("_prompt: .asciiz \"Enter an integer:\"");
+    add("_ret: .asciiz \"\\n\"");
     add(".globl main");
     add(".text");
     add("read:\n  li $v0, 4\n  la $a0, _prompt\n  syscall\n  li $v0, 5\n  syscall\n  jr $ra\n\nwrite:\n  li $v0, 1\n  syscall\n  li $v0, 4\n  la $a0, _ret\n  syscall\n  move $v0, $0\n  jr $ra\n");
@@ -202,8 +203,7 @@ void asmPrint (FILE* fp) {
             break;
         case WRITE:
             r1 = mksur(ir->rw);
-            add("sw " + r1 + ", 0($sp)");
-            add("addi $sp, $sp, 4");
+            add("move $a0, " + r1);
             add("sw $ra, 0($sp)");
             add("addi $sp, $sp, 4");
             add("jal write");
