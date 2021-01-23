@@ -1,7 +1,8 @@
 #include "global.h"
 #include <map>
+#include <iostream>
 
-#define add outs.push_back
+#define add cout << 
 
 vector<string> outs;
 map<string, bool> inData;
