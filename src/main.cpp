@@ -117,7 +117,8 @@ int main (int argc, char* argv[]) {
         semantic(root);
         ir(root);
         FILE* fp = fopen(argv[2], "w");
-        irPrint(fp);
+        // irPrint(fp);
+        asmPrint(fp);
         fclose(fp);
     }
     return 0;

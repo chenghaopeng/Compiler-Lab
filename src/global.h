@@ -189,6 +189,10 @@ void irPrint (FILE*);
 void irPrint (FILE*, InterRepresentation*);
 string irGetOperand (Operand*);
 string irGetVariable (Variable*);
+InterRepresentation* irGet (int);
+int irCount ();
+
+void asmPrint (FILE*);
 
 void init(vector<AstNode>*);
 void semantic(int);

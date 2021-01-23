@@ -255,3 +255,11 @@ string irGetOperand (Operand* operand) {
 string irGetVariable (Variable* variable) {
     return string(variable->kind == V ? "v" : "t") + to_string(variable->id);
 }
+
+InterRepresentation* irGet (int i) {
+    return irList[i];
+}
+
+int irCount () {
+    return irList.size();
+}
