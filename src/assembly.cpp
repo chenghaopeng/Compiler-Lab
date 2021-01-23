@@ -2,7 +2,7 @@
 #include <map>
 #include <iostream>
 
-#define add cout << 
+#define add(a) cout << (a) << '\n'
 
 vector<string> outs;
 map<string, bool> inData;
