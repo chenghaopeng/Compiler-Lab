@@ -12,6 +12,7 @@ v2: .space 4
 t0: .space 4
 v1: .space 4
 v0: .space 4
+_ret: .asciiz "\n"
 .globl main
 .text
 read:
@@ -204,8 +205,7 @@ main:
   sw $8, 0($10)
   la $9, t5
   lw $8, 0($9)
-  sw $8, 0($sp)
-  addi $sp, $sp, 4
+  move $a0, $8
   sw $ra, 0($sp)
   addi $sp, $sp, 4
   jal write

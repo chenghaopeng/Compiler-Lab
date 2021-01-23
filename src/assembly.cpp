@@ -93,7 +93,6 @@ void asmPrint (FILE* fp) {
     add(".text");
     add("read:\n  li $v0, 4\n  la $a0, _prompt\n  syscall\n  li $v0, 5\n  syscall\n  jr $ra\n\nwrite:\n  li $v0, 1\n  syscall\n  li $v0, 4\n  la $a0, _ret\n  syscall\n  move $v0, $0\n  jr $ra\n");
     string r1, r2, r3;
-    bool isMain = false;
     for (int i = 0; i < irCount(); ++i) {
         InterRepresentation* ir = irGet(i);
         regc = 8;
@@ -103,12 +102,6 @@ void asmPrint (FILE* fp) {
             break;
         case FUNCTION:
             add(ir->functionName + ":");
-            if (ir->functionName == "main") {
-                isMain = true;
-            }
-            else {
-                isMain = false;
-            }
             break;
         case ASSIGN:
             r1 = mksur(ir->assign.left);
@@ -157,9 +150,7 @@ void asmPrint (FILE* fp) {
         case RETURN:
             r1 = mksur(ir->returnVal);
             add("move $2, " + r1);
-            if (!isMain) {
-                add("jr $ra\n");
-            }
+            add("jr $ra\n");
             break;
         case DEC:
             r1 = irGetVariable(ir->dec.var);
