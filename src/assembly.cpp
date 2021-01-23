@@ -159,47 +159,47 @@ void asmPrint (FILE* fp) {
             break;
         case ARG:
             r1 = mksur(ir->arg);
+            add("addi $sp, $sp, -4");
             add("sw " + r1 + ", 0($sp)");
-            add("addi $sp, $sp, 4");
             break;
         case CALL:
             r1 = mksur(irGetVariable(ir->call.ret), newReg());
-            add("sw $ra, 0($sp)");
-            add("addi $sp, $sp, 4");
-            add("jal " + ir->call.functionName);
             add("addi $sp, $sp, -4");
+            add("sw $ra, 0($sp)");
+            add("jal " + ir->call.functionName);
             add("lw $ra, 0($sp)");
+            add("addi $sp, $sp, 4");
             add("move " + r1 + ", $2");
             save(irGetVariable(ir->call.ret), r1);
             break;
         case PARAM:
             r1 = mksur(irGetVariable(ir->param), newReg());
             r2 = newReg();
-            add("addi $sp, $sp, -4");
             add("lw " + r2 + ", 0($sp)");
-            add("addi $sp, $sp, -4");
-            add("lw " + r1 + ", 0($sp)");
-            add("sw " + r2 + ", 0($sp)");
             add("addi $sp, $sp, 4");
+            add("lw " + r1 + ", 0($sp)");
+            add("addi $sp, $sp, 4");
+            add("addi $sp, $sp, -4");
+            add("sw " + r2 + ", 0($sp)");
             break;
         case READ:
             r1 = mksur(ir->rw);
-            add("sw $ra, 0($sp)");
-            add("addi $sp, $sp, 4");
-            add("jal read");
             add("addi $sp, $sp, -4");
+            add("sw $ra, 0($sp)");
+            add("jal read");
             add("lw $ra, 0($sp)");
+            add("addi $sp, $sp, 4");
             add("move " + r1 + ", $2");
             save(irGetVariable(ir->rw->var), r1);
             break;
         case WRITE:
             r1 = mksur(ir->rw);
             add("move $a0, " + r1);
-            add("sw $ra, 0($sp)");
-            add("addi $sp, $sp, 4");
-            add("jal write");
             add("addi $sp, $sp, -4");
+            add("sw $ra, 0($sp)");
+            add("jal write");
             add("lw $ra, 0($sp)");
+            add("addi $sp, $sp, 4");
             break;
         default:
             break;
