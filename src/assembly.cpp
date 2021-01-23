@@ -2,7 +2,7 @@
 #include <map>
 #include <iostream>
 
-#define add(a) outs.push_back(a); cout << (a) << '\n'
+#define add outs.push_back
 
 vector<string> outs;
 map<string, bool> inData;
@@ -157,7 +157,7 @@ void asmPrint (FILE* fp) {
             r1 = mksur(ir->returnVal);
             add("move $2, " + r1);
             if (!isMain) {
-                add("jr $ra");
+                add("jr $ra\n");
             }
             break;
         case DEC:
@@ -215,6 +215,6 @@ void asmPrint (FILE* fp) {
         }
     }
     for (string out : outs) {
-        fprintf(fp, "%s\n", out.c_str());
+        fprintf(fp, "%s\n", (out[0] == '.' || out.find(':') != string::npos ? "" : "  " + out).c_str());
     }
 }
