@@ -10,6 +10,7 @@ using namespace std;
 #define preprocess(node) AstNode node = get(u); string production = getProduction(u); vector<int> sons = getSons(u);
 
 #define irGetRelop(kind) (kind == LT ? "<" : kind == GT ? ">" : kind == LE ? "<=" : kind == GE ? ">=" : kind == EQ ? "==" : "!=")
+#define asmGetRelop(kind) (kind == LT ? "blt" : kind == GT ? "bgt" : kind == LE ? "ble" : kind == GE ? "bge" : kind == EQ ? "beq" : "bne")
 
 struct AstNode {
     string name;
