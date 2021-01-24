@@ -2,6 +2,8 @@ int mod (int aa, int bb) {
     return aa;
 }
 int gcd (int a, int b) {
+    write(a);
+    write(b);
     return a + b;
 }
 int main () {

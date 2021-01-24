@@ -181,6 +181,7 @@ void asmPrint (FILE* fp) {
             add("addi $sp, $sp, 4");
             add("addi $sp, $sp, -4");
             add("sw " + r2 + ", 0($sp)");
+            save(irGetVariable(ir->param), r1);
             break;
         case READ:
             add("addi $sp, $sp, -4");

@@ -1,9 +1,10 @@
 .data
 _prompt: .asciiz "Enter an integer:"
-t2: .word 0
+t3: .word 0
 v5: .word 0
-t1: .word 0
+t2: .word 0
 v4: .word 0
+t1: .word 0
 t0: .word 0
 v3: .word 0
 v2: .word 0
@@ -70,27 +71,35 @@ gcd:
   sw $10, 0($sp)
   la $9, v2
   lw $8, 0($9)
-  move $2, $8
-  jr $ra
-
-main:
+  move $a0, $8
   addi $sp, $sp, -4
   sw $ra, 0($sp)
-  jal read
+  jal write
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, v3
+  lw $8, 0($9)
+  move $a0, $8
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal write
   lw $ra, 0($sp)
   addi $sp, $sp, 4
   la $9, t0
   lw $8, 0($9)
-  move $8, $v0
-  la $10, t0
-  sw $8, 0($10)
-  la $9, v4
-  lw $8, 0($9)
-  la $11, t0
+  la $11, v2
   lw $10, 0($11)
-  move $8, $10
-  la $12, v4
-  sw $8, 0($12)
+  la $13, v3
+  lw $12, 0($13)
+  add $8, $10, $12
+  la $14, t0
+  sw $8, 0($14)
+  la $9, t0
+  lw $8, 0($9)
+  move $2, $8
+  jr $ra
+
+main:
   addi $sp, $sp, -4
   sw $ra, 0($sp)
   jal read
@@ -101,23 +110,49 @@ main:
   move $8, $v0
   la $10, t1
   sw $8, 0($10)
-  la $9, v5
+  la $9, v4
   lw $8, 0($9)
   la $11, t1
   lw $10, 0($11)
   move $8, $10
-  la $12, v5
+  la $12, v4
   sw $8, 0($12)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal read
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
   la $9, t2
   lw $8, 0($9)
-  la $11, v4
+  move $8, $v0
+  la $10, t2
+  sw $8, 0($10)
+  la $9, v5
+  lw $8, 0($9)
+  la $11, t2
   lw $10, 0($11)
-  la $13, v5
-  lw $12, 0($13)
-  add $8, $10, $12
-  la $14, t2
-  sw $8, 0($14)
-  la $9, t2
+  move $8, $10
+  la $12, v5
+  sw $8, 0($12)
+  la $9, v5
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  la $9, v4
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal gcd
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t3
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t3
+  sw $8, 0($10)
+  la $9, t3
   lw $8, 0($9)
   move $a0, $8
   addi $sp, $sp, -4
