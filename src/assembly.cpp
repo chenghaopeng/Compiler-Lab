@@ -10,6 +10,8 @@ vector<string> outs;
 map<string, bool> inData;
 set<string> vars;
 string curFunction;
+vector<string> decName;
+vector<int> decSize;
 
 int regc = 0;
 
@@ -114,6 +116,8 @@ void asmPrint (FILE* fp) {
         case FUNCTION:
             oadd(getFunctionName(ir->functionName) + ":");
             vars = set<string>();
+            decName.clear();
+            decSize.clear();
             if (ir->functionName == "main") {
                 oadd("la $3, _function_stack");
             }
@@ -172,6 +176,8 @@ void asmPrint (FILE* fp) {
             r1 = irGetVariable(ir->dec.var);
             inData[r1] = true;
             oinsert(r1 + ": .space " + to_string(ir->dec.size));
+            decName.push_back(irGetVariable(ir->dec.var));
+            decSize.push_back(ir->dec.size);
             break;
         case ARG:
             r1 = mksur(ir->arg);
@@ -190,6 +196,18 @@ void asmPrint (FILE* fp) {
                     varstmp.push_back(*it);
                 }
                 regc--;
+                for (int i = 0; i < decName.size(); ++i) {
+                    r1 = newReg();
+                    oadd("la " + r1 + ", " + decName[i]);
+                    for (int j = 0; j < decSize[i]; j += 4) {
+                        r2 = newReg();
+                        oadd("lw " + r2 + ", " + to_string(j) + "(" + r1 + ")");
+                        oadd("sw " + r2 + ", 0($3)");
+                        oadd("addi $3, $3, 4");
+                        regc--;
+                    }
+                    regc--;
+                }
             }
             oadd("addi $sp, $sp, -4");
             oadd("sw $ra, 0($sp)");
@@ -207,6 +225,18 @@ void asmPrint (FILE* fp) {
                     regc--;
                 }
                 regc--;
+                for (int i = decName.size() - 1; i >= 0; --i) {
+                    r1 = newReg();
+                    oadd("la " + r1 + ", " + decName[i]);
+                    for (int j = decSize[i] - 4; j >= 0; j -= 4) {
+                        r2 = newReg();
+                        oadd("addi $3, $3, -4");
+                        oadd("lw " + r2 + ", 0($3)");
+                        oadd("sw " + r2 + ", " + to_string(j) + "(" + r1 + ")");
+                        regc--;
+                    }
+                    regc--;
+                }
             }
             r1 = mksur(irGetVariable(ir->call.ret), newReg());
             oadd("move " + r1 + ", $2");

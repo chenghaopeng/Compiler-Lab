@@ -1,16 +1,11 @@
-int mod (int u, int v) {
-    return u - u / v * v;
-}
-int gcd (int a, int b) {
-    if (b) return gcd(b, mod(a, b));
-    return a;
-}
 int f (int n) {
-    if (n <= 1) return 1;
-    return n * f(n - 1);
+    int a[2];
+    if (n == 0) return 0;
+    a[0] = n;
+    a[1] = 2 * n;
+    return a[0] + a[1] + f(n - 1);
 }
 int main () {
-    write(gcd(99, 99));
-    write(f(10));
+    write(f(3));
     return 0;
 }
