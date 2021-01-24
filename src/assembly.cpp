@@ -16,7 +16,7 @@ string newReg () {
 string mksur (string var, string reg) {
     if (!inData[var]) {
         inData[var] = true;
-        outs.insert(outs.begin() + 2, var + ": .space 4");
+        outs.insert(outs.begin() + 2, var + ": .word 0");
     }
     string tmp = newReg();
     add("la " + tmp + ", " + var);
