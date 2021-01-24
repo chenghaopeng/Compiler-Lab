@@ -1,5 +1,6 @@
 .data
 _prompt: .asciiz "Enter an integer:"
+_ret: .asciiz "\n"
 t34: .word 0
 t33: .word 0
 t32: .word 0
@@ -34,11 +35,10 @@ t4: .word 0
 t3: .word 0
 t2: .word 0
 t1: .word 0
-v2: .space 458056
+v2: .space 40344
 t0: .word 0
 v1: .word 0
 v0: .word 0
-_ret: .asciiz "\n"
 .globl main
 .text
 read:

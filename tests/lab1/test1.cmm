@@ -1,6 +1,6 @@
 int label1 (int x, int y) { return x + y; }
 int main () {
-    int a[114514];
+    int a[10086];
     a[0] = 10086;
     a[1] = 114514;
     a[0] = a[0] + a[1];
