@@ -1,13 +1,14 @@
 .data
 _prompt: .asciiz "Enter an integer:"
 _ret: .asciiz "\n"
-t13: .word 0
+t14: .word 0
 t5: .word 0
 t8: .word 0
+t13: .word 0
 t12: .word 0
+t9: .word 0
 t11: .word 0
 t10: .word 0
-t9: .word 0
 t7: .word 0
 t6: .word 0
 t4: .word 0
@@ -181,6 +182,13 @@ label1:
   jal function_f
   lw $ra, 0($sp)
   addi $sp, $sp, 4
+  la $8, v1
+  addi $3, $3, -4
+  lw $9, 0($3)
+  sw $9, 4($8)
+  addi $3, $3, -4
+  lw $9, 0($3)
+  sw $9, 0($8)
   la $9, v0
   lw $8, 0($9)
   addi $3, $3, -4
@@ -223,70 +231,71 @@ label1:
   lw $8, 0($3)
   la $10, t0
   sw $8, 0($10)
-  la $8, v1
-  addi $3, $3, -4
-  lw $9, 0($3)
-  sw $9, 4($8)
-  addi $3, $3, -4
-  lw $9, 0($3)
-  sw $9, 0($8)
   la $9, t7
   lw $8, 0($9)
   move $8, $2
   la $10, t7
   sw $8, 0($10)
-  la $9, t9
+  la $9, t10
   lw $8, 0($9)
   la $10, v1
   move $8, $10
-  la $11, t9
+  la $11, t10
   sw $8, 0($11)
-  la $9, t10
+  la $9, t11
   lw $8, 0($9)
   li $10, 1
   li $11, 4
   mul $8, $10, $11
-  la $12, t10
+  la $12, t11
   sw $8, 0($12)
-  la $9, t9
+  la $9, t10
   lw $8, 0($9)
-  la $11, t9
+  la $11, t10
   lw $10, 0($11)
-  la $13, t10
+  la $13, t11
   lw $12, 0($13)
   add $8, $10, $12
-  la $14, t9
+  la $14, t10
   sw $8, 0($14)
-  la $9, t11
+  la $9, t9
+  lw $8, 0($9)
+  la $11, t10
+  lw $10, 0($11)
+  lw $10, 0($10)
+  li $12, 2
+  mul $8, $10, $12
+  la $13, t9
+  sw $8, 0($13)
+  la $9, t12
   lw $8, 0($9)
   la $10, v1
   move $8, $10
-  la $11, t11
+  la $11, t12
   sw $8, 0($11)
-  la $9, t12
+  la $9, t13
   lw $8, 0($9)
   li $10, 0
   li $11, 4
   mul $8, $10, $11
-  la $12, t12
+  la $12, t13
   sw $8, 0($12)
-  la $9, t11
+  la $9, t12
   lw $8, 0($9)
-  la $11, t11
+  la $11, t12
   lw $10, 0($11)
-  la $13, t12
+  la $13, t13
   lw $12, 0($13)
   add $8, $10, $12
-  la $14, t11
+  la $14, t12
   sw $8, 0($14)
   la $9, t8
   lw $8, 0($9)
-  la $11, t11
+  la $11, t12
   lw $10, 0($11)
   lw $10, 0($10)
   la $13, t9
   lw $12, 0($13)
-  lw $12, 0($12)
   add $8, $10, $12
   la $14, t8
   sw $8, 0($14)
@@ -314,12 +323,12 @@ main:
   jal function_f
   lw $ra, 0($sp)
   addi $sp, $sp, 4
-  la $9, t13
+  la $9, t14
   lw $8, 0($9)
   move $8, $2
-  la $10, t13
+  la $10, t14
   sw $8, 0($10)
-  la $9, t13
+  la $9, t14
   lw $8, 0($9)
   move $a0, $8
   addi $sp, $sp, -4
