@@ -9,7 +9,7 @@
 vector<string> outs;
 map<string, bool> inData;
 set<string> vars;
-vector<string> varstmp;
+string curFunction;
 
 int regc = 0;
 
@@ -103,6 +103,7 @@ void asmPrint (FILE* fp) {
     oadd(".text");
     oadd("read:\n  li $v0, 4\n  la $a0, _prompt\n  syscall\n  li $v0, 5\n  syscall\n  jr $ra\n\nwrite:\n  li $v0, 1\n  syscall\n  li $v0, 4\n  la $a0, _ret\n  syscall\n  move $v0, $0\n  jr $ra\n");
     string r1, r2, r3;
+    vector<string> varstmp;
     for (int i = 0; i < irCount(); ++i) {
         InterRepresentation* ir = irGet(i);
         regc = 8;
@@ -116,6 +117,7 @@ void asmPrint (FILE* fp) {
             if (ir->functionName == "main") {
                 oadd("la $3, _function_stack");
             }
+            curFunction = ir->functionName;
             break;
         case ASSIGN:
             r1 = mksur(ir->assign.left);
@@ -177,31 +179,34 @@ void asmPrint (FILE* fp) {
             oadd("sw " + r1 + ", 0($sp)");
             break;
         case CALL:
-            varstmp = vector<string>();
-            r1 = newReg();
-            for (set<string>::iterator it = vars.begin(); it != vars.end(); ++it) {
-                r1 = mksur(*it, r1);
-                oadd("sw " + r1 + ", 0($3)");
-                oadd("addi $3, $3, 4");
+            if (curFunction == ir->call.functionName) {
+                r1 = newReg();
+                for (set<string>::iterator it = vars.begin(); it != vars.end(); ++it) {
+                    r1 = mksur(*it, r1);
+                    oadd("sw " + r1 + ", 0($3)");
+                    oadd("addi $3, $3, 4");
+                    regc--;
+                    varstmp.push_back(*it);
+                }
                 regc--;
-                varstmp.push_back(*it);
             }
-            regc--;
             oadd("addi $sp, $sp, -4");
             oadd("sw $ra, 0($sp)");
             oadd("jal " + getFunctionName(ir->call.functionName));
             oadd("lw $ra, 0($sp)");
             oadd("addi $sp, $sp, 4");
-            r1 = newReg();
-            for (int i = varstmp.size() - 1; i >= 0; --i) {
-                r1 = mksur(varstmp[i], r1);
-                oadd("addi $3, $3, -4");
-                oadd("lw " + r1 + ", 0($3)");
-                save(varstmp[i], r1);
-                regc--;
+            if (curFunction == ir->call.functionName) {
+                r1 = newReg();
+                for (int i = varstmp.size() - 1; i >= 0; --i) {
+                    r1 = mksur(varstmp[i], r1);
+                    oadd("addi $3, $3, -4");
+                    oadd("lw " + r1 + ", 0($3)");
+                    save(varstmp[i], r1);
+                    regc--;
+                    regc--;
+                }
                 regc--;
             }
-            regc--;
             r1 = mksur(irGetVariable(ir->call.ret), newReg());
             oadd("move " + r1 + ", $2");
             save(irGetVariable(ir->call.ret), r1);
