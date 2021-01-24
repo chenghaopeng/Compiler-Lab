@@ -179,34 +179,30 @@ void asmPrint (FILE* fp) {
             oadd("sw " + r1 + ", 0($sp)");
             break;
         case CALL:
-            if (curFunction == ir->call.functionName) {
-                r1 = newReg();
-                for (set<string>::iterator it = vars.begin(); it != vars.end(); ++it) {
-                    r1 = mksur(*it, r1);
-                    oadd("sw " + r1 + ", 0($3)");
-                    oadd("addi $3, $3, 4");
-                    regc--;
-                    varstmp.push_back(*it);
-                }
+            r1 = newReg();
+            for (set<string>::iterator it = vars.begin(); it != vars.end(); ++it) {
+                r1 = mksur(*it, r1);
+                oadd("sw " + r1 + ", 0($3)");
+                oadd("addi $3, $3, 4");
                 regc--;
+                varstmp.push_back(*it);
             }
+            regc--;
             oadd("addi $sp, $sp, -4");
             oadd("sw $ra, 0($sp)");
             oadd("jal " + getFunctionName(ir->call.functionName));
             oadd("lw $ra, 0($sp)");
             oadd("addi $sp, $sp, 4");
-            if (curFunction == ir->call.functionName) {
-                r1 = newReg();
-                for (int i = varstmp.size() - 1; i >= 0; --i) {
-                    r1 = mksur(varstmp[i], r1);
-                    oadd("addi $3, $3, -4");
-                    oadd("lw " + r1 + ", 0($3)");
-                    save(varstmp[i], r1);
-                    regc--;
-                    regc--;
-                }
+            r1 = newReg();
+            for (int i = varstmp.size() - 1; i >= 0; --i) {
+                r1 = mksur(varstmp[i], r1);
+                oadd("addi $3, $3, -4");
+                oadd("lw " + r1 + ", 0($3)");
+                save(varstmp[i], r1);
+                regc--;
                 regc--;
             }
+            regc--;
             r1 = mksur(irGetVariable(ir->call.ret), newReg());
             oadd("move " + r1 + ", $2");
             save(irGetVariable(ir->call.ret), r1);
