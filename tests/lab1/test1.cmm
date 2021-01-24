@@ -1,6 +1,8 @@
 int main () {
     int a[10];
     a[1] = 10;
-    write(a[1]);
+    a[0] = 01;
+    a[2] = a[0] + a[1];
+    write(a[2]);
     return 0;
 }
