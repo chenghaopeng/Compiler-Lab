@@ -114,7 +114,7 @@ void asmPrint (FILE* fp) {
             oadd(getFunctionName(ir->functionName) + ":");
             vars = set<string>();
             if (ir->functionName == "main") {
-                oadd("la $2, _function_stack");
+                oadd("la $3, _function_stack");
             }
             break;
         case ASSIGN:
