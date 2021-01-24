@@ -1,5 +1,6 @@
 .data
 _prompt: .asciiz "Enter an integer:"
+t2: .word 0
 v5: .word 0
 t1: .word 0
 v4: .word 0
@@ -107,15 +108,16 @@ main:
   move $8, $10
   la $12, v5
   sw $8, 0($12)
-  la $9, v4
+  la $9, t2
   lw $8, 0($9)
-  move $a0, $8
-  addi $sp, $sp, -4
-  sw $ra, 0($sp)
-  jal write
-  lw $ra, 0($sp)
-  addi $sp, $sp, 4
-  la $9, v5
+  la $11, v4
+  lw $10, 0($11)
+  la $13, v5
+  lw $12, 0($13)
+  add $8, $10, $12
+  la $14, t2
+  sw $8, 0($14)
+  la $9, t2
   lw $8, 0($9)
   move $a0, $8
   addi $sp, $sp, -4

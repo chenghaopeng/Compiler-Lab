@@ -2,10 +2,10 @@ int mod (int aa, int bb) {
     return aa;
 }
 int gcd (int a, int b) {
-    return a;
+    return a + b;
 }
 int main () {
     int x = read(), y = read();
-    write(x + y);
+    write(gcd(x, y));
     return 0;
 }
