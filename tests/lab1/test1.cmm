@@ -1,8 +1,7 @@
+int a () { return 0; }
+int b () { a(); return 0; }
 int main () {
-    int a[10];
-    a[1] = 10;
-    a[0] = 01;
-    a[2] = a[0] + a[1];
-    write(a[2]);
+    b();
+    write(10086);
     return 0;
 }

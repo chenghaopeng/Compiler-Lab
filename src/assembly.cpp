@@ -85,6 +85,10 @@ string getLabel (int id) {
     return "label" + to_string(id);
 }
 
+string getFunctionName (string name) {
+    return name == "main" ? name : ("function_" + name);
+}
+
 void asmPrint (FILE* fp) {
     add(".data");
     add("_prompt: .asciiz \"Enter an integer:\"");
@@ -101,7 +105,7 @@ void asmPrint (FILE* fp) {
             add(getLabel(ir->labelId) + ":");
             break;
         case FUNCTION:
-            add(ir->functionName + ":");
+            add(getFunctionName(ir->functionName) + ":");
             break;
         case ASSIGN:
             r1 = mksur(ir->assign.left);
@@ -165,7 +169,7 @@ void asmPrint (FILE* fp) {
         case CALL:
             add("addi $sp, $sp, -4");
             add("sw $ra, 0($sp)");
-            add("jal " + ir->call.functionName);
+            add("jal " + getFunctionName(ir->call.functionName));
             add("lw $ra, 0($sp)");
             add("addi $sp, $sp, 4");
             r1 = mksur(irGetVariable(ir->call.ret), newReg());
