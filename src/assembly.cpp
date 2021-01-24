@@ -3,6 +3,7 @@
 #include <iostream>
 
 #define add outs.push_back
+#define insert(a) outs.insert(outs.begin() + 3, a)
 
 vector<string> outs;
 map<string, bool> inData;
@@ -16,7 +17,7 @@ string newReg () {
 string mksur (string var, string reg) {
     if (!inData[var]) {
         inData[var] = true;
-        outs.insert(outs.begin() + 2, var + ": .word 0");
+        insert(var + ": .word 0");
     }
     string tmp = newReg();
     add("la " + tmp + ", " + var);
@@ -159,7 +160,7 @@ void asmPrint (FILE* fp) {
         case DEC:
             r1 = irGetVariable(ir->dec.var);
             inData[r1] = true;
-            outs.insert(outs.begin() + 2, r1 + ": .space " + to_string(ir->dec.size));
+            insert(r1 + ": .space " + to_string(ir->dec.size));
             break;
         case ARG:
             r1 = mksur(ir->arg);
