@@ -1,5 +1,5 @@
-int a () { return 0; }
-int b () { a(); return 0; }
+int a () { write(19260817); return 0; }
+int b () { a(); write(114514); return 0; }
 int main () {
     b();
     write(10086);
