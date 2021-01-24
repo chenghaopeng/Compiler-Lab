@@ -22,15 +22,15 @@ write:
   move $v0, $0
   jr $ra
 
-a:
+function_a:
   li $8, 0
   move $2, $8
   jr $ra
 
-b:
+function_b:
   addi $sp, $sp, -4
   sw $ra, 0($sp)
-  jal a
+  jal function_a
   lw $ra, 0($sp)
   addi $sp, $sp, 4
   la $9, t0
@@ -45,7 +45,7 @@ b:
 main:
   addi $sp, $sp, -4
   sw $ra, 0($sp)
-  jal b
+  jal function_b
   lw $ra, 0($sp)
   addi $sp, $sp, 4
   la $9, t1
