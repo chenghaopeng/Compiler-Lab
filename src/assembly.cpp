@@ -189,7 +189,7 @@ void asmPrint (FILE* fp) {
             add("lw $ra, 0($sp)");
             add("addi $sp, $sp, 4");
             r1 = mksur(ir->rw);
-            add("move " + r1 + ", $2");
+            add("move " + r1 + ", $v0");
             save(irGetVariable(ir->rw->var), r1);
             break;
         case WRITE:

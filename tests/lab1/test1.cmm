@@ -1,12 +1,12 @@
 int mod (int aa, int bb) {
-    while (aa > bb) aa = aa - bb;
     return aa;
 }
 int gcd (int a, int b) {
-    if (b) return gcd(b, mod(a, b));
     return a;
 }
 int main () {
-    write(10086);
+    int x = read(), y = read();
+    write(x);
+    write(y);
     return 0;
 }
