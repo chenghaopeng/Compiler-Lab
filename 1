@@ -1,29 +1,19 @@
 .data
 _prompt: .asciiz "Enter an integer:"
 _ret: .asciiz "\n"
-t17: .word 0
-t16: .word 0
-t15: .word 0
-t14: .word 0
-t13: .word 0
-t12: .word 0
-t11: .word 0
-t10: .word 0
-t5: .word 0
-t6: .word 0
-t7: .word 0
-t8: .word 0
 t9: .word 0
-v6: .word 0
-v5: .word 0
-v4: .space 20
-t1: .word 0
+t8: .word 0
+t5: .word 0
+t7: .word 0
+t6: .word 0
+v4: .word 0
 t4: .word 0
 t3: .word 0
-t2: .word 0
 v3: .word 0
 v2: .word 0
 t0: .word 0
+t1: .word 0
+t2: .word 0
 v1: .word 0
 v0: .word 0
 _function_stack: .space 65536
@@ -46,7 +36,7 @@ write:
   move $v0, $0
   jr $ra
 
-function_f1:
+function_mod:
   la $9, v0
   lw $8, 0($9)
   lw $10, 0($sp)
@@ -67,13 +57,32 @@ function_f1:
   sw $10, 0($sp)
   la $11, v1
   sw $8, 0($11)
-  la $9, t0
+  la $9, t2
   lw $8, 0($9)
   la $11, v0
   lw $10, 0($11)
   la $13, v1
   lw $12, 0($13)
-  add $8, $10, $12
+  div $10, $12
+  mflo $8
+  la $14, t2
+  sw $8, 0($14)
+  la $9, t1
+  lw $8, 0($9)
+  la $11, t2
+  lw $10, 0($11)
+  la $13, v1
+  lw $12, 0($13)
+  mul $8, $10, $12
+  la $14, t1
+  sw $8, 0($14)
+  la $9, t0
+  lw $8, 0($9)
+  la $11, v0
+  lw $10, 0($11)
+  la $13, t1
+  lw $12, 0($13)
+  sub $8, $10, $12
   la $14, t0
   sw $8, 0($14)
   la $9, t0
@@ -81,7 +90,7 @@ function_f1:
   move $2, $8
   jr $ra
 
-function_f2:
+function_gcd:
   la $9, v2
   lw $8, 0($9)
   lw $10, 0($sp)
@@ -102,34 +111,58 @@ function_f2:
   sw $10, 0($sp)
   la $11, v3
   sw $8, 0($11)
-  la $9, t2
+  la $9, v3
   lw $8, 0($9)
-  la $11, v3
-  lw $10, 0($11)
-  li $12, 1000
-  add $8, $10, $12
-  la $13, t2
-  sw $8, 0($13)
-  la $9, t2
+  li $10, 0
+  bne $8, $10, label0
+  j label1
+label0:
+  la $9, v3
   lw $8, 0($9)
   addi $sp, $sp, -4
   sw $8, 0($sp)
-  la $9, t3
-  lw $8, 0($9)
-  la $11, v2
-  lw $10, 0($11)
-  li $12, 2
-  mul $8, $10, $12
-  la $13, t3
-  sw $8, 0($13)
-  la $9, t3
+  la $9, v2
   lw $8, 0($9)
   addi $sp, $sp, -4
   sw $8, 0($sp)
-  la $9, t2
+  la $9, v2
   lw $8, 0($9)
   sw $8, 0($3)
   addi $3, $3, 4
+  la $9, v3
+  lw $8, 0($9)
+  sw $8, 0($3)
+  addi $3, $3, 4
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_mod
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, v3
+  lw $8, 0($9)
+  addi $3, $3, -4
+  lw $8, 0($3)
+  la $10, v3
+  sw $8, 0($10)
+  la $9, v2
+  lw $8, 0($9)
+  addi $3, $3, -4
+  lw $8, 0($3)
+  la $10, v2
+  sw $8, 0($10)
+  la $9, t3
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t3
+  sw $8, 0($10)
+  la $9, t3
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  la $9, v3
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
   la $9, t3
   lw $8, 0($9)
   sw $8, 0($3)
@@ -144,7 +177,7 @@ function_f2:
   addi $3, $3, 4
   addi $sp, $sp, -4
   sw $ra, 0($sp)
-  jal function_f1
+  jal function_gcd
   lw $ra, 0($sp)
   addi $sp, $sp, 4
   la $9, v3
@@ -165,293 +198,74 @@ function_f2:
   lw $8, 0($3)
   la $10, t3
   sw $8, 0($10)
-  la $9, t2
-  lw $8, 0($9)
-  addi $3, $3, -4
-  lw $8, 0($3)
-  la $10, t2
-  sw $8, 0($10)
   la $9, t4
   lw $8, 0($9)
   move $8, $2
   la $10, t4
   sw $8, 0($10)
-  la $9, t1
-  lw $8, 0($9)
-  la $11, t4
-  lw $10, 0($11)
-  li $12, 10086
-  add $8, $10, $12
-  la $13, t1
-  sw $8, 0($13)
-  la $9, t1
+  la $9, t4
   lw $8, 0($9)
   move $2, $8
   jr $ra
 
-main:
-  la $2, _function_stack
-  la $9, v5
-  lw $8, 0($9)
-  li $10, 2
-  move $8, $10
-  la $11, v5
-  sw $8, 0($11)
-  la $9, v6
-  lw $8, 0($9)
-  li $10, 0
-  move $8, $10
-  la $11, v6
-  sw $8, 0($11)
-  la $9, t9
-  lw $8, 0($9)
-  la $11, v5
-  lw $10, 0($11)
-  li $12, 2
-  mul $8, $10, $12
-  la $13, t9
-  sw $8, 0($13)
-  la $9, t8
-  lw $8, 0($9)
-  la $11, t9
-  lw $10, 0($11)
-  li $12, 100
-  add $8, $10, $12
-  la $13, t8
-  sw $8, 0($13)
-  la $9, t7
-  lw $8, 0($9)
-  la $11, t8
-  lw $10, 0($11)
-  li $12, 2
-  div $10, $12
-  mflo $8
-  la $13, t7
-  sw $8, 0($13)
-  la $9, t6
-  lw $8, 0($9)
-  la $11, t7
-  lw $10, 0($11)
-  li $12, 2
-  div $10, $12
-  mflo $8
-  la $13, t6
-  sw $8, 0($13)
-  la $9, t5
-  lw $8, 0($9)
-  la $11, t6
-  lw $10, 0($11)
-  li $12, 25
-  sub $8, $10, $12
-  la $13, t5
-  sw $8, 0($13)
-  la $9, t10
-  lw $8, 0($9)
-  la $10, v4
-  move $8, $10
-  la $11, t10
-  sw $8, 0($11)
-  la $9, t11
-  lw $8, 0($9)
-  la $11, t5
-  lw $10, 0($11)
-  li $12, 4
-  mul $8, $10, $12
-  la $13, t11
-  sw $8, 0($13)
-  la $9, t10
-  lw $8, 0($9)
-  la $11, t10
-  lw $10, 0($11)
-  la $13, t11
-  lw $12, 0($13)
-  add $8, $10, $12
-  la $14, t10
-  sw $8, 0($14)
-  la $9, t10
-  lw $8, 0($9)
-  lw $8, 0($8)
-  li $10, 10086
-  move $8, $10
-  la $11, t10
-  lw $11, 0($11)
-  sw $8, 0($11)
-label0:
-  la $9, v6
-  lw $8, 0($9)
-  li $10, 5
-  blt $8, $10, label1
-  j label2
 label1:
-  la $9, t12
+  la $9, v2
   lw $8, 0($9)
-  la $10, v4
-  move $8, $10
-  la $11, t12
-  sw $8, 0($11)
-  la $9, t13
+  move $2, $8
+  jr $ra
+
+function_f:
+  la $9, v4
   lw $8, 0($9)
-  la $11, v6
-  lw $10, 0($11)
-  li $12, 4
-  mul $8, $10, $12
-  la $13, t13
-  sw $8, 0($13)
-  la $9, t12
-  lw $8, 0($9)
-  la $11, t12
-  lw $10, 0($11)
-  la $13, t13
-  lw $12, 0($13)
-  add $8, $10, $12
-  la $14, t12
-  sw $8, 0($14)
-  la $9, t12
-  lw $8, 0($9)
-  lw $8, 0($8)
-  move $a0, $8
-  addi $sp, $sp, -4
-  sw $ra, 0($sp)
-  jal write
-  lw $ra, 0($sp)
+  lw $10, 0($sp)
   addi $sp, $sp, 4
-  la $9, t14
-  lw $8, 0($9)
-  la $11, v6
-  lw $10, 0($11)
-  li $12, 1
-  add $8, $10, $12
-  la $13, t14
-  sw $8, 0($13)
-  la $9, v6
-  lw $8, 0($9)
-  la $11, t14
-  lw $10, 0($11)
-  move $8, $10
-  la $12, v6
-  sw $8, 0($12)
-  j label0
-label2:
-  la $9, t15
-  lw $8, 0($9)
-  la $10, v4
-  move $8, $10
-  la $11, t15
+  lw $8, 0($sp)
+  addi $sp, $sp, 4
+  addi $sp, $sp, -4
+  sw $10, 0($sp)
+  la $11, v4
   sw $8, 0($11)
-  la $9, t16
+  la $9, v4
   lw $8, 0($9)
   li $10, 1
-  li $11, 4
-  mul $8, $10, $11
-  la $12, t16
-  sw $8, 0($12)
-  la $9, t15
+  ble $8, $10, label2
+  j label3
+label2:
+  li $8, 1
+  move $2, $8
+  jr $ra
+
+label3:
+  la $9, t6
   lw $8, 0($9)
-  la $11, t15
+  la $11, v4
   lw $10, 0($11)
-  la $13, t16
-  lw $12, 0($13)
-  add $8, $10, $12
-  la $14, t15
-  sw $8, 0($14)
-  la $9, t15
+  li $12, 1
+  sub $8, $10, $12
+  la $13, t6
+  sw $8, 0($13)
+  la $9, t6
   lw $8, 0($9)
-  lw $8, 0($8)
   addi $sp, $sp, -4
   sw $8, 0($sp)
-  li $8, 100
-  addi $sp, $sp, -4
-  sw $8, 0($sp)
-  la $9, t10
-  lw $8, 0($9)
-  sw $8, 0($3)
-  addi $3, $3, 4
-  la $9, t11
-  lw $8, 0($9)
-  sw $8, 0($3)
-  addi $3, $3, 4
-  la $9, t12
-  lw $8, 0($9)
-  sw $8, 0($3)
-  addi $3, $3, 4
-  la $9, t13
-  lw $8, 0($9)
-  sw $8, 0($3)
-  addi $3, $3, 4
-  la $9, t14
-  lw $8, 0($9)
-  sw $8, 0($3)
-  addi $3, $3, 4
-  la $9, t15
-  lw $8, 0($9)
-  sw $8, 0($3)
-  addi $3, $3, 4
-  la $9, t16
-  lw $8, 0($9)
-  sw $8, 0($3)
-  addi $3, $3, 4
-  la $9, t5
-  lw $8, 0($9)
-  sw $8, 0($3)
-  addi $3, $3, 4
   la $9, t6
   lw $8, 0($9)
   sw $8, 0($3)
   addi $3, $3, 4
-  la $9, t7
-  lw $8, 0($9)
-  sw $8, 0($3)
-  addi $3, $3, 4
-  la $9, t8
-  lw $8, 0($9)
-  sw $8, 0($3)
-  addi $3, $3, 4
-  la $9, t9
-  lw $8, 0($9)
-  sw $8, 0($3)
-  addi $3, $3, 4
-  la $9, v5
-  lw $8, 0($9)
-  sw $8, 0($3)
-  addi $3, $3, 4
-  la $9, v6
+  la $9, v4
   lw $8, 0($9)
   sw $8, 0($3)
   addi $3, $3, 4
   addi $sp, $sp, -4
   sw $ra, 0($sp)
-  jal function_f2
+  jal function_f
   lw $ra, 0($sp)
   addi $sp, $sp, 4
-  la $9, v6
+  la $9, v4
   lw $8, 0($9)
   addi $3, $3, -4
   lw $8, 0($3)
-  la $10, v6
-  sw $8, 0($10)
-  la $9, v5
-  lw $8, 0($9)
-  addi $3, $3, -4
-  lw $8, 0($3)
-  la $10, v5
-  sw $8, 0($10)
-  la $9, t9
-  lw $8, 0($9)
-  addi $3, $3, -4
-  lw $8, 0($3)
-  la $10, t9
-  sw $8, 0($10)
-  la $9, t8
-  lw $8, 0($9)
-  addi $3, $3, -4
-  lw $8, 0($3)
-  la $10, t8
-  sw $8, 0($10)
-  la $9, t7
-  lw $8, 0($9)
-  addi $3, $3, -4
-  lw $8, 0($3)
-  la $10, t7
+  la $10, v4
   sw $8, 0($10)
   la $9, t6
   lw $8, 0($9)
@@ -459,60 +273,75 @@ label2:
   lw $8, 0($3)
   la $10, t6
   sw $8, 0($10)
-  la $9, t5
-  lw $8, 0($9)
-  addi $3, $3, -4
-  lw $8, 0($3)
-  la $10, t5
-  sw $8, 0($10)
-  la $9, t16
-  lw $8, 0($9)
-  addi $3, $3, -4
-  lw $8, 0($3)
-  la $10, t16
-  sw $8, 0($10)
-  la $9, t15
-  lw $8, 0($9)
-  addi $3, $3, -4
-  lw $8, 0($3)
-  la $10, t15
-  sw $8, 0($10)
-  la $9, t14
-  lw $8, 0($9)
-  addi $3, $3, -4
-  lw $8, 0($3)
-  la $10, t14
-  sw $8, 0($10)
-  la $9, t13
-  lw $8, 0($9)
-  addi $3, $3, -4
-  lw $8, 0($3)
-  la $10, t13
-  sw $8, 0($10)
-  la $9, t12
-  lw $8, 0($9)
-  addi $3, $3, -4
-  lw $8, 0($3)
-  la $10, t12
-  sw $8, 0($10)
-  la $9, t11
-  lw $8, 0($9)
-  addi $3, $3, -4
-  lw $8, 0($3)
-  la $10, t11
-  sw $8, 0($10)
-  la $9, t10
-  lw $8, 0($9)
-  addi $3, $3, -4
-  lw $8, 0($3)
-  la $10, t10
-  sw $8, 0($10)
-  la $9, t17
+  la $9, t7
   lw $8, 0($9)
   move $8, $2
-  la $10, t17
+  la $10, t7
   sw $8, 0($10)
-  la $9, t17
+  la $9, t5
+  lw $8, 0($9)
+  la $11, v4
+  lw $10, 0($11)
+  la $13, t7
+  lw $12, 0($13)
+  mul $8, $10, $12
+  la $14, t5
+  sw $8, 0($14)
+  la $9, t5
+  lw $8, 0($9)
+  move $2, $8
+  jr $ra
+
+main:
+  la $3, _function_stack
+  li $8, 99
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 99
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_gcd
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t8
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t8
+  sw $8, 0($10)
+  la $9, t8
+  lw $8, 0($9)
+  move $a0, $8
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal write
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  li $8, 10
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  la $9, t8
+  lw $8, 0($9)
+  sw $8, 0($3)
+  addi $3, $3, 4
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t8
+  lw $8, 0($9)
+  addi $3, $3, -4
+  lw $8, 0($3)
+  la $10, t8
+  sw $8, 0($10)
+  la $9, t9
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t9
+  sw $8, 0($10)
+  la $9, t9
   lw $8, 0($9)
   move $a0, $8
   addi $sp, $sp, -4
