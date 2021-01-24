@@ -39,6 +39,8 @@ mod:
   addi $sp, $sp, 4
   addi $sp, $sp, -4
   sw $10, 0($sp)
+  la $11, v0
+  sw $8, 0($11)
   la $9, v1
   lw $8, 0($9)
   lw $10, 0($sp)
@@ -47,6 +49,8 @@ mod:
   addi $sp, $sp, 4
   addi $sp, $sp, -4
   sw $10, 0($sp)
+  la $11, v1
+  sw $8, 0($11)
   la $9, v0
   lw $8, 0($9)
   move $2, $8
@@ -61,6 +65,8 @@ gcd:
   addi $sp, $sp, 4
   addi $sp, $sp, -4
   sw $10, 0($sp)
+  la $11, v2
+  sw $8, 0($11)
   la $9, v3
   lw $8, 0($9)
   lw $10, 0($sp)
@@ -69,6 +75,8 @@ gcd:
   addi $sp, $sp, 4
   addi $sp, $sp, -4
   sw $10, 0($sp)
+  la $11, v3
+  sw $8, 0($11)
   la $9, v2
   lw $8, 0($9)
   move $a0, $8
