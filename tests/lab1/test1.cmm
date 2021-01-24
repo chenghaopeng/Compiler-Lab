@@ -6,6 +6,6 @@ int f (int n) {
     return a[0] + a[1] + f(n - 1);
 }
 int main () {
-    write(f(3));
+    write(f(4));
     return 0;
 }

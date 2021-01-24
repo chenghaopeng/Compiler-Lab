@@ -215,16 +215,6 @@ void asmPrint (FILE* fp) {
             oadd("lw $ra, 0($sp)");
             oadd("addi $sp, $sp, 4");
             if (curFunction == ir->call.functionName) {
-                r1 = newReg();
-                for (int i = varstmp.size() - 1; i >= 0; --i) {
-                    r1 = mksur(varstmp[i], r1);
-                    oadd("addi $3, $3, -4");
-                    oadd("lw " + r1 + ", 0($3)");
-                    save(varstmp[i], r1);
-                    regc--;
-                    regc--;
-                }
-                regc--;
                 for (int i = decName.size() - 1; i >= 0; --i) {
                     r1 = newReg();
                     oadd("la " + r1 + ", " + decName[i]);
@@ -237,6 +227,16 @@ void asmPrint (FILE* fp) {
                     }
                     regc--;
                 }
+                r1 = newReg();
+                for (int i = varstmp.size() - 1; i >= 0; --i) {
+                    r1 = mksur(varstmp[i], r1);
+                    oadd("addi $3, $3, -4");
+                    oadd("lw " + r1 + ", 0($3)");
+                    save(varstmp[i], r1);
+                    regc--;
+                    regc--;
+                }
+                regc--;
             }
             r1 = mksur(irGetVariable(ir->call.ret), newReg());
             oadd("move " + r1 + ", $2");

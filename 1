@@ -169,6 +169,13 @@ label1:
   lw $8, 0($9)
   sw $8, 0($3)
   addi $3, $3, 4
+  la $8, v1
+  lw $9, 0($8)
+  sw $9, 0($3)
+  addi $3, $3, 4
+  lw $9, 4($8)
+  sw $9, 0($3)
+  addi $3, $3, 4
   addi $sp, $sp, -4
   sw $ra, 0($sp)
   jal function_f
@@ -216,6 +223,13 @@ label1:
   lw $8, 0($3)
   la $10, t0
   sw $8, 0($10)
+  la $8, v1
+  addi $3, $3, -4
+  lw $9, 0($3)
+  sw $9, 4($8)
+  addi $3, $3, -4
+  lw $9, 0($3)
+  sw $9, 0($8)
   la $9, t7
   lw $8, 0($9)
   move $8, $2
@@ -292,7 +306,7 @@ label1:
 
 main:
   la $3, _function_stack
-  li $8, 3
+  li $8, 4
   addi $sp, $sp, -4
   sw $8, 0($sp)
   addi $sp, $sp, -4
