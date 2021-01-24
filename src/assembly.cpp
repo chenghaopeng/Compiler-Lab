@@ -67,8 +67,8 @@ void save (Operand* operand, string reg) {
         var = irGetVariable(operand->deref->var);
         tmp = newReg();
         add("la " + tmp + ", " + var);
-        add("lw " + reg + ", 0(" + tmp + ")");
-        add("sw " + reg + ", 0(" + reg + ")");
+        add("lw " + tmp + ", 0(" + tmp + ")");
+        add("sw " + reg + ", 0(" + tmp + ")");
         break;
     default:
         break;
