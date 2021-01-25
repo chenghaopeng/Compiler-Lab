@@ -297,14 +297,15 @@ label3:
   addi $3, $3, 4
   la $8, v2
   li $9, 0
-_label_z6F1K:
-  beq $9, 80000, _label_ozI4N
-  lw $10, $9($8)
+_label_zGMb4:
+  beq $9, 80000, _label_Tlxw8
+  lw $10, 0($8)
   sw $10, 0($3)
   addi $3, $3, 4
+  addi $8, $8, 4
   addi $9, $9, 4
-  j _label_z6F1K
-_label_ozI4N:
+  j _label_zGMb4
+_label_Tlxw8:
   addi $sp, $sp, -4
   sw $ra, 0($sp)
   jal function_f

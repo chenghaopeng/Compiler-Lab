@@ -227,14 +227,24 @@ void asmPrint (FILE* fp) {
             if (curFunction == ir->call.functionName) {
                 for (int i = decName.size() - 1; i >= 0; --i) {
                     r1 = newReg();
+                    r2 = newReg();
+                    r3 = newReg();
+                    l1 = "_label_" + randomString(5);
+                    l2 = "_label_" + randomString(5);
                     oadd("la " + r1 + ", " + decName[i]);
-                    for (int j = decSize[i] - 4; j >= 0; j -= 4) {
-                        r2 = newReg();
-                        oadd("addi $3, $3, -4");
-                        oadd("lw " + r2 + ", 0($3)");
-                        oadd("sw " + r2 + ", " + to_string(j) + "(" + r1 + ")");
-                        regc--;
-                    }
+                    oadd("addi " + r1 + ", " + r1 + ", " + to_string(decSize[i] - 4));
+                    oadd("li " + r2 + ", 0");
+                    oadd(l1 + ":");
+                    oadd("beq " + r2 + ", " + to_string(decSize[i]) + ", " + l2);
+                    oadd("addi $3, $3, -4");
+                    oadd("lw " + r3 + ", 0($3)");
+                    oadd("sw " + r3 + ", 0" + "(" + r1 + ")");
+                    oadd("addi " + r1 + ", " + r1 + ", -4");
+                    oadd("addi " + r2 + ", " + r2 + ", 4");
+                    oadd("j " + l1);
+                    oadd(l2 + ":");
+                    regc--;
+                    regc--;
                     regc--;
                 }
                 r1 = newReg();
