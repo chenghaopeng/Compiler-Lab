@@ -4,7 +4,7 @@ int g (int nn) {
     return 1;
 }
 int f (int n) {
-    int a[20000];
+    int a[6553];
     if (n == 0) return 0;
     a[0] = n;
     a[1] = 2 * n;
