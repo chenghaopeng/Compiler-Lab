@@ -207,9 +207,10 @@ void asmPrint (FILE* fp) {
                     oadd("li " + r2 + ", 0");
                     oadd(l1 + ":");
                     oadd("beq " + r2 + ", " + to_string(decSize[i]) + ", " + l2);
-                    oadd("lw " + r3 + ", " + r2 + "(" + r1 + ")");
+                    oadd("lw " + r3 + ", 0" + "(" + r1 + ")");
                     oadd("sw " + r3 + ", 0($3)");
                     oadd("addi $3, $3, 4");
+                    oadd("addi " + r1 + ", " + r1 + ", 4");
                     oadd("addi " + r2 + ", " + r2 + ", 4");
                     oadd("j " + l1);
                     oadd(l2 + ":");
