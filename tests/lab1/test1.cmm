@@ -4,7 +4,7 @@ int g (int nn) {
     return 1;
 }
 int f (int n) {
-    int a[2];
+    int a[20000];
     if (n == 0) return 0;
     a[0] = g(n);
     a[1] = g(2 * n);
@@ -15,6 +15,6 @@ int add (int x, int y, int z) {
     return g(f(g(f(g(f(x + f((y)) + f(g(g(g(f(f(f(z)))))))))))));
 }
 int main () {
-    write(add(add(add(g(5) + f(7) * 1000, f(4) / f(3) + add(g(5) + f(7) * add(g(5) + add(add(g(5) + f(7) * 1000, f(4) / f(3) + add(g(5) + f(7) * 1000, f(4) / f(3) + 5, f(5) / g(10)), f(5) / g(10)) + f(7) * 1000, f(4) / f(3) + 5, f(5) / g(10)) * 1000, f(4) / f(3) + 5, f(5) / g(10)), f(4) / f(3) + 5, f(5) / g(10)), f(5) / g(10)) + f(7) * 1000, f(4) / f(3) + 5, f(5) / g(10)), add(g(5) + f(7) * 1000, add(g(5) + f(7) * 1000, add(g(5) + f(7) * 1000, f(4) / f(3) + 5, f(5) / g(10)) / f(3) + 5, f(5) / g(10)) / f(3) + 5, f(5) / g(10)), g(3)));
+    write(f(10));
     return 0;
 }

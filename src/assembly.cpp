@@ -105,6 +105,7 @@ void asmPrint (FILE* fp) {
     oadd(".text");
     oadd("read:\n  li $v0, 4\n  la $a0, _prompt\n  syscall\n  li $v0, 5\n  syscall\n  jr $ra\n\nwrite:\n  li $v0, 1\n  syscall\n  li $v0, 4\n  la $a0, _ret\n  syscall\n  move $v0, $0\n  jr $ra\n");
     string r1, r2, r3;
+    string l1, l2;
     vector<string> varstmp;
     for (int i = 0; i < irCount(); ++i) {
         InterRepresentation* ir = irGet(i);
@@ -198,14 +199,22 @@ void asmPrint (FILE* fp) {
                 regc--;
                 for (int i = 0; i < decName.size(); ++i) {
                     r1 = newReg();
+                    r2 = newReg();
+                    r3 = newReg();
+                    l1 = "_label_" + randomString(5);
+                    l2 = "_label_" + randomString(5);
                     oadd("la " + r1 + ", " + decName[i]);
-                    for (int j = 0; j < decSize[i]; j += 4) {
-                        r2 = newReg();
-                        oadd("lw " + r2 + ", " + to_string(j) + "(" + r1 + ")");
-                        oadd("sw " + r2 + ", 0($3)");
-                        oadd("addi $3, $3, 4");
-                        regc--;
-                    }
+                    oadd("li " + r2 + ", 0");
+                    oadd(l1 + ":");
+                    oadd("beq " + r2 + ", " + to_string(decSize[i]) + ", " + l2);
+                    oadd("lw " + r3 + ", " + r2 + "(" + r1 + ")");
+                    oadd("sw " + r3 + ", 0($3)");
+                    oadd("addi $3, $3, 4");
+                    oadd("addi " + r2 + ", " + r2 + ", 4");
+                    oadd("j " + l1);
+                    oadd(l2 + ":");
+                    regc--;
+                    regc--;
                     regc--;
                 }
             }
