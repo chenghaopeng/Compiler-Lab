@@ -1,22 +1,159 @@
 .data
 _prompt: .asciiz "Enter an integer:"
 _ret: .asciiz "\n"
+t147: .word 0
+t146: .word 0
+t73: .word 0
+t145: .word 0
+t141: .word 0
+t144: .word 0
+t142: .word 0
+t143: .word 0
+t79: .word 0
+t138: .word 0
+t140: .word 0
+t139: .word 0
+t137: .word 0
+t87: .word 0
+t136: .word 0
+t88: .word 0
+t135: .word 0
+t134: .word 0
+t96: .word 0
+t133: .word 0
+t97: .word 0
+t132: .word 0
+t105: .word 0
+t131: .word 0
+t127: .word 0
+t130: .word 0
+t128: .word 0
+t129: .word 0
+t111: .word 0
+t124: .word 0
+t126: .word 0
+t125: .word 0
+t123: .word 0
+t119: .word 0
+t122: .word 0
+t120: .word 0
+t121: .word 0
+t115: .word 0
+t116: .word 0
+t118: .word 0
+t117: .word 0
+t112: .word 0
+t114: .word 0
+t113: .word 0
+t108: .word 0
+t110: .word 0
+t109: .word 0
+t106: .word 0
+t107: .word 0
+t101: .word 0
+t102: .word 0
+t104: .word 0
+t103: .word 0
+t98: .word 0
+t100: .word 0
+t99: .word 0
+t92: .word 0
+t93: .word 0
+t95: .word 0
+t94: .word 0
+t89: .word 0
+t91: .word 0
+t90: .word 0
+t83: .word 0
+t84: .word 0
+t86: .word 0
+t85: .word 0
+t80: .word 0
+t82: .word 0
+t81: .word 0
+t76: .word 0
+t78: .word 0
+t77: .word 0
+t74: .word 0
+t75: .word 0
+t69: .word 0
+t70: .word 0
+t72: .word 0
+t71: .word 0
+t66: .word 0
+t68: .word 0
+t67: .word 0
+t65: .word 0
+t61: .word 0
+t64: .word 0
+t62: .word 0
+t63: .word 0
+t35: .word 0
+t36: .word 0
+t60: .word 0
+t56: .word 0
+t59: .word 0
+t57: .word 0
+t58: .word 0
+t41: .word 0
+t42: .word 0
+t55: .word 0
+t51: .word 0
+t54: .word 0
+t52: .word 0
+t53: .word 0
+t47: .word 0
+t48: .word 0
+t50: .word 0
+t49: .word 0
+t44: .word 0
+t46: .word 0
+t45: .word 0
+t43: .word 0
+t38: .word 0
+t40: .word 0
+t39: .word 0
+t37: .word 0
+t32: .word 0
+t34: .word 0
+t33: .word 0
+t31: .word 0
+t30: .word 0
+t29: .word 0
+t28: .word 0
+t27: .word 0
+t26: .word 0
+t25: .word 0
+t15: .word 0
+t23: .word 0
+t24: .word 0
+t22: .word 0
+t21: .word 0
+t20: .word 0
+t19: .word 0
+t18: .word 0
+t17: .word 0
+t16: .word 0
+v5: .word 0
+v4: .word 0
+v3: .word 0
 t14: .word 0
-t5: .word 0
-t8: .word 0
 t13: .word 0
 t12: .word 0
-t9: .word 0
 t11: .word 0
 t10: .word 0
+t9: .word 0
+t8: .word 0
 t7: .word 0
 t6: .word 0
+t5: .word 0
 t4: .word 0
 t3: .word 0
 t2: .word 0
+v2: .space 8
+v1: .word 0
 t1: .word 0
 t0: .word 0
-v1: .space 8
 v0: .word 0
 _function_stack: .space 524280
 .globl main
@@ -38,7 +175,7 @@ write:
   move $v0, $0
   jr $ra
 
-function_f:
+function_g:
   la $9, v0
   lw $8, 0($9)
   lw $10, 0($sp)
@@ -51,55 +188,92 @@ function_f:
   sw $8, 0($11)
   la $9, v0
   lw $8, 0($9)
-  li $10, 0
-  beq $8, $10, label0
+  li $10, 1
+  ble $8, $10, label0
   j label1
 label0:
-  li $8, 0
+  li $8, 1
   move $2, $8
   jr $ra
 
 label1:
   la $9, t0
   lw $8, 0($9)
-  la $10, v1
-  move $8, $10
-  la $11, t0
-  sw $8, 0($11)
-  la $9, t1
-  lw $8, 0($9)
-  li $10, 0
-  li $11, 4
-  mul $8, $10, $11
-  la $12, t1
-  sw $8, 0($12)
-  la $9, t0
-  lw $8, 0($9)
-  la $11, t0
-  lw $10, 0($11)
-  la $13, t1
-  lw $12, 0($13)
-  add $8, $10, $12
-  la $14, t0
-  sw $8, 0($14)
-  la $9, t0
-  lw $8, 0($9)
-  lw $8, 0($8)
   la $11, v0
   lw $10, 0($11)
-  move $8, $10
-  la $12, t0
-  lw $12, 0($12)
-  sw $8, 0($12)
+  li $12, 1
+  sub $8, $10, $12
+  la $13, t0
+  sw $8, 0($13)
+  la $9, t0
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  la $9, t0
+  lw $8, 0($9)
+  sw $8, 0($3)
+  addi $3, $3, 4
+  la $9, v0
+  lw $8, 0($9)
+  sw $8, 0($3)
+  addi $3, $3, 4
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, v0
+  lw $8, 0($9)
+  addi $3, $3, -4
+  lw $8, 0($3)
+  la $10, v0
+  sw $8, 0($10)
+  la $9, t0
+  lw $8, 0($9)
+  addi $3, $3, -4
+  lw $8, 0($3)
+  la $10, t0
+  sw $8, 0($10)
+  la $9, t1
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t1
+  sw $8, 0($10)
+  li $8, 1
+  move $2, $8
+  jr $ra
+
+function_f:
+  la $9, v1
+  lw $8, 0($9)
+  lw $10, 0($sp)
+  addi $sp, $sp, 4
+  lw $8, 0($sp)
+  addi $sp, $sp, 4
+  addi $sp, $sp, -4
+  sw $10, 0($sp)
+  la $11, v1
+  sw $8, 0($11)
+  la $9, v1
+  lw $8, 0($9)
+  li $10, 0
+  beq $8, $10, label2
+  j label3
+label2:
+  li $8, 0
+  move $2, $8
+  jr $ra
+
+label3:
   la $9, t2
   lw $8, 0($9)
-  la $10, v1
+  la $10, v2
   move $8, $10
   la $11, t2
   sw $8, 0($11)
   la $9, t3
   lw $8, 0($9)
-  li $10, 1
+  li $10, 0
   li $11, 4
   mul $8, $10, $11
   la $12, t3
@@ -113,14 +287,20 @@ label1:
   add $8, $10, $12
   la $14, t2
   sw $8, 0($14)
+  la $9, v1
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
   la $9, t4
   lw $8, 0($9)
-  li $10, 2
-  la $12, v0
-  lw $11, 0($12)
-  mul $8, $10, $11
-  la $13, t4
-  sw $8, 0($13)
+  move $8, $2
+  la $10, t4
+  sw $8, 0($10)
   la $9, t2
   lw $8, 0($9)
   lw $8, 0($8)
@@ -130,26 +310,71 @@ label1:
   la $12, t2
   lw $12, 0($12)
   sw $8, 0($12)
+  la $9, t5
+  lw $8, 0($9)
+  la $10, v2
+  move $8, $10
+  la $11, t5
+  sw $8, 0($11)
   la $9, t6
   lw $8, 0($9)
-  la $11, v0
+  li $10, 1
+  li $11, 4
+  mul $8, $10, $11
+  la $12, t6
+  sw $8, 0($12)
+  la $9, t5
+  lw $8, 0($9)
+  la $11, t5
   lw $10, 0($11)
-  li $12, 1
-  sub $8, $10, $12
   la $13, t6
+  lw $12, 0($13)
+  add $8, $10, $12
+  la $14, t5
+  sw $8, 0($14)
+  la $9, t7
+  lw $8, 0($9)
+  li $10, 2
+  la $12, v1
+  lw $11, 0($12)
+  mul $8, $10, $11
+  la $13, t7
   sw $8, 0($13)
-  la $9, t6
+  la $9, t7
   lw $8, 0($9)
   addi $sp, $sp, -4
   sw $8, 0($sp)
-  la $9, t0
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t8
   lw $8, 0($9)
-  sw $8, 0($3)
-  addi $3, $3, 4
-  la $9, t1
+  move $8, $2
+  la $10, t8
+  sw $8, 0($10)
+  la $9, t5
   lw $8, 0($9)
-  sw $8, 0($3)
-  addi $3, $3, 4
+  lw $8, 0($8)
+  la $11, t8
+  lw $10, 0($11)
+  move $8, $10
+  la $12, t5
+  lw $12, 0($12)
+  sw $8, 0($12)
+  la $9, t9
+  lw $8, 0($9)
+  la $11, v1
+  lw $10, 0($11)
+  li $12, 1
+  sub $8, $10, $12
+  la $13, t9
+  sw $8, 0($13)
+  la $9, t9
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
   la $9, t2
   lw $8, 0($9)
   sw $8, 0($3)
@@ -162,15 +387,31 @@ label1:
   lw $8, 0($9)
   sw $8, 0($3)
   addi $3, $3, 4
+  la $9, t5
+  lw $8, 0($9)
+  sw $8, 0($3)
+  addi $3, $3, 4
   la $9, t6
   lw $8, 0($9)
   sw $8, 0($3)
   addi $3, $3, 4
-  la $9, v0
+  la $9, t7
   lw $8, 0($9)
   sw $8, 0($3)
   addi $3, $3, 4
-  la $8, v1
+  la $9, t8
+  lw $8, 0($9)
+  sw $8, 0($3)
+  addi $3, $3, 4
+  la $9, t9
+  lw $8, 0($9)
+  sw $8, 0($3)
+  addi $3, $3, 4
+  la $9, v1
+  lw $8, 0($9)
+  sw $8, 0($3)
+  addi $3, $3, 4
+  la $8, v2
   lw $9, 0($8)
   sw $9, 0($3)
   addi $3, $3, 4
@@ -182,24 +423,48 @@ label1:
   jal function_f
   lw $ra, 0($sp)
   addi $sp, $sp, 4
-  la $8, v1
+  la $8, v2
   addi $3, $3, -4
   lw $9, 0($3)
   sw $9, 4($8)
   addi $3, $3, -4
   lw $9, 0($3)
   sw $9, 0($8)
-  la $9, v0
+  la $9, v1
   lw $8, 0($9)
   addi $3, $3, -4
   lw $8, 0($3)
-  la $10, v0
+  la $10, v1
+  sw $8, 0($10)
+  la $9, t9
+  lw $8, 0($9)
+  addi $3, $3, -4
+  lw $8, 0($3)
+  la $10, t9
+  sw $8, 0($10)
+  la $9, t8
+  lw $8, 0($9)
+  addi $3, $3, -4
+  lw $8, 0($3)
+  la $10, t8
+  sw $8, 0($10)
+  la $9, t7
+  lw $8, 0($9)
+  addi $3, $3, -4
+  lw $8, 0($3)
+  la $10, t7
   sw $8, 0($10)
   la $9, t6
   lw $8, 0($9)
   addi $3, $3, -4
   lw $8, 0($3)
   la $10, t6
+  sw $8, 0($10)
+  la $9, t5
+  lw $8, 0($9)
+  addi $3, $3, -4
+  lw $8, 0($3)
+  la $10, t5
   sw $8, 0($10)
   la $9, t4
   lw $8, 0($9)
@@ -219,102 +484,499 @@ label1:
   lw $8, 0($3)
   la $10, t2
   sw $8, 0($10)
-  la $9, t1
-  lw $8, 0($9)
-  addi $3, $3, -4
-  lw $8, 0($3)
-  la $10, t1
-  sw $8, 0($10)
-  la $9, t0
-  lw $8, 0($9)
-  addi $3, $3, -4
-  lw $8, 0($3)
-  la $10, t0
-  sw $8, 0($10)
-  la $9, t7
+  la $9, t10
   lw $8, 0($9)
   move $8, $2
-  la $10, t7
+  la $10, t10
   sw $8, 0($10)
   la $9, t10
   lw $8, 0($9)
-  la $10, v1
-  move $8, $10
-  la $11, t10
-  sw $8, 0($11)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
   la $9, t11
   lw $8, 0($9)
-  li $10, 1
-  li $11, 4
-  mul $8, $10, $11
-  la $12, t11
-  sw $8, 0($12)
-  la $9, t10
+  move $8, $2
+  la $10, t11
+  sw $8, 0($10)
+  la $9, t11
   lw $8, 0($9)
-  la $11, t10
-  lw $10, 0($11)
-  la $13, t11
-  lw $12, 0($13)
-  add $8, $10, $12
-  la $14, t10
-  sw $8, 0($14)
-  la $9, t9
-  lw $8, 0($9)
-  la $11, t10
-  lw $10, 0($11)
-  lw $10, 0($10)
-  li $12, 2
-  mul $8, $10, $12
-  la $13, t9
-  sw $8, 0($13)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
   la $9, t12
   lw $8, 0($9)
-  la $10, v1
-  move $8, $10
-  la $11, t12
-  sw $8, 0($11)
+  move $8, $2
+  la $10, t12
+  sw $8, 0($10)
+  la $9, t12
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
   la $9, t13
   lw $8, 0($9)
-  li $10, 0
-  li $11, 4
-  mul $8, $10, $11
-  la $12, t13
-  sw $8, 0($12)
-  la $9, t12
+  move $8, $2
+  la $10, t13
+  sw $8, 0($10)
+  la $9, t13
   lw $8, 0($9)
-  la $11, t12
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t14
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t14
+  sw $8, 0($10)
+  li $8, 1
+  move $2, $8
+  jr $ra
+
+function_add:
+  la $9, v3
+  lw $8, 0($9)
+  lw $10, 0($sp)
+  addi $sp, $sp, 4
+  lw $8, 0($sp)
+  addi $sp, $sp, 4
+  addi $sp, $sp, -4
+  sw $10, 0($sp)
+  la $11, v3
+  sw $8, 0($11)
+  la $9, v4
+  lw $8, 0($9)
+  lw $10, 0($sp)
+  addi $sp, $sp, 4
+  lw $8, 0($sp)
+  addi $sp, $sp, 4
+  addi $sp, $sp, -4
+  sw $10, 0($sp)
+  la $11, v4
+  sw $8, 0($11)
+  la $9, v5
+  lw $8, 0($9)
+  lw $10, 0($sp)
+  addi $sp, $sp, 4
+  lw $8, 0($sp)
+  addi $sp, $sp, 4
+  addi $sp, $sp, -4
+  sw $10, 0($sp)
+  la $11, v5
+  sw $8, 0($11)
+  la $9, v5
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t16
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t16
+  sw $8, 0($10)
+  la $9, t16
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t17
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t17
+  sw $8, 0($10)
+  la $9, t17
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t18
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t18
+  sw $8, 0($10)
+  la $9, t18
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t19
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t19
+  sw $8, 0($10)
+  la $9, t19
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t20
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t20
+  sw $8, 0($10)
+  la $9, t20
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t21
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t21
+  sw $8, 0($10)
+  la $9, t21
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t22
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t22
+  sw $8, 0($10)
+  la $9, v4
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t24
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t24
+  sw $8, 0($10)
+  la $9, t23
+  lw $8, 0($9)
+  la $11, v3
   lw $10, 0($11)
-  la $13, t13
+  la $13, t24
   lw $12, 0($13)
   add $8, $10, $12
-  la $14, t12
+  la $14, t23
   sw $8, 0($14)
-  la $9, t8
+  la $9, t15
   lw $8, 0($9)
-  la $11, t12
+  la $11, t23
   lw $10, 0($11)
-  lw $10, 0($10)
-  la $13, t9
+  la $13, t22
   lw $12, 0($13)
   add $8, $10, $12
-  la $14, t8
+  la $14, t15
   sw $8, 0($14)
-  la $9, t5
+  la $9, t15
   lw $8, 0($9)
-  la $11, t8
-  lw $10, 0($11)
-  la $13, t7
-  lw $12, 0($13)
-  add $8, $10, $12
-  la $14, t5
-  sw $8, 0($14)
-  la $9, t5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t25
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t25
+  sw $8, 0($10)
+  la $9, t25
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t26
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t26
+  sw $8, 0($10)
+  la $9, t26
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t27
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t27
+  sw $8, 0($10)
+  la $9, t27
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t28
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t28
+  sw $8, 0($10)
+  la $9, t28
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t29
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t29
+  sw $8, 0($10)
+  la $9, t29
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t30
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t30
+  sw $8, 0($10)
+  la $9, t30
   lw $8, 0($9)
   move $2, $8
   jr $ra
 
 main:
   la $3, _function_stack
+  li $8, 3
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t31
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t31
+  sw $8, 0($10)
+  la $9, t31
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 10
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t33
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t33
+  sw $8, 0($10)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t34
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t34
+  sw $8, 0($10)
+  la $9, t32
+  lw $8, 0($9)
+  la $11, t34
+  lw $10, 0($11)
+  la $13, t33
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t32
+  sw $8, 0($14)
+  la $9, t32
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 3
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t37
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t37
+  sw $8, 0($10)
+  li $8, 10
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t39
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t39
+  sw $8, 0($10)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t40
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t40
+  sw $8, 0($10)
+  la $9, t38
+  lw $8, 0($9)
+  la $11, t40
+  lw $10, 0($11)
+  la $13, t39
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t38
+  sw $8, 0($14)
+  la $9, t38
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 3
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t43
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t43
+  sw $8, 0($10)
+  li $8, 10
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t45
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t45
+  sw $8, 0($10)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t46
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t46
+  sw $8, 0($10)
+  la $9, t44
+  lw $8, 0($9)
+  la $11, t46
+  lw $10, 0($11)
+  la $13, t45
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t44
+  sw $8, 0($14)
+  la $9, t44
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 3
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t49
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t49
+  sw $8, 0($10)
   li $8, 4
   addi $sp, $sp, -4
   sw $8, 0($sp)
@@ -323,12 +985,1246 @@ main:
   jal function_f
   lw $ra, 0($sp)
   addi $sp, $sp, 4
-  la $9, t14
+  la $9, t50
   lw $8, 0($9)
   move $8, $2
-  la $10, t14
+  la $10, t50
   sw $8, 0($10)
-  la $9, t14
+  la $9, t48
+  lw $8, 0($9)
+  la $11, t50
+  lw $10, 0($11)
+  la $13, t49
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t48
+  sw $8, 0($14)
+  la $9, t47
+  lw $8, 0($9)
+  la $11, t48
+  lw $10, 0($11)
+  li $12, 5
+  add $8, $10, $12
+  la $13, t47
+  sw $8, 0($13)
+  la $9, t47
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 7
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t53
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t53
+  sw $8, 0($10)
+  la $9, t52
+  lw $8, 0($9)
+  la $11, t53
+  lw $10, 0($11)
+  li $12, 1000
+  mul $8, $10, $12
+  la $13, t52
+  sw $8, 0($13)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t54
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t54
+  sw $8, 0($10)
+  la $9, t51
+  lw $8, 0($9)
+  la $11, t54
+  lw $10, 0($11)
+  la $13, t52
+  lw $12, 0($13)
+  add $8, $10, $12
+  la $14, t51
+  sw $8, 0($14)
+  la $9, t51
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_add
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t55
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t55
+  sw $8, 0($10)
+  la $9, t42
+  lw $8, 0($9)
+  la $11, t55
+  lw $10, 0($11)
+  la $13, t43
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t42
+  sw $8, 0($14)
+  la $9, t41
+  lw $8, 0($9)
+  la $11, t42
+  lw $10, 0($11)
+  li $12, 5
+  add $8, $10, $12
+  la $13, t41
+  sw $8, 0($13)
+  la $9, t41
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 7
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t58
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t58
+  sw $8, 0($10)
+  la $9, t57
+  lw $8, 0($9)
+  la $11, t58
+  lw $10, 0($11)
+  li $12, 1000
+  mul $8, $10, $12
+  la $13, t57
+  sw $8, 0($13)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t59
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t59
+  sw $8, 0($10)
+  la $9, t56
+  lw $8, 0($9)
+  la $11, t59
+  lw $10, 0($11)
+  la $13, t57
+  lw $12, 0($13)
+  add $8, $10, $12
+  la $14, t56
+  sw $8, 0($14)
+  la $9, t56
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_add
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t60
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t60
+  sw $8, 0($10)
+  la $9, t36
+  lw $8, 0($9)
+  la $11, t60
+  lw $10, 0($11)
+  la $13, t37
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t36
+  sw $8, 0($14)
+  la $9, t35
+  lw $8, 0($9)
+  la $11, t36
+  lw $10, 0($11)
+  li $12, 5
+  add $8, $10, $12
+  la $13, t35
+  sw $8, 0($13)
+  la $9, t35
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 7
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t63
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t63
+  sw $8, 0($10)
+  la $9, t62
+  lw $8, 0($9)
+  la $11, t63
+  lw $10, 0($11)
+  li $12, 1000
+  mul $8, $10, $12
+  la $13, t62
+  sw $8, 0($13)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t64
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t64
+  sw $8, 0($10)
+  la $9, t61
+  lw $8, 0($9)
+  la $11, t64
+  lw $10, 0($11)
+  la $13, t62
+  lw $12, 0($13)
+  add $8, $10, $12
+  la $14, t61
+  sw $8, 0($14)
+  la $9, t61
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_add
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t65
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t65
+  sw $8, 0($10)
+  la $9, t65
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 10
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t67
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t67
+  sw $8, 0($10)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t68
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t68
+  sw $8, 0($10)
+  la $9, t66
+  lw $8, 0($9)
+  la $11, t68
+  lw $10, 0($11)
+  la $13, t67
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t66
+  sw $8, 0($14)
+  la $9, t66
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 3
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t71
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t71
+  sw $8, 0($10)
+  li $8, 4
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t72
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t72
+  sw $8, 0($10)
+  la $9, t70
+  lw $8, 0($9)
+  la $11, t72
+  lw $10, 0($11)
+  la $13, t71
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t70
+  sw $8, 0($14)
+  la $9, t69
+  lw $8, 0($9)
+  la $11, t70
+  lw $10, 0($11)
+  li $12, 5
+  add $8, $10, $12
+  la $13, t69
+  sw $8, 0($13)
+  la $9, t69
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 7
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t75
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t75
+  sw $8, 0($10)
+  la $9, t74
+  lw $8, 0($9)
+  la $11, t75
+  lw $10, 0($11)
+  li $12, 1000
+  mul $8, $10, $12
+  la $13, t74
+  sw $8, 0($13)
+  li $8, 10
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t77
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t77
+  sw $8, 0($10)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t78
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t78
+  sw $8, 0($10)
+  la $9, t76
+  lw $8, 0($9)
+  la $11, t78
+  lw $10, 0($11)
+  la $13, t77
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t76
+  sw $8, 0($14)
+  la $9, t76
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 10
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t81
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t81
+  sw $8, 0($10)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t82
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t82
+  sw $8, 0($10)
+  la $9, t80
+  lw $8, 0($9)
+  la $11, t82
+  lw $10, 0($11)
+  la $13, t81
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t80
+  sw $8, 0($14)
+  la $9, t80
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 3
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t85
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t85
+  sw $8, 0($10)
+  li $8, 4
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t86
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t86
+  sw $8, 0($10)
+  la $9, t84
+  lw $8, 0($9)
+  la $11, t86
+  lw $10, 0($11)
+  la $13, t85
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t84
+  sw $8, 0($14)
+  la $9, t83
+  lw $8, 0($9)
+  la $11, t84
+  lw $10, 0($11)
+  li $12, 5
+  add $8, $10, $12
+  la $13, t83
+  sw $8, 0($13)
+  la $9, t83
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 10
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t90
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t90
+  sw $8, 0($10)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t91
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t91
+  sw $8, 0($10)
+  la $9, t89
+  lw $8, 0($9)
+  la $11, t91
+  lw $10, 0($11)
+  la $13, t90
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t89
+  sw $8, 0($14)
+  la $9, t89
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 3
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t94
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t94
+  sw $8, 0($10)
+  li $8, 4
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t95
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t95
+  sw $8, 0($10)
+  la $9, t93
+  lw $8, 0($9)
+  la $11, t95
+  lw $10, 0($11)
+  la $13, t94
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t93
+  sw $8, 0($14)
+  la $9, t92
+  lw $8, 0($9)
+  la $11, t93
+  lw $10, 0($11)
+  li $12, 5
+  add $8, $10, $12
+  la $13, t92
+  sw $8, 0($13)
+  la $9, t92
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 10
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t99
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t99
+  sw $8, 0($10)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t100
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t100
+  sw $8, 0($10)
+  la $9, t98
+  lw $8, 0($9)
+  la $11, t100
+  lw $10, 0($11)
+  la $13, t99
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t98
+  sw $8, 0($14)
+  la $9, t98
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 3
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t103
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t103
+  sw $8, 0($10)
+  li $8, 4
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t104
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t104
+  sw $8, 0($10)
+  la $9, t102
+  lw $8, 0($9)
+  la $11, t104
+  lw $10, 0($11)
+  la $13, t103
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t102
+  sw $8, 0($14)
+  la $9, t101
+  lw $8, 0($9)
+  la $11, t102
+  lw $10, 0($11)
+  li $12, 5
+  add $8, $10, $12
+  la $13, t101
+  sw $8, 0($13)
+  la $9, t101
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 7
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t107
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t107
+  sw $8, 0($10)
+  la $9, t106
+  lw $8, 0($9)
+  la $11, t107
+  lw $10, 0($11)
+  li $12, 1000
+  mul $8, $10, $12
+  la $13, t106
+  sw $8, 0($13)
+  li $8, 10
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t109
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t109
+  sw $8, 0($10)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t110
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t110
+  sw $8, 0($10)
+  la $9, t108
+  lw $8, 0($9)
+  la $11, t110
+  lw $10, 0($11)
+  la $13, t109
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t108
+  sw $8, 0($14)
+  la $9, t108
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 10
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t113
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t113
+  sw $8, 0($10)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t114
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t114
+  sw $8, 0($10)
+  la $9, t112
+  lw $8, 0($9)
+  la $11, t114
+  lw $10, 0($11)
+  la $13, t113
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t112
+  sw $8, 0($14)
+  la $9, t112
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 3
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t117
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t117
+  sw $8, 0($10)
+  li $8, 4
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t118
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t118
+  sw $8, 0($10)
+  la $9, t116
+  lw $8, 0($9)
+  la $11, t118
+  lw $10, 0($11)
+  la $13, t117
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t116
+  sw $8, 0($14)
+  la $9, t115
+  lw $8, 0($9)
+  la $11, t116
+  lw $10, 0($11)
+  li $12, 5
+  add $8, $10, $12
+  la $13, t115
+  sw $8, 0($13)
+  la $9, t115
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 7
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t121
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t121
+  sw $8, 0($10)
+  la $9, t120
+  lw $8, 0($9)
+  la $11, t121
+  lw $10, 0($11)
+  li $12, 1000
+  mul $8, $10, $12
+  la $13, t120
+  sw $8, 0($13)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t122
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t122
+  sw $8, 0($10)
+  la $9, t119
+  lw $8, 0($9)
+  la $11, t122
+  lw $10, 0($11)
+  la $13, t120
+  lw $12, 0($13)
+  add $8, $10, $12
+  la $14, t119
+  sw $8, 0($14)
+  la $9, t119
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_add
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t123
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t123
+  sw $8, 0($10)
+  li $8, 3
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t125
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t125
+  sw $8, 0($10)
+  li $8, 4
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t126
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t126
+  sw $8, 0($10)
+  la $9, t124
+  lw $8, 0($9)
+  la $11, t126
+  lw $10, 0($11)
+  la $13, t125
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t124
+  sw $8, 0($14)
+  la $9, t111
+  lw $8, 0($9)
+  la $11, t124
+  lw $10, 0($11)
+  la $13, t123
+  lw $12, 0($13)
+  add $8, $10, $12
+  la $14, t111
+  sw $8, 0($14)
+  la $9, t111
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 7
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t129
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t129
+  sw $8, 0($10)
+  la $9, t128
+  lw $8, 0($9)
+  la $11, t129
+  lw $10, 0($11)
+  li $12, 1000
+  mul $8, $10, $12
+  la $13, t128
+  sw $8, 0($13)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t130
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t130
+  sw $8, 0($10)
+  la $9, t127
+  lw $8, 0($9)
+  la $11, t130
+  lw $10, 0($11)
+  la $13, t128
+  lw $12, 0($13)
+  add $8, $10, $12
+  la $14, t127
+  sw $8, 0($14)
+  la $9, t127
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_add
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t131
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t131
+  sw $8, 0($10)
+  la $9, t105
+  lw $8, 0($9)
+  la $11, t131
+  lw $10, 0($11)
+  la $13, t106
+  lw $12, 0($13)
+  add $8, $10, $12
+  la $14, t105
+  sw $8, 0($14)
+  la $9, t105
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_add
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t132
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t132
+  sw $8, 0($10)
+  la $9, t97
+  lw $8, 0($9)
+  la $11, t132
+  lw $10, 0($11)
+  li $12, 1000
+  mul $8, $10, $12
+  la $13, t97
+  sw $8, 0($13)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t133
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t133
+  sw $8, 0($10)
+  la $9, t96
+  lw $8, 0($9)
+  la $11, t133
+  lw $10, 0($11)
+  la $13, t97
+  lw $12, 0($13)
+  add $8, $10, $12
+  la $14, t96
+  sw $8, 0($14)
+  la $9, t96
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_add
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t134
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t134
+  sw $8, 0($10)
+  li $8, 7
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t135
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t135
+  sw $8, 0($10)
+  la $9, t88
+  lw $8, 0($9)
+  la $11, t135
+  lw $10, 0($11)
+  la $13, t134
+  lw $12, 0($13)
+  mul $8, $10, $12
+  la $14, t88
+  sw $8, 0($14)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t136
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t136
+  sw $8, 0($10)
+  la $9, t87
+  lw $8, 0($9)
+  la $11, t136
+  lw $10, 0($11)
+  la $13, t88
+  lw $12, 0($13)
+  add $8, $10, $12
+  la $14, t87
+  sw $8, 0($14)
+  la $9, t87
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_add
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t137
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t137
+  sw $8, 0($10)
+  li $8, 3
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t139
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t139
+  sw $8, 0($10)
+  li $8, 4
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t140
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t140
+  sw $8, 0($10)
+  la $9, t138
+  lw $8, 0($9)
+  la $11, t140
+  lw $10, 0($11)
+  la $13, t139
+  lw $12, 0($13)
+  div $10, $12
+  mflo $8
+  la $14, t138
+  sw $8, 0($14)
+  la $9, t79
+  lw $8, 0($9)
+  la $11, t138
+  lw $10, 0($11)
+  la $13, t137
+  lw $12, 0($13)
+  add $8, $10, $12
+  la $14, t79
+  sw $8, 0($14)
+  la $9, t79
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  li $8, 7
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_f
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t143
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t143
+  sw $8, 0($10)
+  la $9, t142
+  lw $8, 0($9)
+  la $11, t143
+  lw $10, 0($11)
+  li $12, 1000
+  mul $8, $10, $12
+  la $13, t142
+  sw $8, 0($13)
+  li $8, 5
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_g
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t144
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t144
+  sw $8, 0($10)
+  la $9, t141
+  lw $8, 0($9)
+  la $11, t144
+  lw $10, 0($11)
+  la $13, t142
+  lw $12, 0($13)
+  add $8, $10, $12
+  la $14, t141
+  sw $8, 0($14)
+  la $9, t141
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_add
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t145
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t145
+  sw $8, 0($10)
+  la $9, t73
+  lw $8, 0($9)
+  la $11, t145
+  lw $10, 0($11)
+  la $13, t74
+  lw $12, 0($13)
+  add $8, $10, $12
+  la $14, t73
+  sw $8, 0($14)
+  la $9, t73
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_add
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t146
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t146
+  sw $8, 0($10)
+  la $9, t146
+  lw $8, 0($9)
+  addi $sp, $sp, -4
+  sw $8, 0($sp)
+  addi $sp, $sp, -4
+  sw $ra, 0($sp)
+  jal function_add
+  lw $ra, 0($sp)
+  addi $sp, $sp, 4
+  la $9, t147
+  lw $8, 0($9)
+  move $8, $2
+  la $10, t147
+  sw $8, 0($10)
+  la $9, t147
   lw $8, 0($9)
   move $a0, $8
   addi $sp, $sp, -4
